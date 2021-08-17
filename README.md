@@ -24,19 +24,12 @@
 * feature 3
 
 To run the base code locally:
-1) cd into BackEnd/loginmicroservices
+1) cd BackEnd/loginmicroservices
 2) ./mvnw package && java -jar target/loginmicroservices-0.0.1.jar
-3) cd into FrontEnd/myfirstapp
-4) run "npm install"
-5) run "npm start"
+3) cd FrontEnd/myfirstapp
+4) npm install
+5) npm start
   
-
-To run the application (all microservices - not yet developed) locally:  
-1) cd into each and every microservice and run :
-2) ./mvnw package && java -jar target/[microservice]-0.0.1-SNAPSHOT.jar
-3) cd into FrontEnd/myfirstapp
-4) run "npm install"
-5) run "npm start"
 
 
 
