@@ -27,13 +27,13 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/uploadBook" component={UploadBook} />
 
             {
               //Private Routes
             }
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/addPerson" component={AddPerson} />
+            <Route exact path="/uploadBook" component={UploadBook} />
           
           </div>
         </Router>

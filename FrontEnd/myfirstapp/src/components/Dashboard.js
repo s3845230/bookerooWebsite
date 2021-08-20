@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Person from './Persons/Person'
 import CreatePersonButton from './Persons/CreatePersonButton';
+import UploadBookButton from './BookManagement/UploadBookButton';
 
 class Dashboard extends Component {
     render() {
@@ -9,9 +10,11 @@ class Dashboard extends Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
+                        <h1 className="display-4 text-center">Add Book Here</h1>
+                        <UploadBookButton />
                         <h1 className="display-4 text-center">Persons</h1>
                         <br />
-                       <CreatePersonButton />
+                        <CreatePersonButton />
                         <br />
                         <hr />
                         <Person/>

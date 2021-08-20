@@ -15,9 +15,6 @@ class Landing extends Component {
                 <p className="lead">
                   Create your account to join 
                 </p>
-                <Link className="btn btn-lg btn-primary mr-2" to="/uploadBook">
-                  Add Book
-                </Link>
                 <hr />
                 <Link className="btn btn-lg btn-primary mr-2" to="/register">
                   Sign Up
