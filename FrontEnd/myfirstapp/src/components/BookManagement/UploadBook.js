@@ -11,8 +11,9 @@ class UploadBook extends Component {
             title: "",
             author: "",
             type: "",
-            date_of_publication: "",
             price: "",
+            publisher: "",
+            date_of_publication: "",
             tagline: "",
             table_of_contents: "",
             blurb: ""
@@ -32,6 +33,7 @@ class UploadBook extends Component {
             author: this.state.author,
             type: this.state.type,
             price: this.state.price,
+            publisher: this.state.publisher,
             date_of_publication: this.state.date_of_publication,
             table_of_contents: this.state.table_of_contents,
             tagline:this.state.tagline,
@@ -89,6 +91,18 @@ class UploadBook extends Component {
                                         defaultValue={0}
                                         decimalsLimit={2}
                                         onValueChange={(value, name) => console.log(value, name)}
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        className="form-control form-control-lg"
+                                        placeholder="Publisher"
+                                        name="publisher"
+                                        value= {this.state.publisher}
+                                        onChange = {this.onChange}
+                                        required
                                     />
                                 </div>
                                 <div className="form-group">
