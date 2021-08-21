@@ -26,15 +26,15 @@ import logoDark from '../../images/roo512White.png'
 
                                 {/*View Books*/}
                                 <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                                    <a className="btn btn-default dropdown-toggle" id="navbarDropdown" role="button"
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Books
+                                        Books <span className="caret"></span>
                                     </a>
-                                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a className="dropdown-item" href="/">Genre</a>
-                                        <a className="dropdown-item" href="/">Author</a>
-                                        <a className="dropdown-item" href="/">Publisher</a>
-                                    </div>
+                                    <ul className="dropdown-menu">
+                                        <li><a href="/">Genre</a></li>
+                                        <li><a href="/">Author</a></li>
+                                        <li><a href="/">Publisher</a></li>
+                                    </ul>
                                 </li>
 
                                 {/*About*/}
@@ -73,26 +73,13 @@ import logoDark from '../../images/roo512White.png'
                     <a className="navbar-brand-foot" href="/">
                         <img src={logoDark} alt="Bookeroo Logo" className="logoDark"/>
                     </a>
-                    {/*<div className="container">*/}
-                        {/*<div className= </div>*/}
-                        <ul className="navbar-nav mr-5" style={{display:"inline-block"}}>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/">
-                                    View Books
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/">
-                                    About
-                                </a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/">
-                                    Contact
-                                </a>
-                            </li>
+                    <nav>
+                        <ul class="nav nav-pills">
+                            <li role="presentation" class="active"><a className="nav-link" href="/">View Books</a></li>
+                            <li role="presentation"><a className="nav-link" href="/about">About</a></li>
+                            <li role="presentation"><a className="nav-link" href="/contact">Contact</a></li>
                         </ul>
-                    {/*</div>*/}
+                    </nav>
                 </nav>
             </div>
         )
