@@ -12,6 +12,7 @@ export const createPerson = (person, history) => async dispatch => {
     });
   }
 };
+
 export const getPersons = () => async dispatch => {
   const res = await axios.get("/api/person/all");
   dispatch({

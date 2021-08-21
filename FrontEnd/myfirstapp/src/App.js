@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
-import Header from "./components/Layout/Header";
+import HeaderFooter from "./components/Layout/HeaderFooter";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import AddPerson from "./components/Persons/AddPerson";
@@ -9,22 +9,24 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import Landing from "./components/Layout/Landing";
+import PublisherLanding from "./components/Publisher/PublisherLanding";
 import Register from "./components/UserManagement/Register";
 import Login from "./components/UserManagement/Login";
 import UploadBook from "./components/BookManagement/UploadBook";
 
 class App extends Component {
+
   render() {
     return (
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Header />
+            <HeaderFooter />
             {
               //Public Routes
             }
-           
             <Route exact path="/" component={Landing} />
+            <Route exact path="/publisher" component={PublisherLanding} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
 

@@ -2,9 +2,44 @@ img {
   width: 100%;
 }
 
-.navbar {
-  background-color: #e3f2fd;
+body {
+  background-color: #bbbbbb;
 }
+
+.logoLight {
+  /*width: 40%;*/
+  padding: 20px;
+  margin-left: -20px;
+}
+.logoDark {
+  /*width: 30%;*/
+  padding: 20px;
+}
+
+.navbar {
+  background-color: #ffffff;
+}
+.nav>li {
+  position: relative;
+  display: inline-table;
+}
+
+.navbar-brand{
+  position: relative;
+  width: 400px;
+  height: 100px;
+  left: 15px;
+  background-size: contain;
+}
+.navbar-brand-foot{
+  position: relative;
+  width: 100px;
+  height: 80px;
+  left: 15px;
+  background-size: contain;
+}
+
+
 .fa.fa-edit {
   color: #18a2b9;
 }
@@ -39,7 +74,7 @@ img {
 }
 
 .landing-inner {
-  padding-top: 80px;
+  padding-top: 90px;
 }
 
 .dark-overlay {
