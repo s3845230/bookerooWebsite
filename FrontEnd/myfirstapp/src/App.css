@@ -122,6 +122,11 @@ body {
   padding-bottom: 150px;
 }
 
+.uploadBook label{
+  font-weight: bold;
+}
+
+
 .navbar-pills li {
   list-style: none;
   display: inline-block;

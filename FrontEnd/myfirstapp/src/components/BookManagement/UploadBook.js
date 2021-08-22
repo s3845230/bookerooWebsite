@@ -53,6 +53,7 @@ class UploadBook extends Component {
                             <p className="lead text-center">Add a new or second hand book below</p>
                             <form action="upload-book"> 
                                 <div className="form-group">
+                                    <label for="titleInput">Title</label>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -64,6 +65,7 @@ class UploadBook extends Component {
                                     />
                                 </div>
                                 <div className="form-group">
+                                    <label for="authorInput">Author</label>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -75,6 +77,7 @@ class UploadBook extends Component {
                                     />
                                 </div>
                                 <div className="form-group">
+                                    <label for="typeInput">Type of Book</label>
                                     <select className="form-control form-control-lg">
                                         <option value="">Select type</option>
                                         <option value="personal">Personal Book</option>
@@ -83,6 +86,7 @@ class UploadBook extends Component {
                                     </select>
                                 </div>
                                 <div className="form-group">
+                                    <label for="priceInput">Price</label>
                                     <CurrencyInput
                                         intlConfig={{ locale: 'en-US', currency: 'AUD' }}
                                         className="form-control form-control-lg"
@@ -95,6 +99,7 @@ class UploadBook extends Component {
                                     />
                                 </div>
                                 <div className="form-group">
+                                    <label for="publisherInput">Publisher</label>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -106,6 +111,7 @@ class UploadBook extends Component {
                                     />
                                 </div>
                                 <div className="form-group">
+                                    <label for="dateInput">Date of Publication</label>
                                     <input
                                         type="date"
                                         className="form-control form-control-lg"
@@ -117,10 +123,11 @@ class UploadBook extends Component {
                                     />
                                 </div>
                                 <div className="form-group">
+                                    <label for="taglineInput">Taglines</label>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
-                                        placeholder="Add Taglines"
+                                        placeholder="Add Taglines Here"
                                         name="tagline"
                                         rows={7}
                                         cols={7}
@@ -130,6 +137,7 @@ class UploadBook extends Component {
                                     />
                                 </div>
                                 <div className="form-group">
+                                    <label for="contentsInput">Table Of Contents</label>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
@@ -143,6 +151,7 @@ class UploadBook extends Component {
                                     />
                                 </div>
                                 <div className="form-group">
+                                    <label for="blurbInput">Blurb</label>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
