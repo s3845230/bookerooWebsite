@@ -98,3 +98,25 @@ body {
 .form-control::placeholder {
   color: #bbb !important;
 }
+
+
+.navbar-pills li {
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+  padding: 0 10px;
+  text-decoration: none;
+}
+
+
+.uploadBook {
+  padding-bottom: 150px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-top: 2px solid #eaeaea;
+  background-color: darkslategray;
+}

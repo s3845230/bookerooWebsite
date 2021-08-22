@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
-import HeaderFooter from "./components/Layout/HeaderFooter";
+import Header from "./components/Layout/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap/dist/js/bootstrap.js';
-import $ from 'jquery';
-import Popper from 'popper.js';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import AddPerson from "./components/Persons/AddPerson";
 import { Provider } from "react-redux";
@@ -16,6 +14,7 @@ import PublisherLanding from "./components/Publisher/PublisherLanding";
 import Register from "./components/UserManagement/Register";
 import Login from "./components/UserManagement/Login";
 import UploadBook from "./components/BookManagement/UploadBook";
+import Footer from "./components/Layout/Footer";
 
 class App extends Component {
 
@@ -24,7 +23,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            <HeaderFooter />
+            <Header />
             {
               //Public Routes
             }
@@ -40,6 +39,7 @@ class App extends Component {
             <Route exact path="/addPerson" component={AddPerson} />
             <Route exact path="/uploadBook" component={UploadBook} />
           
+            <Footer />
           </div>
         </Router>
       </Provider>
