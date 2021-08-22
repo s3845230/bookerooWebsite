@@ -5,6 +5,16 @@ class Landing extends Component {
   render() {
     return (
       <div className="landing">
+        {/*Frontpage showcase*/}
+        <div className="text-panel">
+          <div className="caption">
+            <h1 className="display-3 mb-4">Bookeroo</h1>
+            <h3 className="display-6 mb-1">Passionate About Books</h3>
+            <br />
+            <p><a class="btn btn-success btn-lg" href="/register" role="button">Sign Up Now</a></p>
+          </div>
+        </div>
+
         <div className="light-overlay landing-inner text-dark">
           <div className="container">
             <div className="row">

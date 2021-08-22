@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import logoLight from '../../images/bookerooLogo.png'
 import logoDark from '../../images/roo512White.png'
 
- class HeaderFooter extends Component {
+ class Header extends Component {
     render() {
         return (
             <div>
@@ -70,4 +70,4 @@ import logoDark from '../../images/roo512White.png'
         )
     }
 }
-export default HeaderFooter;
+export default Header;

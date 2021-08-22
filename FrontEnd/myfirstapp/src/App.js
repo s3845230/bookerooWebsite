@@ -39,6 +39,8 @@ class App extends Component {
             <Route exact path="/addPerson" component={AddPerson} />
             <Route exact path="/uploadBook" component={UploadBook} />
           
+          </div>
+          <div>
             <Footer />
           </div>
         </Router>
