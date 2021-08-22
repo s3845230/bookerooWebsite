@@ -30,6 +30,7 @@ import logoDark from '../../images/roo512White.png'
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Books <span className="caret"></span>
                                     </a>
+                                    {/*TODO: Items need to be padded in the menu and have theme colouring (not blue)*/}
                                     <ul className="dropdown-menu">
                                         <li><a href="/">Genre</a></li>
                                         <li><a href="/">Author</a></li>

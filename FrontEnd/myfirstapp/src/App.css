@@ -69,6 +69,7 @@ body {
   background-size: cover;
   background-position: center;
   height: 100vh;
+  /* TODO: negative margin-top isn't a good solution, because it doesn't scale with the size of the web-browser window*/
   margin-top: -24px;
   margin-bottom: -50px;
 }
