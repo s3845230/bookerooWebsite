@@ -13,8 +13,8 @@ class Footer extends Component {
                     </a>
                     <nav>
                         {/*TODO: Fix colours of links*/}
-                        <ul class="nav nav-pills">
-                            <li role="presentation" class="active"><a className="nav-link" href="/">View Books</a></li>
+                        <ul className="nav nav-pills">
+                            <li role="presentation" className="active"><a className="nav-link" href="/">View Books</a></li>
                             <li role="presentation"><a className="nav-link" href="/about">About</a></li>
                             <li role="presentation"><a className="nav-link" href="/contact">Contact</a></li>
                         </ul>

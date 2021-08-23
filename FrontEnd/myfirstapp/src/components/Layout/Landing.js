@@ -11,7 +11,7 @@ class Landing extends Component {
             <h1 className="display-3 mb-4">Bookeroo</h1>
             <h3 className="display-6 mb-1">Passionate About Books</h3>
             <br />
-            <p><a class="btn btn-success btn-lg" href="/register" role="button">Sign Up Now</a></p>
+            <p><a className="btn btn-success btn-lg" href="/register" role="button">Sign Up Now</a></p>
           </div>
         </div>
 
@@ -23,7 +23,7 @@ class Landing extends Component {
                   Development Landing
                 </h1>
                 <p className="lead">
-                  {/*Text Subline*/}
+                  Below are the available front-end pages that have been developed.
                 </p>
                 <hr />
                 <Link className="btn btn-lg btn-primary mr-2" to="/register">
@@ -33,7 +33,13 @@ class Landing extends Component {
                   Login
                 </Link>
                 <Link className="btn btn-lg btn-secondary mr-2" to="/publisher">
-                    Publisher Landing
+                  Publisher Landing
+                </Link>
+                <Link className="btn btn-lg btn-secondary mr-2" to="/addPerson">
+                  Add Person
+                </Link>
+                <Link className="btn btn-lg btn-secondary mr-2" to="/dashboard">
+                  Dashboard
                 </Link>
               </div>
             </div>
