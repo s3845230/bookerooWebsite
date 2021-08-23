@@ -16,7 +16,8 @@ class UploadBook extends Component {
             date_of_publication: "",
             tagline: "",
             table_of_contents: "",
-            blurb: ""
+            blurb: "",
+            bookCover: ""
         };
 
         this.onChange = this.onChange.bind(this);
@@ -37,7 +38,8 @@ class UploadBook extends Component {
             date_of_publication: this.state.date_of_publication,
             table_of_contents: this.state.table_of_contents,
             tagline:this.state.tagline,
-            blurb: this.state.blurb  
+            blurb: this.state.blurb,
+            bookCover: this.state.bookCover  
         }
 
         this.props.createBook(newBook, this.props.history);
@@ -160,6 +162,18 @@ class UploadBook extends Component {
                                         rows={10}
                                         cols={10}
                                         value= {this.state.blurb}
+                                        onChange = {this.onChange}
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label for="bookCover">Book Cover</label>
+                                    <input 
+                                        type="file" 
+                                        className="form-control-file" 
+                                        name="bookCover"
+                                        accept="image/png, image/jpeg"
+                                        value= {this.state.bookCover}
                                         onChange = {this.onChange}
                                         required
                                     />

@@ -34,7 +34,7 @@ import logoDark from '../../images/roo512White.png'
                                     <ul className="dropdown-menu">
                                         <li><a href="/">Genre</a></li>
                                         <li><a href="/">Author</a></li>
-                                        <li><a href="/">Publisher</a></li>
+                                        <li><a href="/publisher">Publisher</a></li>
                                     </ul>
                                 </li>
 
