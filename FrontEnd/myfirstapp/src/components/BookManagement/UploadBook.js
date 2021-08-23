@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import "./UploadBook.css";
 import PropTypes from "prop-types";
 import CurrencyInput from 'react-currency-input-field';
 import { bookActions } from "../../actions/bookActions";
