@@ -12,11 +12,10 @@ class Footer extends Component {
                         <img src={logoDark} alt="Bookeroo Logo" className="logoDark"/>
                     </a>
                     <nav>
-                        {/*TODO: Fix colours of links*/}
                         <ul className="nav nav-pills">
-                            <li role="presentation" className="active"><a className="nav-link" href="/">View Books</a></li>
-                            <li role="presentation"><a className="nav-link" href="/about">About</a></li>
-                            <li role="presentation"><a className="nav-link" href="/contact">Contact</a></li>
+                            <li role="presentation" className="active"><a className="nav-link" href="/" style={{ color: '#FFF' }}>View Books</a></li>
+                            <li role="presentation"><a className="nav-link" href="/about" style={{ color: '#FFF' }}>About</a></li>
+                            <li role="presentation"><a className="nav-link" href="/contact" style={{ color: '#FFF' }}>Contact</a></li>
                         </ul>
                     </nav>
                 </footer>
