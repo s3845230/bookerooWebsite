@@ -3,6 +3,8 @@ import "./UploadBook.css";
 import PropTypes from "prop-types";
 import CurrencyInput from 'react-currency-input-field';
 import { bookActions } from "../../actions/bookActions";
+import classnames from "classnames";
+
 
 class UploadBook extends Component {
     constructor() {
@@ -29,8 +31,9 @@ class UploadBook extends Component {
     onChange(e){
         this.setState({[e.target.name]: e.target.value});
     }
-    onSubmit(e){
+    onSubmit(e) {
         e.preventDefault();
+        e.target.className += " was-validated";
         const newBook = {
             title: this.state.title,
             author: this.state.author,
@@ -44,14 +47,13 @@ class UploadBook extends Component {
             blurb: this.state.blurb,
             bookCover: this.state.bookCover
         }
-
-        console.log(newBook);
-
-        this.props.createBook(newBook, this.props.history);
+        // console.log(newBook);
+        // this.props.createBook(newBook, this.props.history);
     }
     
 
     render() {
+        const { errors } = this.state;
         return (
             <div className="uploadBook">
                 <div className="container">
@@ -59,8 +61,8 @@ class UploadBook extends Component {
                     <p className="lead text-center">Add a new or second hand book below</p>
                     <div className="row">
                         <div className="col">
-                            {/*<form action="upload-book">*/}
-                            <form onSubmit={this.onSubmit}>
+                            <form className="needs-validation" onSubmit={this.onSubmit} noValidate>
+                            {/*<form onSubmit={this.onSubmit}>*/}
 
                                 {/*Title*/}
                                 <div className="form-group">
@@ -74,6 +76,9 @@ class UploadBook extends Component {
                                         onChange={this.onChange}
                                         required
                                     />
+                                    <div className="invalid-feedback">
+                                        Title cannot be Empty.
+                                    </div>
                                 </div>
 
                                 {/*Author*/}
@@ -88,6 +93,9 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
+                                    <div className="invalid-feedback">
+                                        Author cannot be Empty.
+                                    </div>
                                 </div>
 
                                 {/*Genre*/}
@@ -102,18 +110,26 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
+                                    <div className="invalid-feedback">
+                                        Genre cannot be Empty.
+                                    </div>
                                 </div>
 
                                 {/*Type of Book*/}
-                                {/*<div className="form-group">*/}
-                                {/*    <label htmlFor="priceInput">Type of Listing</label>*/}
-                                {/*    <select className="form-control form-control-lg">*/}
-                                {/*        <option value="">Select type</option>*/}
-                                {/*        <option value="personal">Personal Book</option>*/}
-                                {/*        <option value="new">New Book</option>*/}
-                                {/*        <option value="old">Second Hand Book</option>*/}
-                                {/*    </select>*/}
-                                {/*</div>*/}
+                                <div className="input-group mb-2">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon1">Type</span>
+                                    </div>
+                                    <select className=" custom-select form-control form-control-lg" required>
+                                        <option selected disabled value="">Select type</option>
+                                        <option value="personal">Personal Book</option>
+                                        <option value="new">New Book</option>
+                                        <option value="old">Second Hand Book</option>
+                                    </select>
+                                    <div className="invalid-feedback">
+                                        Need to select an option.
+                                    </div>
+                                </div>
 
                                 {/*Price*/}
                                 <div className="form-group">
@@ -123,11 +139,13 @@ class UploadBook extends Component {
                                         className="form-control form-control-lg"
                                         name="price"
                                         placeholder="Price"
-                                        defaultValue={0}
                                         decimalsLimit={2}
                                         onValueChange={(value, name) => console.log(value, name)}
                                         required
                                     />
+                                    <div className="invalid-feedback">
+                                        Book needs a price.
+                                    </div>
                                 </div>
 
                                 {/*Publisher*/}
@@ -142,6 +160,9 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
+                                    <div className="invalid-feedback">
+                                        Publisher cannot be Empty.
+                                    </div>
                                 </div>
 
                                 {/*Date of Publication*/}
@@ -156,6 +177,9 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
+                                    <div className="invalid-feedback">
+                                        Date cannot be Empty.
+                                    </div>
                                 </div>
 
                                 {/*Tagline*/}
@@ -172,6 +196,9 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
+                                    <div className="invalid-feedback">
+                                        Please enter at least one tagline.
+                                    </div>
                                 </div>
 
                                 {/*Table of Contents*/}
@@ -188,6 +215,9 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
+                                    <div className="invalid-feedback">
+                                        Every book needs a Table of Contents.
+                                    </div>
                                 </div>
 
                                 {/*Blurb*/}
@@ -204,6 +234,9 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
+                                    <div className="invalid-feedback">
+                                        Every book needs a Blurb.
+                                    </div>
                                 </div>
 
                                 {/*Book Cover*/}
@@ -218,12 +251,15 @@ class UploadBook extends Component {
                                         onChange={this.onChange}
                                         required
                                     />
+                                    <div className="invalid-feedback">
+                                        Need a Book Cover.
+                                    </div>
                                 </div>
                                 <div className="image-preview"></div>
+                                <input type="submit" className="btn btn-primary btn-lg btn-block mt-4" />
                             </form>
                         </div>
                     </div>
-                    <input type="submit" className="btn btn-primary btn-lg btn-block mt-4" />
                 </div>
             </div>
         )

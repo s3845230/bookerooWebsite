@@ -19,40 +19,40 @@ public class Book {
     private Long bookId;
 
     //this probably needs @min @max if isbn has a set size
-    @NotBlank(message = "Book requires isbn")
+//    @NotBlank(message = "Book requires isbn")
     private String isbn;
 
-    @NotBlank(message = "Book requires title")
+//    @NotBlank(message = "Book requires title")
     private String title;
 
-    @NotBlank(message = "Book requires author")
+//    @NotBlank(message = "Book requires author")
     private String author;
 
-    @NotBlank(message = "Book requires genre")
+//    @NotBlank(message = "Book requires genre")
     private String genre;
 
-    @NotBlank(message = "Book requires type")
+//    @NotBlank(message = "Book requires type")
     private Type type;
 
-    @NotBlank(message = "Book requires price")
+//    @NotBlank(message = "Book requires price")
     private Double price;
 
-    @NotBlank(message = "Book requires genre")
+//    @NotBlank(message = "Book requires genre")
     private String publisher;
 
-    @NotBlank(message = "Book requires publicationDate")
+//    @NotBlank(message = "Book requires publicationDate")
     private Date publicationDate;
 
-    @NotBlank(message = "Book requires tagline")
+//    @NotBlank(message = "Book requires tagline")
     private String tagline;
 
-    @NotBlank(message = "Book requires tableOfContents")
+//    @NotBlank(message = "Book requires tableOfContents")
     private String tableOfContents;
 
-    @NotBlank(message = "Book requires blurb")
+//    @NotBlank(message = "Book requires blurb")
     private String blurb;
 
-    @NotBlank(message = "Book requires imageHash")
+//    @NotBlank(message = "Book requires imageHash")
     private String imageHash;
 
     private Date created_at;
