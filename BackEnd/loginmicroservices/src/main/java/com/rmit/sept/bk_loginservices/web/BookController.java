@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/person")
+@RequestMapping("/api/book/")
 public class BookController {
 
     @Autowired
     private BookService bookService;
 
-    @PostMapping("")
+    @PostMapping("/uploadBook")
     public ResponseEntity<Book> createNewBook(@RequestBody Book book) {
         Book book1 = bookService.saveOrUpdateBook(book);
         return new ResponseEntity<Book>(book, HttpStatus.CREATED);

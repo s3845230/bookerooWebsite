@@ -52,7 +52,7 @@ public class Book {
     @NotBlank(message = "Book requires blurb")
     private String blurb;
 
-    @NotBlank(message = "Book requires imagehash")
+    @NotBlank(message = "Book requires imageHash")
     private String imageHash;
 
     private Date created_at;
