@@ -46,29 +46,38 @@ class UploadBook extends Component {
         this.props.createBook(newBook, this.props.history);
     }
 
+
     render() {
         return (
             <div className="uploadBook">
                 <div className="container">
+                    <h1 className="display-4 text-center">Upload Book</h1>
+                    <p className="lead text-center">Add a new or second hand book below</p>
                     <div className="row">
-                        <div className="col-md-8 m-auto">
-                            <h1 className="display-4 text-center">Upload Book</h1>
-                            <p className="lead text-center">Add a new or second hand book below</p>
-                            <form action="upload-book"> 
-                                <div className="form-group">
-                                    <label for="titleInput">Title</label>
+                        <div className="col">
+                            <form action="upload-book">
+
+                                {/*Title*/}
+                                <div className="input-group mb-2">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon1">Title</span>
+                                    </div>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
                                         placeholder="Title"
                                         name="title"
-                                        value= {this.state.title}
-                                        onChange = {this.onChange}
+                                        value={this.state.title}
+                                        onChange={this.onChange}
                                         required
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <label for="authorInput">Author</label>
+
+                                {/*Author*/}
+                                <div className="input-group mb-2">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon1">Author</span>
+                                    </div>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -79,8 +88,12 @@ class UploadBook extends Component {
                                         required
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <label for="typeInput">Type of Book</label>
+
+                                {/*Type of Book*/}
+                                <div className="input-group mb-2">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon1">Type</span>
+                                    </div>
                                     <select className="form-control form-control-lg">
                                         <option value="">Select type</option>
                                         <option value="personal">Personal Book</option>
@@ -88,8 +101,12 @@ class UploadBook extends Component {
                                         <option value="old">Second Hand Book</option>
                                     </select>
                                 </div>
-                                <div className="form-group">
-                                    <label for="priceInput">Price</label>
+
+                                {/*Price*/}
+                                <div className="input-group mb-2">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon1">Price</span>
+                                    </div>
                                     <CurrencyInput
                                         intlConfig={{ locale: 'en-US', currency: 'AUD' }}
                                         className="form-control form-control-lg"
@@ -101,8 +118,12 @@ class UploadBook extends Component {
                                         required
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <label for="publisherInput">Publisher</label>
+
+                                {/*Publisher*/}
+                                <div className="input-group mb-2">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon1">Publisher</span>
+                                    </div>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -113,8 +134,12 @@ class UploadBook extends Component {
                                         required
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <label for="dateInput">Date of Publication</label>
+
+                                {/*Date of Publication*/}
+                                <div className="input-group mb-2">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon1">Date</span>
+                                    </div>
                                     <input
                                         type="date"
                                         className="form-control form-control-lg"
@@ -125,8 +150,12 @@ class UploadBook extends Component {
                                         required
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <label for="taglineInput">Taglines</label>
+
+                                {/*Tagline*/}
+                                <div className="input-group mb-2">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon1">Tagline</span>
+                                    </div>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
@@ -139,8 +168,12 @@ class UploadBook extends Component {
                                         required
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <label for="contentsInput">Table Of Contents</label>
+
+                                {/*Table of Contents*/}
+                                <div className="input-group mb-2">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon1">Table of Contents</span>
+                                    </div>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
@@ -153,8 +186,12 @@ class UploadBook extends Component {
                                         required
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <label for="blurbInput">Blurb</label>
+
+                                {/*Blurb*/}
+                                <div className="input-group mb-2">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon1">Blurb</span>
+                                    </div>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
@@ -167,22 +204,27 @@ class UploadBook extends Component {
                                         required
                                     />
                                 </div>
-                                <div className="form-group">
-                                    <label for="bookCover">Book Cover</label>
-                                    <input 
-                                        type="file" 
-                                        className="form-control-file" 
+
+                                {/*Book Cover*/}
+                                <div className="input-group mb-2">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon1">Book Cover</span>
+                                    </div>
+                                    <input
+                                        type="file"
+                                        className="form-control-file"
                                         name="bookCover"
                                         accept="image/png, image/jpeg"
-                                        value= {this.state.bookCover}
-                                        onChange = {this.onChange}
+                                        value={this.state.bookCover}
+                                        onChange={this.onChange}
                                         required
                                     />
                                 </div>
-                                <input type="submit" className="btn btn-info btn-block mt-4" />
+                                <div className="image-preview"></div>
                             </form>
                         </div>
                     </div>
+                    <input type="submit" className="btn btn-primary btn-lg btn-block mt-4" />
                 </div>
             </div>
         )

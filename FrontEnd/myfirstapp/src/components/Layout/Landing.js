@@ -23,10 +23,10 @@ class Landing extends Component {
               <div className="col">
                 <div className="text-panel text-white">
                   <div className="caption">
-                    <h1 className="display-3 mb-4">Bookeroo</h1>
-                    <h3 className="display-6 mb-1">Passionate About Books</h3>
+                    <h1 className="display-3 mb-1" style={{fontSize:"3.3em"}}>Bookeroo</h1>
+                    <h3 className="display-6 mb-3">Passionate About Books</h3>
                     <br />
-                    <p><a className="btn btn-success btn-lg" href="/register" role="button">Sign Up Now</a></p>
+                    <p><a className="btn btn-lg btn-success " href="/register" role="button">Sign Up Now</a></p>
                   </div>
                 </div>
               </div>
@@ -34,26 +34,24 @@ class Landing extends Component {
               {/*Development Landing*/}
               <div className="col">
                 <div className="development-landing">
-                  <h1 className="display-3 mb-4">
-                    Development Landing
-                  </h1>
+                  <h1 className="display-3 mb-4" style={{fontSize:"3.3em"}}>Development Landing</h1>
                   <p className="lead">
                     Below are the available front-end pages that have been developed.
                   </p>
                   <hr />
-                  <Link className="btn btn-lg btn-primary mr-2" to="/register">
+                  <Link className="btn btn-lg btn-secondary mb-2 mr-2" to="/register">
                     Sign Up
                   </Link>
-                  <Link className="btn btn-lg btn-secondary mr-2" to="/login">
+                  <Link className="btn btn-lg btn-secondary mb-2 mr-2" to="/login">
                     Login
                   </Link>
-                  <Link className="btn btn-lg btn-secondary mr-2" to="/publisher">
+                  <Link className="btn btn-lg btn-primary mb-2 mr-2" to="/publisher">
                     Publisher Landing
                   </Link>
-                  <Link className="btn btn-lg btn-secondary mr-2" to="/addPerson">
+                  <Link className="btn btn-lg btn-secondary mb-2 mr-2" to="/addPerson">
                     Add Person
                   </Link>
-                  <Link className="btn btn-lg btn-secondary mr-2" to="/dashboard">
+                  <Link className="btn btn-lg btn-secondary mb-2 mr-2" to="/dashboard">
                     Dashboard
                   </Link>
                 </div>
