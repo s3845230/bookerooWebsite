@@ -36,13 +36,14 @@ class Register extends Component {
       password: this.state.password,
       confirmPassword: this.state.confirmPassword
     };
-
+    console.log(newUser);
     this.props.createNewUser(newUser, this.props.history);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
     }
+    
   render() {
       const { errors } = this.state;
     return (
