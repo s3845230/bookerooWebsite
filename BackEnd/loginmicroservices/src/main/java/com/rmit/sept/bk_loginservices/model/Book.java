@@ -6,6 +6,14 @@ import java.util.Date;
 
 @Entity
 public class Book {
+
+    // Type of book listing
+    enum Type {
+        PERSONAL,
+        NEW,
+        SECONDHAND
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookId;
@@ -23,8 +31,29 @@ public class Book {
     @NotBlank(message = "Book requires genre")
     private String genre;
 
-    @NotBlank(message = "Book requires synopsis")
-    private String synopsis;
+    @NotBlank(message = "Book requires type")
+    private Type type;
+
+    @NotBlank(message = "Book requires price")
+    private Double price;
+
+    @NotBlank(message = "Book requires genre")
+    private String publisher;
+
+    @NotBlank(message = "Book requires publicationDate")
+    private Date publicationDate;
+
+    @NotBlank(message = "Book requires tagline")
+    private String tagline;
+
+    @NotBlank(message = "Book requires tableOfContents")
+    private String tableOfContents;
+
+    @NotBlank(message = "Book requires blurb")
+    private String blurb;
+
+    @NotBlank(message = "Book requires imagehash")
+    private String imageHash;
 
     private Date created_at;
     private Date updated_at;
@@ -43,9 +72,6 @@ public class Book {
 
     public String getGenre() {return genre;}
     public void setGenre(String genre) {this.genre = genre;}
-
-    public String getSynopsis() {return synopsis;}
-    public void setSynopsis(String synopsis) {this.synopsis = synopsis;}
 
     @PrePersist
     protected void onCreation(){

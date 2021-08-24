@@ -11,6 +11,7 @@ class UploadBook extends Component {
         this.state = {
             title: "",
             author: "",
+            genre: "",
             type: "",
             price: "",
             publisher: "",
@@ -84,6 +85,22 @@ class UploadBook extends Component {
                                         placeholder="Author"
                                         name="author"
                                         value= {this.state.author}
+                                        onChange = {this.onChange}
+                                        required
+                                    />
+                                </div>
+
+                                {/*Genre*/}
+                                <div className="input-group mb-2">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text" id="basic-addon1">Genre</span>
+                                    </div>
+                                    <input
+                                        type="text"
+                                        className="form-control form-control-lg"
+                                        placeholder="Genre"
+                                        name="genre"
+                                        value= {this.state.genre}
                                         onChange = {this.onChange}
                                         required
                                     />
