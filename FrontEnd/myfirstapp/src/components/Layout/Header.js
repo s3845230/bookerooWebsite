@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import logoLight from '../../images/bookerooLogo.png'
-import logoDark from '../../images/roo512White.png'
 
  class Header extends Component {
     render() {
@@ -33,9 +32,9 @@ import logoDark from '../../images/roo512White.png'
                                     </a>
                                     {/*TODO: Items need to be padded in the menu and have theme colouring (not blue)*/}
                                     <ul className="dropdown-menu">
-                                        <li><a href="/">Genre</a></li>
-                                        <li><a href="/">Author</a></li>
-                                        <li><a href="/">Publisher</a></li>
+                                        <li><a href="/" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Genre</a></li>
+                                        <li><a href="/" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Author</a></li>
+                                        <li><a href="/publisher" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Publisher</a></li>
                                     </ul>
                                 </li>
 

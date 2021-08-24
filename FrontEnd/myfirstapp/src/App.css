@@ -104,6 +104,10 @@ img {
   color: #bbb !important;
 }
 
+.dropdown ul li {
+  text-align: center;
+}
+
 .text-panel {
   padding: 90px;
   /*width: 100%;*/
@@ -121,7 +125,6 @@ img {
 .caption h3 {
   font-weight: lighter;
 }
-
 .uploadBook {
   padding-bottom: 150px;
 }
@@ -130,14 +133,12 @@ img {
   font-weight: bold;
 }
 
-
 .navbar-pills li {
   list-style: none;
   display: inline-block;
   text-align: center;
   padding: 0 10px;
 }
-
 .bottom {
   position: fixed;
   bottom: 0;
