@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ms_book {
 
     public static void main(String[] args) {
-        SpringApplication.run(BookmicroserviceApplication.class, args);
+        SpringApplication.run(ms_book.class, args);
     }
 
 }
