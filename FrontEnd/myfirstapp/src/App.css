@@ -2,10 +2,6 @@ img {
   width: 100%;
 }
 
-body {
-  background-color: #bbbbbb;
-}
-
 .logoLight {
   /*width: 40%;*/
   padding: 20px;
@@ -18,6 +14,9 @@ body {
 
 .navbar {
   background-color: #ffffff;
+  /*height: 20vh;*/
+  /*padding: 20px;*/
+  /*margin-bottom: 10px;*/
 }
 .nav>li {
   position: relative;
@@ -68,13 +67,18 @@ body {
   /* background: url("../img/showcase.jpg") no-repeat; */
   background-size: cover;
   background-position: center;
-  height: 100vh;
-  /* TODO: negative margin-top isn't a good solution, because it doesn't scale with the size of the web-browser window*/
-  margin-top: -24px;
-  margin-bottom: -50px;
+  /*height: 100vh;*/
+  /*margin-top: -24px;*/
+  /*margin-bottom: -50px;*/
 }
 
 .landing-inner {
+  /*padding-top: 90px;*/
+  /*width: 50%;*/
+  /*float: left;*/
+}
+
+.development-landing {
   padding-top: 90px;
 }
 
@@ -101,12 +105,11 @@ body {
 }
 
 .text-panel {
-  width: 50%;
-  left: 0px;
-  margin-top: 2%;
-  height: 86vh;
-  float: left;
-  background-color: skyblue;
+  padding: 90px;
+  /*width: 100%;*/
+  /*height: 79vh;*/
+  /*float: left;*/
+  background-color: #3d5259;
 }
 
 .caption {
@@ -133,7 +136,6 @@ body {
   display: inline-block;
   text-align: center;
   padding: 0 10px;
-  text-decoration: none;
 }
 
 .bottom {

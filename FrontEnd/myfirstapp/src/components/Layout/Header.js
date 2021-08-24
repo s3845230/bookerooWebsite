@@ -8,6 +8,7 @@ import logoDark from '../../images/roo512White.png'
             <div>
                 {/*Header Navbar*/}
                 <nav className="navbar navbar-expand-sm navbar-light mx-0">
+                {/*<nav className="navbar navbar-light mx-0">*/}
                     <div className="container">
                         
                         {/*Logo*/}
