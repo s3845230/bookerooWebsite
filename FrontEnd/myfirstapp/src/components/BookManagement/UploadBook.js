@@ -34,6 +34,7 @@ class UploadBook extends Component {
         const newBook = {
             title: this.state.title,
             author: this.state.author,
+            genre: this.state.genre,
             type: this.state.type,
             price: this.state.price,
             publisher: this.state.publisher,
@@ -41,12 +42,14 @@ class UploadBook extends Component {
             table_of_contents: this.state.table_of_contents,
             tagline:this.state.tagline,
             blurb: this.state.blurb,
-            bookCover: this.state.bookCover  
+            bookCover: this.state.bookCover
         }
+
+        console.log(newBook);
 
         this.props.createBook(newBook, this.props.history);
     }
-
+    
 
     render() {
         return (
@@ -56,7 +59,8 @@ class UploadBook extends Component {
                     <p className="lead text-center">Add a new or second hand book below</p>
                     <div className="row">
                         <div className="col">
-                            <form action="upload-book">
+                            {/*<form action="upload-book">*/}
+                            <form onSubmit={this.onSubmit}>
 
                                 {/*Title*/}
                                 <div className="input-group mb-2">
@@ -249,7 +253,7 @@ class UploadBook extends Component {
 }
 
 UploadBook.propTypes = {
-    createProject: PropTypes.func.isRequired
+    // createProject: PropTypes.func.isRequired
 };
 
 export default UploadBook;

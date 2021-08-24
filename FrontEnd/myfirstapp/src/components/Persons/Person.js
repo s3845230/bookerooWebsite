@@ -15,17 +15,17 @@ class Person extends Component {
                                     </div>
                                     <div className="col-md-4 d-none d-lg-block">
                                         <ul className="list-group">
-                                            <a href="#">
+                                            <a href="/">
                                                 <li className="list-group-item board">
                                                     <i className="fa fa-flag-checkered pr-1">Person Profile </i>
                                                 </li>
                                             </a>
-                                            <a href="#">
+                                            <a href="/">
                                                 <li className="list-group-item update">
                                                     <i className="fa fa-edit pr-1">Update Person Info</i>
                                                 </li>
                                             </a>
-                                            <a href="">
+                                            <a href="/">
                                                 <li className="list-group-item delete">
                                                     <i className="fa fa-minus-circle pr-1">Delete Person</i>
                                                 </li>

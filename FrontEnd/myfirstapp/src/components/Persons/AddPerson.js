@@ -34,6 +34,8 @@ class AddPerson extends Component {
             end_date: this.state.end_date  
         }
 
+        console.log(newPerson);
+
         this.props.createPerson(newPerson, this.props.history);
     }
     render() {
@@ -99,6 +101,7 @@ class AddPerson extends Component {
         )
     }
 }
+
 AddPerson.propTypes = {
     createProject: PropTypes.func.isRequired
   };
