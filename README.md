@@ -18,17 +18,27 @@
 
 
 	
-## Code documentation - Release 0.1.0 - date
-* feature 1
-* feature 2
-* feature 3
+[comment]: <> (## Code documentation - Release 0.1.0 - date)
 
-To run the base code locally:
-1) cd BackEnd/loginmicroservices
-2) ./mvnw package && java -jar target/loginmicroservices-0.0.1.jar
-3) cd FrontEnd/myfirstapp
-4) npm install
-5) npm start
+[comment]: <> (* feature 1)
+
+[comment]: <> (* feature 2)
+
+[comment]: <> (* feature 3)
+
+## Running Project
+### Running Back-End Microservices
+Please note that your IDE must have the maven dependencies loaded before it's able to package the ```.jar``` file.
+1. ```cd BackEnd/[microservice]```
+2. ```./mvnw package && java -jar target/[microservice].jar```
+3. Access H2 database via ```http://localhost:8080/h2-console```
+   1. Port is specified under ```[microservice]/src/main/resources/application.properties```, ```server.port=XXXX```
+
+### Running Front-End
+1. ```cd FrontEnd/myfirstapp```
+2. ```npm install``` (only first time) 
+3. ```npm start```
+4. Access via ```http://localhost:3000```
   
 
 
