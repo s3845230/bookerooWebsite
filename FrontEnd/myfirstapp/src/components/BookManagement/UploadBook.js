@@ -14,7 +14,7 @@ class UploadBook extends Component {
             title: "",
             author: "",
             genre: "",
-            type: "",
+            // type: "",
             price: "",
             publisher: "",
             date_of_publication: "",
@@ -38,7 +38,7 @@ class UploadBook extends Component {
             title: this.state.title,
             author: this.state.author,
             genre: this.state.genre,
-            type: this.state.type,
+            // type: this.state.type,
             price: this.state.price,
             publisher: this.state.publisher,
             date_of_publication: this.state.date_of_publication,
@@ -65,10 +65,8 @@ class UploadBook extends Component {
                             {/*<form onSubmit={this.onSubmit}>*/}
 
                                 {/*Title*/}
-                                <div className="input-group mb-2">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1">Title</span>
-                                    </div>
+                                <div className="form-group">
+                                    <label htmlFor="priceInput">Title</label>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -84,10 +82,8 @@ class UploadBook extends Component {
                                 </div>
 
                                 {/*Author*/}
-                                <div className="input-group mb-2">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1">Author</span>
-                                    </div>
+                                <div className="form-group">
+                                    <label htmlFor="priceInput">Author</label>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -103,10 +99,8 @@ class UploadBook extends Component {
                                 </div>
 
                                 {/*Genre*/}
-                                <div className="input-group mb-2">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1">Genre</span>
-                                    </div>
+                                <div className="form-group">
+                                    <label htmlFor="priceInput">Genre</label>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -138,10 +132,8 @@ class UploadBook extends Component {
                                 </div>
 
                                 {/*Price*/}
-                                <div className="input-group mb-2">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1">Price</span>
-                                    </div>
+                                <div className="form-group">
+                                    <label htmlFor="priceInput">Price</label>
                                     <CurrencyInput
                                         intlConfig={{ locale: 'en-US', currency: 'AUD' }}
                                         className="form-control form-control-lg"
@@ -157,10 +149,8 @@ class UploadBook extends Component {
                                 </div>
 
                                 {/*Publisher*/}
-                                <div className="input-group mb-2">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1">Publisher</span>
-                                    </div>
+                                <div className="form-group">
+                                    <label htmlFor="priceInput">Publisher</label>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -176,10 +166,8 @@ class UploadBook extends Component {
                                 </div>
 
                                 {/*Date of Publication*/}
-                                <div className="input-group mb-2">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1">Date</span>
-                                    </div>
+                                <div className="form-group">
+                                    <label htmlFor="priceInput">Date of Publication</label>
                                     <input
                                         type="date"
                                         className="form-control form-control-lg"
@@ -195,10 +183,8 @@ class UploadBook extends Component {
                                 </div>
 
                                 {/*Tagline*/}
-                                <div className="input-group mb-2">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1">Tagline</span>
-                                    </div>
+                                <div className="form-group">
+                                    <label htmlFor="priceInput">Tagline</label>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
@@ -216,10 +202,8 @@ class UploadBook extends Component {
                                 </div>
 
                                 {/*Table of Contents*/}
-                                <div className="input-group mb-2">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1">Table of Contents</span>
-                                    </div>
+                                <div className="form-group">
+                                    <label htmlFor="priceInput">Table of Contents</label>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
@@ -237,10 +221,8 @@ class UploadBook extends Component {
                                 </div>
 
                                 {/*Blurb*/}
-                                <div className="input-group mb-2">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1">Blurb</span>
-                                    </div>
+                                <div className="form-group">
+                                    <label htmlFor="priceInput">Blurb</label>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
@@ -258,10 +240,8 @@ class UploadBook extends Component {
                                 </div>
 
                                 {/*Book Cover*/}
-                                <div className="input-group mb-2">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1">Book Cover</span>
-                                    </div>
+                                <div className="form-group">
+                                    <label htmlFor="priceInput">Upload Book Cover</label>
                                     <input
                                         type="file"
                                         className="form-control-file"

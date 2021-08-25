@@ -13,4 +13,4 @@ class msloginTests {
     void contextLoads() {
     }
 
-}
+}https://github.com/spring-guides/gs-rest-service.git
