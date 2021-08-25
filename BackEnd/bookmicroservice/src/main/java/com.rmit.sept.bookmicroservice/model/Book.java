@@ -44,7 +44,7 @@ public class Book {
     private Date publicationDate;
 
 //    @NotBlank(message = "Book requires tagline")
-    private String tagline;
+    private String tagLine;
 
 //    @NotBlank(message = "Book requires tableOfContents")
     private String tableOfContents;
@@ -74,16 +74,16 @@ public class Book {
     public void setGenre(String genre) {this.genre = genre;}
 
     public Type getType() {return type;}
-    public void setType(String type) {this.type = type;}
+    public void setType(Type type) {this.type = type;}
 
-    public String getPrice() {return price;}
-    public void setPrice(String price) {this.price = price;}
+    public Double getPrice() {return price;}
+    public void setPrice(Double price) {this.price = price;}
 
     public String getPublisher() {return publisher;}
     public void setPublisher(String publisher) {this.publisher = publisher;}
 
-    public String getPublicationDate() {return publicationDate;}
-    public void setPublicationDate(String publicationDate) {this.publicationDate = publicationDate;}
+    public Date getPublicationDate() {return publicationDate;}
+    public void setPublicationDate(Date publicationDate) {this.publicationDate = publicationDate;}
 
     public String getTagLine() {return tagLine;}
     public void setTagLine(String tagLine) {this.tagLine = tagLine;}

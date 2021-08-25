@@ -23,7 +23,7 @@
 [comment]: <> (* feature 1)
 
 [comment]: <> (* feature 2)
-
+https://www.ikea.com/pimg/0140448_pe300502_s3.jpg
 [comment]: <> (* feature 3)
 
 ## Running Project
