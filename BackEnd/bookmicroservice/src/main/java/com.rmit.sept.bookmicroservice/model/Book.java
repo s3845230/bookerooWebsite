@@ -73,6 +73,30 @@ public class Book {
     public String getGenre() {return genre;}
     public void setGenre(String genre) {this.genre = genre;}
 
+    public Type getType() {return type;}
+    public void setType(String type) {this.type = type;}
+
+    public String getPrice() {return price;}
+    public void setPrice(String price) {this.price = price;}
+
+    public String getPublisher() {return publisher;}
+    public void setPublisher(String publisher) {this.publisher = publisher;}
+
+    public String getPublicationDate() {return publicationDate;}
+    public void setPublicationDate(String publicationDate) {this.publicationDate = publicationDate;}
+
+    public String getTagLine() {return tagLine;}
+    public void setTagLine(String tagLine) {this.tagLine = tagLine;}
+
+    public String getTableOfContents() {return tableOfContents;}
+    public void setTableOfContents(String tableOfContents) {this.tableOfContents = tableOfContents;}
+
+    public String getBlurb() {return blurb;}
+    public void setBlurb(String blurb) {this.blurb = blurb;}
+
+    public String getImageHash() {return imageHash;}
+    public void setImageHash(String imageHash) {this.imageHash = imageHash;}
+
     @PrePersist
     protected void onCreation(){
         this.created_at = new Date();
