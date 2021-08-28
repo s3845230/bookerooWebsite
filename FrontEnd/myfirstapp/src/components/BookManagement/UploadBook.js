@@ -47,7 +47,7 @@ class UploadBook extends Component {
         }
         console.log(newBook);
         
-        axios.post("https:localhost:8081/api/book/uploadBook");
+        axios.post("http://localhost:8081/api/book/uploadBook");
 
         // this.props.createB
         // ook(newBook, this.props.history);
