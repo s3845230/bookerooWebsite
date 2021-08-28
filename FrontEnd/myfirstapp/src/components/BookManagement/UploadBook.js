@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import "./UploadBook.css";
-import PropTypes from "prop-types";
 import CurrencyInput from 'react-currency-input-field';
-import { bookActions } from "../../actions/bookActions";
-import classnames from "classnames";
+import axios from "axios";
 
 
 class UploadBook extends Component {
@@ -47,8 +45,12 @@ class UploadBook extends Component {
             blurb: this.state.blurb,
             bookCover: this.state.bookCover
         }
-        // console.log(newBook);
-        // this.props.createBook(newBook, this.props.history);
+        console.log(newBook);
+        
+        axios.post("https:localhost:8081/api/book/uploadBook");
+
+        // this.props.createB
+        // ook(newBook, this.props.history);
     }
     
 
