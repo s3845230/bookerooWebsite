@@ -39,20 +39,8 @@ class Landing extends Component {
                     Below are the available front-end pages that have been developed.
                   </p>
                   <hr />
-                  <Link className="btn btn-lg btn-secondary mb-2 mr-2" to="/register">
-                    Sign Up
-                  </Link>
-                  <Link className="btn btn-lg btn-secondary mb-2 mr-2" to="/login">
-                    Login
-                  </Link>
                   <Link className="btn btn-lg btn-primary mb-2 mr-2" to="/publisher">
                     Publisher Landing
-                  </Link>
-                  <Link className="btn btn-lg btn-secondary mb-2 mr-2" to="/addPerson">
-                    Add Person
-                  </Link>
-                  <Link className="btn btn-lg btn-secondary mb-2 mr-2" to="/dashboard">
-                    Dashboard
                   </Link>
                 </div>
               </div>

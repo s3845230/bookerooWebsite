@@ -12,7 +12,7 @@ public class Book {
     private Long id;
 
     private String title;
-    private String number;
+    private String author;
     
 
     private Date created_date;
@@ -40,11 +40,11 @@ public class Book {
     public void setTitle(String name) {
         this.title = name;
     }
-    public String getNumber() {
-        return number;
+    public String getAuthor() {
+        return author;
     }
-    public void setNumber(String number) {
-        this.number = number;
+    public void setAuthor(String number) {
+        this.author = number;
     }
     public void setCreated_date(Date created_date) {
         this.created_date = created_date;

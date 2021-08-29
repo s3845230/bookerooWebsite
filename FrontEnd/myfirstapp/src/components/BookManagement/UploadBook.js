@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import "./UploadBook.css";
 import PropTypes from "prop-types";
 import CurrencyInput from 'react-currency-input-field';
-import { bookActions } from "../../actions/bookActions";
+import axios from 'axios';
 
 
 class UploadBook extends Component {
@@ -48,8 +48,11 @@ class UploadBook extends Component {
             blurb: this.state.blurb,
             bookCover: this.state.bookCover
         }
-        // console.log(newBook);
-        // this.props.createBook(newBook, this.props.history);
+        
+        console.log(newBook);
+        
+        axios.post("http://localhost:8081/api/book/new/", newBook);
+        
     }
 
     /* Reads the image file for preview */
