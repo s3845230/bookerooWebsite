@@ -129,6 +129,7 @@ class UploadBook extends Component {
                                     </div>
                                 </div>
 
+                                {/*TODO: Type of book doesn't update anything in the json newBook object*/}
                                 {/*Type of Book*/}
                                 <div className="input-group mb-2">
                                     <div className="input-group-prepend">
@@ -139,12 +140,15 @@ class UploadBook extends Component {
                                         <option value="personal">Personal Book</option>
                                         <option value="new">New Book</option>
                                         <option value="old">Second Hand Book</option>
+                                        value={this.state.type}
+                                        onChange = {this.onChange}
                                     </select>
                                     <div className="invalid-feedback">
                                         Need to select an option.
                                     </div>
                                 </div>
 
+                                {/*TODO: Price doesn't update anything in the json newBook object*/}
                                 {/*Price*/}
                                 <div className="form-group">
                                     <label htmlFor="priceInput">Price</label>
@@ -186,8 +190,8 @@ class UploadBook extends Component {
                                         type="date"
                                         className="form-control form-control-lg"
                                         placeholder="Date of Publication"
-                                        name="date_of_publication"
-                                        value= {this.state.date_of_publication}
+                                        name="publicationDate"
+                                        value= {this.state.publicationDate}
                                         onChange = {this.onChange}
                                         required
                                     />
@@ -222,10 +226,10 @@ class UploadBook extends Component {
                                         type="paragraph"
                                         className="form-control form-control-lg"
                                         placeholder="Add Table Of Contents here"
-                                        name="table_of_contents"
+                                        name="tableOfContents"
                                         rows={10}
                                         cols={10}
-                                        value= {this.state.table_of_contents}
+                                        value= {this.state.tableOfContents}
                                         onChange = {this.onChange}
                                         required
                                     />
@@ -253,6 +257,7 @@ class UploadBook extends Component {
                                     </div>
                                 </div>
 
+                                {/*TODO: Why doesn't BackEnd support the image format in the json?*/}
                                 {/*Book Cover*/}
                                 <div className="form-group">
                                     <label htmlFor="BookCover">Upload Book Cover</label>
