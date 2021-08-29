@@ -1,0 +1,156 @@
+img {
+  width: 100%;
+}
+
+.logoLight {
+  padding: 20px;
+  margin-left: -20px;
+}
+.logoDark {
+  padding: 20px;
+}
+
+.navbar {
+  background-color: #ffffff;
+  /*height: 20vh;*/
+  /*padding: 20px;*/
+  /*margin-bottom: 10px;*/
+}
+.nav>li {
+  position: relative;
+  display: inline-table;
+}
+
+.navbar-brand{
+  position: relative;
+  width: 400px;
+  height: 100px;
+  float: left;
+  background-size: contain;
+}
+.navbar-brand-foot{
+  position: relative;
+  width: 100px;
+  height: 80px;
+  left: 15px;
+  background-size: contain;
+}
+
+.display-3 {
+  font-size: 2vw;
+}
+
+
+.fa.fa-edit {
+  color: #18a2b9;
+}
+
+.list-group-item.delete:hover {
+  cursor: -webkit-grab;
+  background-color: pink;
+}
+
+.list-group-item.update:hover {
+  cursor: -webkit-grab;
+  background-color: gainsboro;
+}
+
+.list-group-item.board:hover {
+  cursor: -webkit-grab;
+  background-color: gainsboro;
+}
+
+.fa.fa-minus-circle {
+  color: red;
+}
+
+.landing {
+  position: relative;
+  /* background: url("../img/showcase.jpg") no-repeat; */
+  background-size: cover;
+  background-position: center;
+  /*height: 100vh;*/
+  /*margin-top: -24px;*/
+  /*margin-bottom: -50px;*/
+}
+
+.landing-inner {
+  /*padding-top: 90px;*/
+  /*width: 50%;*/
+  /*float: left;*/
+}
+
+.development-landing {
+  padding-top: 90px;
+}
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-form {
+  opacity: 0.9;
+}
+
+.latest-profiles-img {
+  width: 40px;
+  height: 40px;
+}
+
+.form-control::placeholder {
+  color: #bbb !important;
+}
+
+.dropdown ul li {
+  /*text-align: center;*/
+  margin-left: 10px;
+}
+
+.text-panel {
+  padding: 90px 90px 140px;
+  /*width: 100%;*/
+  /*height: 79vh;*/
+  /*float: left;*/
+  background-color: #3d5259;
+  /*height: 100vh;*/
+}
+
+.caption {
+  /*text-align: center;*/
+  /*align-items: center;*/
+  /*padding-top: 20%;*/
+}
+
+.caption h3 {
+  font-weight: lighter;
+}
+.uploadBook {
+  padding-bottom: 150px;
+}
+
+.uploadBook label{
+  font-weight: bold;
+}
+
+.navbar-pills li {
+  list-style: none;
+  display: inline-block;
+  /*text-align: center;*/
+  padding: 0 10px;
+}
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.footer {
+  border-top: 2px solid #eaeaea;
+  background-color: darkslategray;
+}
