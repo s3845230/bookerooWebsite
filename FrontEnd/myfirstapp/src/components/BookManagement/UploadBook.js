@@ -16,9 +16,9 @@ class UploadBook extends Component {
             type: "",
             price: "",
             publisher: "",
-            date_of_publication: "",
+            publicationDate: "",
             tagline: "",
-            table_of_contents: "",
+            tableOfContents: "",
             blurb: "",
             bookCover: ""
         };  
@@ -42,8 +42,8 @@ class UploadBook extends Component {
             type: this.state.type,
             price: this.state.price,
             publisher: this.state.publisher,
-            date_of_publication: this.state.date_of_publication,
-            table_of_contents: this.state.table_of_contents,
+            publicationDate: this.state.publicationDate,
+            tableOfContents: this.state.tableOfContents,
             tagline:this.state.tagline,
             blurb: this.state.blurb,
             bookCover: this.state.bookCover
@@ -164,7 +164,7 @@ class UploadBook extends Component {
 
                                 {/*Publisher*/}
                                 <div className="form-group">
-                                    <label htmlFor="priceInput">Publisher</label>
+                                    <label htmlFor="Publisher">Publisher</label>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -181,7 +181,7 @@ class UploadBook extends Component {
 
                                 {/*Date of Publication*/}
                                 <div className="form-group">
-                                    <label htmlFor="priceInput">Date of Publication</label>
+                                    <label htmlFor="DateOfPublication">Date of Publication</label>
                                     <input
                                         type="date"
                                         className="form-control form-control-lg"
@@ -198,7 +198,7 @@ class UploadBook extends Component {
 
                                 {/*Tagline*/}
                                 <div className="form-group">
-                                    <label htmlFor="priceInput">Tagline</label>
+                                    <label htmlFor="Tagline">Tagline</label>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
@@ -217,7 +217,7 @@ class UploadBook extends Component {
 
                                 {/*Table of Contents*/}
                                 <div className="form-group">
-                                    <label htmlFor="priceInput">Table of Contents</label>
+                                    <label htmlFor="TableOfContents">Table of Contents</label>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
@@ -236,7 +236,7 @@ class UploadBook extends Component {
 
                                 {/*Blurb*/}
                                 <div className="form-group">
-                                    <label htmlFor="priceInput">Blurb</label>
+                                    <label htmlFor="Blurb">Blurb</label>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
@@ -255,13 +255,13 @@ class UploadBook extends Component {
 
                                 {/*Book Cover*/}
                                 <div className="form-group">
-                                    <label htmlFor="priceInput">Upload Book Cover</label>
+                                    <label htmlFor="BookCover">Upload Book Cover</label>
                                     <input
                                         type="file"
                                         className="form-control-file"
                                         name="bookCover"
                                         accept="image/*"
-                                        onChange={this.imageHandler}
+                                        onChange={this.onChange && this.imageHandler}
                                         required
                                     />
                                     {/*Book Cover Preview*/}

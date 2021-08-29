@@ -37,7 +37,7 @@ public class Book {
     private Date publicationDate;
 
     //    @NotBlank(message = "Book requires tagline")
-    private String tagLine;
+    private String tagline;
 
     //    @NotBlank(message = "Book requires tableOfContents")
     private String tableOfContents;
@@ -79,8 +79,8 @@ public class Book {
     public Date getPublicationDate() {return publicationDate;}
     public void setPublicationDate(Date publicationDate) {this.publicationDate = publicationDate;}
 
-    public String getTagLine() {return tagLine;}
-    public void setTagLine(String tagLine) {this.tagLine = tagLine;}
+    public String getTagline() {return tagline;}
+    public void setTagline(String tagLine) {this.tagline = tagLine;}
 
     public String getTableOfContents() {return tableOfContents;}
     public void setTableOfContents(String tableOfContents) {this.tableOfContents = tableOfContents;}
