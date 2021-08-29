@@ -1,0 +1,5 @@
+com/example/sandbox/SandboxApplication.class
+com/example/sandbox/web/BookController.class
+com/example/sandbox/service/BookService.class
+com/example/sandbox/repository/BookRepository.class
+com/example/sandbox/model/Book.class
