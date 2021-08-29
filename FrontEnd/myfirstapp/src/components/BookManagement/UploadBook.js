@@ -80,7 +80,7 @@ class UploadBook extends Component {
 
                                 {/*Title*/}
                                 <div className="form-group">
-                                    <label htmlFor="priceInput">Title</label>
+                                    <label htmlFor="title">Title</label>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -97,7 +97,7 @@ class UploadBook extends Component {
 
                                 {/*Author*/}
                                 <div className="form-group">
-                                    <label htmlFor="priceInput">Author</label>
+                                    <label htmlFor="author">Author</label>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -114,7 +114,7 @@ class UploadBook extends Component {
 
                                 {/*Genre*/}
                                 <div className="form-group">
-                                    <label htmlFor="priceInput">Genre</label>
+                                    <label htmlFor="genre">Genre</label>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -132,16 +132,12 @@ class UploadBook extends Component {
                                 {/*TODO: Type of book doesn't update anything in the json newBook object*/}
                                 {/*Type of Book*/}
                                 <div className="input-group mb-2">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text" id="basic-addon1">Type</span>
-                                    </div>
-                                    <select className=" custom-select form-control form-control-lg" required>
+                                    <label htmlFor="type">Type</label>
+                                    <select className="form-control form-control-lg" id="type" name="type" value={this.state.type} onChange={this.onChange} required>
                                         <option selected disabled value="">Select type</option>
                                         <option value="personal">Personal Book</option>
                                         <option value="new">New Book</option>
                                         <option value="old">Second Hand Book</option>
-                                        value={this.state.type}
-                                        onChange = {this.onChange}
                                     </select>
                                     <div className="invalid-feedback">
                                         Need to select an option.
@@ -151,7 +147,7 @@ class UploadBook extends Component {
                                 {/*TODO: Price doesn't update anything in the json newBook object*/}
                                 {/*Price*/}
                                 <div className="form-group">
-                                    <label htmlFor="priceInput">Price</label>
+                                    <label htmlFor="price">Price</label>
                                     <CurrencyInput
                                         intlConfig={{ locale: 'en-US', currency: 'AUD' }}
                                         className="form-control form-control-lg"
@@ -168,7 +164,7 @@ class UploadBook extends Component {
 
                                 {/*Publisher*/}
                                 <div className="form-group">
-                                    <label htmlFor="Publisher">Publisher</label>
+                                    <label htmlFor="publisher">Publisher</label>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -185,7 +181,7 @@ class UploadBook extends Component {
 
                                 {/*Date of Publication*/}
                                 <div className="form-group">
-                                    <label htmlFor="DateOfPublication">Date of Publication</label>
+                                    <label htmlFor="publicationDate">Date of Publication</label>
                                     <input
                                         type="date"
                                         className="form-control form-control-lg"
@@ -202,7 +198,7 @@ class UploadBook extends Component {
 
                                 {/*Tagline*/}
                                 <div className="form-group">
-                                    <label htmlFor="Tagline">Tagline</label>
+                                    <label htmlFor="tagline">Tagline</label>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
@@ -221,7 +217,7 @@ class UploadBook extends Component {
 
                                 {/*Table of Contents*/}
                                 <div className="form-group">
-                                    <label htmlFor="TableOfContents">Table of Contents</label>
+                                    <label htmlFor="tableOfContents">Table of Contents</label>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
@@ -240,7 +236,7 @@ class UploadBook extends Component {
 
                                 {/*Blurb*/}
                                 <div className="form-group">
-                                    <label htmlFor="Blurb">Blurb</label>
+                                    <label htmlFor="blurb">Blurb</label>
                                     <textarea
                                         type="paragraph"
                                         className="form-control form-control-lg"
@@ -260,7 +256,7 @@ class UploadBook extends Component {
                                 {/*TODO: Why doesn't BackEnd support the image format in the json?*/}
                                 {/*Book Cover*/}
                                 <div className="form-group">
-                                    <label htmlFor="BookCover">Upload Book Cover</label>
+                                    <label htmlFor="bookCOver">Upload Book Cover</label>
                                     <input
                                         type="file"
                                         className="form-control-file"
