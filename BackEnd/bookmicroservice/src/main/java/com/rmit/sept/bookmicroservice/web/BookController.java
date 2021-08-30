@@ -9,6 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import javax.xml.bind.DatatypeConverter;
+import java.text.FieldPosition;
+import java.text.ParseException;
+import java.text.ParsePosition;
+import java.util.Date;
+import java.text.DateFormat;
 
 
 
@@ -32,26 +38,41 @@ public class BookController {
 //    }
 
     @PostMapping("/new")
-    public ResponseEntity<Object> createNewPerson(@RequestBody String data) throws JsonProcessingException {
+    public ResponseEntity<Object> createNewPerson(@RequestBody String data) throws JsonProcessingException, ParseException {
+        
+        // Create empty book object
+        Book book = new Book();
 
-//        System.out.println(data);
-
+        // Import JSON data as jsonNode
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
-        
-        System.out.println(jsonNode.get("imageData"));
-        
-        
-//        Book book = objectMapper.readValue(data, Book.class);
-//        System.out.println(book.getImageData());
 
-//        System.out.println(book);
-//        System.out.println(book.getImage64());
-//
-//        bookService.saveOrUpdateBook(book);
+        // Separate jsonNode imageData into imageType and imageBlob
+        String imageData = jsonNode.get("imageData").asText();
+        String[] imageDataSplit = imageData.split(",");
+        String imageType = imageDataSplit[0];
+        byte[] imageBlob = DatatypeConverter.parseBase64Binary(imageDataSplit[1]);
 
-//        return new ResponseEntity<Book>(book, HttpStatus.CREATED);
-        return null;
+        // Write jsonNode data to book object
+        book.setTitle(jsonNode.get("title").asText());
+        book.setAuthor(jsonNode.get("author").asText());
+        book.setGenre(jsonNode.get("genre").asText());
+        book.setType(jsonNode.get("type").asText());
+        book.setPrice(jsonNode.get("price").asDouble());
+        book.setPublisher(jsonNode.get("publisher").asText());
+
+        // TODO: PARSE JSON DATE AS JAVA DATE, NOT JUST INSERT STRING INTO DATABASE
+        book.setPublicationDate(jsonNode.get("publicationDate").asText());
+
+        book.setTagline(jsonNode.get("title").asText());
+        book.setTableOfContents(jsonNode.get("title").asText());
+        book.setBlurb(jsonNode.get("title").asText());
+        book.setImageType(imageType);
+        book.setImageBlob(imageBlob);
+
+        bookService.saveOrUpdateBook(book);
+
+        return new ResponseEntity<Object>(book, HttpStatus.CREATED);
     }
 
 }

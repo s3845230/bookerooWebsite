@@ -34,7 +34,7 @@ public class Book {
     private String publisher;
 
     //    @NotBlank(message = "Book requires publicationDate")
-    private Date publicationDate;
+    private String publicationDate;
 
     //    @NotBlank(message = "Book requires tagline")
     private String tagline;
@@ -46,9 +46,11 @@ public class Book {
     private String blurb;
 
     //    @NotBlank(message = "Book requires imageHash")
+    
+    private String imageType;
 
     @Lob
-    private byte[] imageData;
+    private byte[] imageBlob;
 
     private Date created_at;
     private Date updated_at;
@@ -77,8 +79,8 @@ public class Book {
     public String getPublisher() {return publisher;}
     public void setPublisher(String publisher) {this.publisher = publisher;}
 
-    public Date getPublicationDate() {return publicationDate;}
-    public void setPublicationDate(Date publicationDate) {this.publicationDate = publicationDate;}
+    public String getPublicationDate() {return publicationDate;}
+    public void setPublicationDate(String publicationDate) {this.publicationDate = publicationDate;}
 
     public String getTagline() {return tagline;}
     public void setTagline(String tagLine) {this.tagline = tagLine;}
@@ -89,8 +91,15 @@ public class Book {
     public String getBlurb() {return blurb;}
     public void setBlurb(String blurb) {this.blurb = blurb;}
 
-    public byte[] getImageData() {return imageData;}
-    public void setImageData(byte[] imageData) {this.imageData = imageData;}
+    public String getImageType() {
+        return imageType;
+    }
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
+    }
+
+    public byte[] getImageBlob() {return imageBlob;}
+    public void setImageBlob(byte[] imageBlob) {this.imageBlob = imageBlob;}
 
     @PrePersist
     protected void onCreation(){
@@ -99,4 +108,5 @@ public class Book {
     protected void onUpdate(){
         this.updated_at = new Date();
     }
+
 }
