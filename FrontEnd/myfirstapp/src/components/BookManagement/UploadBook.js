@@ -20,7 +20,7 @@ class UploadBook extends Component {
             tagline: "",
             tableOfContents: "",
             blurb: "",
-            bookCover: ""
+            imageData: ""
         };  
 
         this.onChange = this.onChange.bind(this);
@@ -46,7 +46,7 @@ class UploadBook extends Component {
             tableOfContents: this.state.tableOfContents,
             tagline:this.state.tagline,
             blurb: this.state.blurb,
-            bookCover: this.state.bookCover
+            imageData: this.state.imageData
         }
         
         console.log(newBook);
@@ -60,14 +60,14 @@ class UploadBook extends Component {
         const bookCoverReader = new FileReader();
         bookCoverReader.onload = () => {
             if (bookCoverReader.readyState === 2) {
-                this.setState({bookCover: bookCoverReader.result})
+                this.setState({imageData: bookCoverReader.result})
             }
         }
         bookCoverReader.readAsDataURL(e.target.files[0])
     }  
 
     render() {
-        const { errors, bookCover } = this.state;
+        const { errors, imageData } = this.state;
         return (
             <div className="uploadBook">
                 <div className="container">
@@ -255,18 +255,18 @@ class UploadBook extends Component {
                                 {/*TODO: Why doesn't BackEnd support the image format in the json?*/}
                                 {/*Book Cover*/}
                                 <div className="form-group">
-                                    <label htmlFor="bookCOver">Upload Book Cover</label>
+                                    <label htmlFor="imageData">Upload Book Cover</label>
                                     <input
                                         type="file"
                                         className="form-control-file"
-                                        name="bookCover"
+                                        name="imageData"
                                         accept="image/*"
                                         onChange={this.onChange && this.imageHandler}
                                         required
                                     />
                                     {/*Book Cover Preview*/}
                                     <div class="col-xs-6 col-md-3">
-                                        <img src={this.state.bookCover} />
+                                        <img src={this.state.imageData} />
                                     </div>
                                     <div className="invalid-feedback">
                                         Need a Book Cover.

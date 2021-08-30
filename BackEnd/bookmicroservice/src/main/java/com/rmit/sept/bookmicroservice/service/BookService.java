@@ -11,9 +11,7 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
     
-    public Book saveOrUpdateStudent(Book book) {
-
-        // TODO: BUSINESS LOGIC
+    public Book saveOrUpdateBook(Book book) {
 
         return bookRepository.save(book);
     }

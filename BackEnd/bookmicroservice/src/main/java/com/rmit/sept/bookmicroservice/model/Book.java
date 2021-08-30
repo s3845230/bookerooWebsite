@@ -46,8 +46,9 @@ public class Book {
     private String blurb;
 
     //    @NotBlank(message = "Book requires imageHash")
+
     @Lob
-    private byte[] imageBlob;
+    private byte[] imageData;
 
     private Date created_at;
     private Date updated_at;
@@ -88,8 +89,8 @@ public class Book {
     public String getBlurb() {return blurb;}
     public void setBlurb(String blurb) {this.blurb = blurb;}
 
-    public byte[] getImageBlob() {return imageBlob;}
-    public void setImageBlob(byte[] imageBlob) {this.imageBlob = imageBlob;}
+    public byte[] getImageData() {return imageData;}
+    public void setImageData(byte[] imageData) {this.imageData = imageData;}
 
     @PrePersist
     protected void onCreation(){
