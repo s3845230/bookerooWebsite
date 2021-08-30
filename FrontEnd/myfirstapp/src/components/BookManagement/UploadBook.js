@@ -129,7 +129,6 @@ class UploadBook extends Component {
                                     </div>
                                 </div>
 
-                                {/*TODO: Type of book doesn't update anything in the json newBook object*/}
                                 {/*Type of Book*/}
                                 <div className="input-group mb-2">
                                     <label htmlFor="type">Type</label>
@@ -144,7 +143,7 @@ class UploadBook extends Component {
                                     </div>
                                 </div>
 
-                                {/*TODO: Price doesn't update anything in the json newBook object*/}
+                                {/*TODO: Price not present in JSON*/}
                                 {/*Price*/}
                                 <div className="form-group">
                                     <label htmlFor="price">Price</label>

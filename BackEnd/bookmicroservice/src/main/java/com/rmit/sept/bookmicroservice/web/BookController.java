@@ -1,6 +1,5 @@
 package com.rmit.sept.bookmicroservice.web;
 
-
 import com.rmit.sept.bookmicroservice.model.Book;
 import com.rmit.sept.bookmicroservice.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@CrossOrigin
 @RequestMapping("/api/book/")
 public class BookController {
 
