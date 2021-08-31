@@ -27,6 +27,7 @@ import static com.rmit.sept.bk_loginservices.security.SecurityConstant.TOKEN_PRE
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/users")
 public class UserController {
 
