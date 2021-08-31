@@ -77,9 +77,10 @@ class Register extends Component {
                 <div className="form-group">
                   <input
                     type="password"
+                    name="confirmPassword"
                     className="form-control form-control-lg"
                     placeholder="Confirm Password"
-                    value={this.state.password}
+                    value={this.state.confirmPassword}
                     onChange={this.onChange}
                   />
                 </div>
