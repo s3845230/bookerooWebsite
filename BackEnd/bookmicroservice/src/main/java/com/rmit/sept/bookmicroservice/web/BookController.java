@@ -56,6 +56,7 @@ public class BookController {
         // Write jsonNode data to book object
         book.setTitle(jsonNode.get("title").asText());
         book.setAuthor(jsonNode.get("author").asText());
+        book.setIsbn(jsonNode.get("isbn").asText());
         book.setGenre(jsonNode.get("genre").asText());
         book.setType(jsonNode.get("type").asText());
         book.setPrice(jsonNode.get("price").asDouble());

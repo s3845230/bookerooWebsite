@@ -12,6 +12,7 @@ class UploadBook extends Component {
         this.state = {
             title: "",
             author: "",
+            isbn: "",
             genre: "",
             type: "",
             price: "",
@@ -38,6 +39,7 @@ class UploadBook extends Component {
         const newBook = {
             title: this.state.title,
             author: this.state.author,
+            isbn: this.state.isbn,
             genre: this.state.genre,
             type: this.state.type,
             price: this.state.price,
@@ -112,6 +114,23 @@ class UploadBook extends Component {
                                     </div>
                                 </div>
 
+                                {/*ISBN*/}
+                                <div className="form-group">
+                                    <label htmlFor="isbn">ISBN</label>
+                                    <input
+                                        type="text"
+                                        className="form-control form-control-lg"
+                                        placeholder="ISBN"
+                                        name="isbn"
+                                        value= {this.state.isbn}
+                                        onChange = {this.onChange}
+                                        required
+                                    />
+                                    <div className="invalid-feedback">
+                                        ISBN cannot be Empty.
+                                    </div>
+                                </div>
+
                                 {/*Genre*/}
                                 <div className="form-group">
                                     <label htmlFor="genre">Genre</label>
@@ -144,16 +163,33 @@ class UploadBook extends Component {
                                 </div>
 
                                 {/*TODO: Price not present in JSON*/}
-                                {/*Price*/}
+                                {/*/!*Price*!/*/}
+                                {/*<div className="form-group">*/}
+                                {/*    <label htmlFor="price">Price</label>*/}
+                                {/*    <CurrencyInput*/}
+                                {/*        intlConfig={{ locale: 'en-US', currency: 'AUD' }}*/}
+                                {/*        className="form-control form-control-lg"*/}
+                                {/*        name="price"*/}
+                                {/*        placeholder="Price"*/}
+                                {/*        decimalsLimit={2}*/}
+                                {/*        onValueChange={(value, name) => console.log(value, name)}*/}
+                                {/*        required*/}
+                                {/*    />*/}
+                                {/*    <div className="invalid-feedback">*/}
+                                {/*        Book needs a price.*/}
+                                {/*    </div>*/}
+                                {/*</div>*/}
+
                                 <div className="form-group">
                                     <label htmlFor="price">Price</label>
-                                    <CurrencyInput
-                                        intlConfig={{ locale: 'en-US', currency: 'AUD' }}
-                                        className="form-control form-control-lg"
-                                        name="price"
-                                        placeholder="Price"
-                                        decimalsLimit={2}
-                                        onValueChange={(value, name) => console.log(value, name)}
+                                    <input
+                                        type = "number"
+                                        className = "form-control form-control-lg"
+                                        name = "price"
+                                        placeholder = "Price"
+                                        // decimalsLimit = {2}
+                                        value = {this.state.price}
+                                        onChange = {this.onChange}
                                         required
                                     />
                                     <div className="invalid-feedback">
