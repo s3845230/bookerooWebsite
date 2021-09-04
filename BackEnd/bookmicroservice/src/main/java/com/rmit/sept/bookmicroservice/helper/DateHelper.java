@@ -16,8 +16,6 @@ public class DateHelper {
         catch (ParseException e) {
             e.printStackTrace();
         }
-        System.out.println(dateString);
-        System.out.println(date);
         return date;
     }
     
