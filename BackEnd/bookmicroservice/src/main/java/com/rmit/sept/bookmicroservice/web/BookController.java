@@ -11,14 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import javax.xml.bind.DatatypeConverter;
-import java.text.FieldPosition;
-import java.text.ParseException;
-import java.text.ParsePosition;
-import java.util.Calendar;
-import java.util.Date;
-import java.text.DateFormat;
 
+import java.text.ParseException;
+import java.util.Date;
 
 
 @RestController
@@ -51,8 +46,8 @@ public class BookController {
         JsonNode jsonNode = objectMapper.readTree(data);
 
         // Separate jsonNode imageData into imageType and imageBlob
-        String imageType = Base64Helper.base64toDataType(jsonNode.get("imageData").asText());
-        byte[] imageBlob = Base64Helper.base64toByteStream(jsonNode.get("imageData").asText());
+        String imageType = Base64Helper.base64ToDataType(jsonNode.get("imageData").asText());
+        byte[] imageBlob = Base64Helper.base64ToByteStream(jsonNode.get("imageData").asText());
 
         // Convert JSON date to Java Date object
         Date publicationDate = DateHelper.stringToDate(jsonNode.get("publicationDate").asText());
