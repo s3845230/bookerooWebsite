@@ -34,7 +34,7 @@ public class Book {
     private String publisher;
 
     //    @NotBlank(message = "Book requires publicationDate")
-    private String publicationDate;
+    private Date publicationDate;
 
     //    @NotBlank(message = "Book requires tagline")
     private String tagline;
@@ -79,8 +79,8 @@ public class Book {
     public String getPublisher() {return publisher;}
     public void setPublisher(String publisher) {this.publisher = publisher;}
 
-    public String getPublicationDate() {return publicationDate;}
-    public void setPublicationDate(String publicationDate) {this.publicationDate = publicationDate;}
+    public Date getPublicationDate() {return publicationDate;}
+    public void setPublicationDate(Date publicationDate) {this.publicationDate = publicationDate;}
 
     public String getTagline() {return tagline;}
     public void setTagline(String tagLine) {this.tagline = tagLine;}

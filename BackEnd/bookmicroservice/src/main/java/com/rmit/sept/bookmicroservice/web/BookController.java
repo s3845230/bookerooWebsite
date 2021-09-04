@@ -3,6 +3,8 @@ package com.rmit.sept.bookmicroservice.web;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rmit.sept.bookmicroservice.helper.Base64Helper;
+import com.rmit.sept.bookmicroservice.helper.DateHelper;
 import com.rmit.sept.bookmicroservice.model.Book;
 import com.rmit.sept.bookmicroservice.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import javax.xml.bind.DatatypeConverter;
 import java.text.FieldPosition;
 import java.text.ParseException;
 import java.text.ParsePosition;
+import java.util.Calendar;
 import java.util.Date;
 import java.text.DateFormat;
 
@@ -48,10 +51,11 @@ public class BookController {
         JsonNode jsonNode = objectMapper.readTree(data);
 
         // Separate jsonNode imageData into imageType and imageBlob
-        String imageData = jsonNode.get("imageData").asText();
-        String[] imageDataSplit = imageData.split(",");
-        String imageType = imageDataSplit[0];
-        byte[] imageBlob = DatatypeConverter.parseBase64Binary(imageDataSplit[1]);
+        String imageType = Base64Helper.base64toDataType(jsonNode.get("imageData").asText());
+        byte[] imageBlob = Base64Helper.base64toByteStream(jsonNode.get("imageData").asText());
+
+        // Convert JSON date to Java Date object
+        Date publicationDate = DateHelper.stringToDate(jsonNode.get("publicationDate").asText());
 
         // Write jsonNode data to book object
         book.setTitle(jsonNode.get("title").asText());
@@ -61,10 +65,7 @@ public class BookController {
         book.setType(jsonNode.get("type").asText());
         book.setPrice(jsonNode.get("price").asDouble());
         book.setPublisher(jsonNode.get("publisher").asText());
-
-        // TODO: PARSE JSON DATE AS JAVA DATE, NOT JUST INSERT STRING INTO DATABASE
-        book.setPublicationDate(jsonNode.get("publicationDate").asText());
-
+        book.setPublicationDate(publicationDate);
         book.setTagline(jsonNode.get("title").asText());
         book.setTableOfContents(jsonNode.get("title").asText());
         book.setBlurb(jsonNode.get("title").asText());

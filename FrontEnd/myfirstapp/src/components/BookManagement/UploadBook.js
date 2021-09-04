@@ -162,8 +162,7 @@ class UploadBook extends Component {
                                     </div>
                                 </div>
 
-                                {/*TODO: Price not present in JSON*/}
-                                {/*/!*Price*!/*/}
+                                {/*Price*/}
                                 {/*<div className="form-group">*/}
                                 {/*    <label htmlFor="price">Price</label>*/}
                                 {/*    <CurrencyInput*/}
@@ -180,6 +179,7 @@ class UploadBook extends Component {
                                 {/*    </div>*/}
                                 {/*</div>*/}
 
+                                {/*Working solution - price is now present in JSON and therefore will be inserted into database*/}
                                 <div className="form-group">
                                     <label htmlFor="price">Price</label>
                                     <input
