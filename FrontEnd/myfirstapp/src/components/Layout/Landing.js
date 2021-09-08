@@ -42,6 +42,12 @@ class Landing extends Component {
                   <Link className="btn btn-lg btn-primary mb-2 mr-2" to="/publisher">
                     Publisher Landing
                   </Link>
+                  <Link className="btn btn-lg btn-secondary mb-2 mr-2" to="/login">
+                    User Login
+                  </Link>
+                  <Link className="btn btn-lg btn-secondary mb-2 mr-2" to="/register">
+                    User Register
+                  </Link>
                 </div>
               </div>
             </div>
