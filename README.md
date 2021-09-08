@@ -1,4 +1,4 @@
-# RMIT SEPT 2021 Major Project
+ush origin --delete BK-20-# RMIT SEPT 2021 Major Project
 
 # Group WED-09:30
 
@@ -23,7 +23,7 @@
 [comment]: <> (* feature 1)
 
 [comment]: <> (* feature 2)
-https://www.ikea.com/pimg/0140448_pe300502_s3.jpg
+
 [comment]: <> (* feature 3)
 
 ## Running Project

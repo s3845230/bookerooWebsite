@@ -11,6 +11,7 @@ public class DateHelper {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
+            // TODO: df.parse() is parsing Day as Month and vice versa
             date = df.parse(dateString);
         }
         catch (ParseException e) {
