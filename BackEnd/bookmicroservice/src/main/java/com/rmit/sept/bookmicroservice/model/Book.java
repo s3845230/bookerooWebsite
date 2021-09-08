@@ -1,6 +1,7 @@
 package com.rmit.sept.bookmicroservice.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -40,9 +41,11 @@ public class Book {
     private String tagline;
 
     //    @NotBlank(message = "Book requires tableOfContents")
+    @Column(length = 4000)
     private String tableOfContents;
 
     //    @NotBlank(message = "Book requires blurb")
+    @Column(length = 4000)
     private String blurb;
 
     //    @NotBlank(message = "Book requires imageHash")
