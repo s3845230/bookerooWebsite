@@ -149,7 +149,7 @@ class UploadBook extends Component {
                                 </div>
 
                                 {/*Type of Book*/}
-                                <div className="input-group mb-2">
+                                <div className="form-group">
                                     <label htmlFor="type">Type</label>
                                     <select className="form-control form-control-lg" id="type" name="type" value={this.state.type} onChange={this.onChange} required>
                                         <option selected disabled value="">Select type</option>
@@ -188,6 +188,7 @@ class UploadBook extends Component {
                                         name = "price"
                                         placeholder = "Price"
                                         // decimalsLimit = {2}
+                                        min={1}
                                         value = {this.state.price}
                                         onChange = {this.onChange}
                                         required

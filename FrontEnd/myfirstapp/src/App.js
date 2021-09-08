@@ -15,6 +15,7 @@ import PublisherLanding from "./components/Publisher/PublisherLanding";
 // import Login from "./components/UserManagement/Login";
 import UploadBook from "./components/BookManagement/UploadBook";
 import Footer from "./components/Layout/Footer";
+import SearchResults from "./components/Books/SearchResults";
 
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
             }
             <Route exact path="/" component={Landing} />
             <Route exact path="/publisher" component={PublisherLanding} />
+            <Route exact path="/searchResults" component={SearchResults} />
             {/*<Route exact path="/register" component={Register} />*/}
             {/*<Route exact path="/login" component={Login} />*/}
 

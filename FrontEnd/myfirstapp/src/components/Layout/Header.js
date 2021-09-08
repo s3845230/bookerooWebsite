@@ -26,14 +26,14 @@ import logoLight from '../../images/bookerooLogo.png'
 
                                 {/*View Books*/}
                                 <li className="nav-item dropdown">
-                                    <a className="btn btn-default dropdown-toggle" id="navbarDropdown" role="button"
+                                    <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Books <span className="caret"></span>
+                                        Books
                                     </a>
                                     <ul className="dropdown-menu">
-                                        <li><a href="/" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Genre</a></li>
-                                        <li><a href="/" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Author</a></li>
-                                        <li><a href="/publisher" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Publisher</a></li>
+                                        <li><a className="dropdown-item" href="/" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Genre</a></li>
+                                        <li><a className="dropdown-item" href="/" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Author</a></li>
+                                        <li><a className="dropdown-item" href="/publisher" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Publisher</a></li>
                                     </ul>
                                 </li>
 
@@ -52,18 +52,20 @@ import logoLight from '../../images/bookerooLogo.png'
                                 </li>
                             </ul>
                         </div>
-
-                        {/*Search Form*/}
-                        <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <form className="navbar-form navbar-left" role="search">
-                                    <div className="form-group">
-                                        <input type="text" className="form-control" placeholder="Search" />
-                                        {/*<button type="submit" className="btn btn-default">Submit</button>*/}
-                                    </div>
-                                </form>
-                            </li>
-                        </ul>
+                        
+                        {/*Collapse Mobile Search*/}
+                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+                            Search
+                        </button>
+                        <div className="collapse navbar-collapse" id="collapseSearch">
+                            {/*Search Form*/}
+                            <form className="navbar-left form-inline" role="search">
+                                <div className="card-body">
+                                    <input type="text" className="form-control mr-sm-2" placeholder="Search" />
+                                    <button type="submit" className="btn btn-outline-primary">Search</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </nav>
             </div>
