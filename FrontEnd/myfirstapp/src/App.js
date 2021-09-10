@@ -15,7 +15,7 @@ import PublisherLanding from "./components/Publisher/PublisherLanding";
 // import Login from "./components/UserManagement/Login";
 import UploadBook from "./components/BookManagement/UploadBook";
 import Footer from "./components/Layout/Footer";
-import SearchResults from "./components/Books/SearchResults";
+import SearchResults from "./components/ViewBooks/SearchResults";
 
 
 class App extends Component {

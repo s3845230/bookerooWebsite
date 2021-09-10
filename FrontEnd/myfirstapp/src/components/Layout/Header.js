@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import logoLight from '../../images/bookerooLogo.png'
+import SearchBar from '../ViewBooks/SearchBar';
 
- class Header extends Component {
+class Header extends Component {
     render() {
         return (
             <div>
@@ -54,18 +55,20 @@ import logoLight from '../../images/bookerooLogo.png'
                         </div>
                         
                         {/*Collapse Mobile Search*/}
-                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+                        <SearchBar />
+
+                        {/*<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
                             Search
                         </button>
                         <div className="collapse navbar-collapse" id="collapseSearch">
-                            {/*Search Form*/}
+                            {/*Search Form
                             <form className="navbar-left form-inline" role="search">
                                 <div className="card-body">
                                     <input type="text" className="form-control mr-sm-2" placeholder="Search" />
                                     <button type="submit" className="btn btn-outline-primary">Search</button>
                                 </div>
                             </form>
-                        </div>
+                        </div>*/}
                     </div>
                 </nav>
             </div>
