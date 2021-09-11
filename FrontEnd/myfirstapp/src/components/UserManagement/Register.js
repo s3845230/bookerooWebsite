@@ -10,6 +10,7 @@ class Register extends Component {
 
     this.state = {
       username: "",
+      accountType: "",
       fullName: "",
       password: "",
       confirmPassword: "",
@@ -23,6 +24,7 @@ class Register extends Component {
     e.preventDefault();
     const newUser = {
       username: this.state.username,
+      accountType: this.state.accountType,
       fullName: this.state.fullName,
       password: this.state.password,
       confirmPassword: this.state.confirmPassword
@@ -84,6 +86,18 @@ class Register extends Component {
                     value={this.state.confirmPassword}
                     onChange={this.onChange}
                   />
+                  {/*Type of Account*/}
+                  <div className="form-group" style={{paddingTop:"15px"}}>
+                    <select className="form-control form-control-lg" id="accountType" name="accountType" value={this.state.type} onChange={this.onChange} required>
+                      <option selected disabled value="">Account type</option>
+                      <option value="CUSTOMER">Customer</option>
+                      <option value="PUBLISHER">Publisher</option>
+                      <option value="ADMIN">Admin</option>
+                    </select>
+                    <div className="invalid-feedback">
+                      Need to select an option.
+                    </div>
+                  </div>
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>

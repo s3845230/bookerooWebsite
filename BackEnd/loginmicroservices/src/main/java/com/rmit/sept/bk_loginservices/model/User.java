@@ -13,18 +13,31 @@ import java.util.Collection;
 
 @Entity
 public class User implements UserDetails {
+    
+    private enum AccountType {
+        CUSTOMER,
+        PUBLISHER,
+        ADMIN
+    }
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Email(message = "Username needs to be an email")
-    @NotBlank(message = "username is required")
+    @Email(message = "Username needs to be an email address")
+    @NotBlank(message = "Username is required")
     @Column(unique = true)
     private String username;
+
+//    @NotBlank(message = "Account type must be specified")
+    private AccountType accountType;
+
     @NotBlank(message = "Please enter your full name")
     private String fullName;
+
     @NotBlank(message = "Password field is required")
     private String password;
+
     @Transient
     private String confirmPassword;
     private Date create_At;
@@ -49,6 +62,14 @@ public class User implements UserDetails {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
     }
 
     public String getFullName() {

@@ -36,7 +36,7 @@ public class BookController {
 //    }
 
     @PostMapping("/new")
-    public ResponseEntity<Object> createNewPerson(@RequestBody String data) throws JsonProcessingException, ParseException {
+    public ResponseEntity<Object> createNewBook(@RequestBody String data) throws JsonProcessingException, ParseException {
         
         // Create empty book object
         Book book = new Book();
@@ -62,9 +62,7 @@ public class BookController {
         book.setPublisher(jsonNode.get("publisher").asText());
         book.setPublicationDate(publicationDate);
         book.setTagline(jsonNode.get("tagline").asText());
-        // TODO: VARCHAR NOT LONG ENOUGH TO CONTAIN TABLEOFCONTENTS
         book.setTableOfContents(jsonNode.get("title").asText());
-        // TODO: VARCHAR NOT LONG ENOUGH TO CONTAIN BLURB
         book.setBlurb(jsonNode.get("title").asText());
         book.setImageType(imageType);
         book.setImageBlob(imageBlob);
