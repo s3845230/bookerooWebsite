@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 
 @RestController
-@CrossOrigin
+//@CrossOrigin("8081")
 @RequestMapping("/api/book/")
 public class BookController {
 
@@ -36,7 +37,7 @@ public class BookController {
 //    }
 
     @PostMapping("/new")
-    public ResponseEntity<Object> createNewPerson(@RequestBody String data) throws JsonProcessingException, ParseException {
+    public ResponseEntity<Object> createNewBook(@RequestBody String data) throws JsonProcessingException, ParseException {
         
         // Create empty book object
         Book book = new Book();
@@ -70,6 +71,16 @@ public class BookController {
         bookService.saveOrUpdateBook(book);
 
         return new ResponseEntity<Object>(book, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/search")
+    private List<Book> getAllBook() {
+        return bookService.getAllBook();
+    }
+
+    @GetMapping("/search/{search}")
+    private List<Book> getBook(@PathVariable("search") String search) {
+        return bookService.getBookBySearch(search);
     }
 
 }
