@@ -1,8 +1,11 @@
 package com.rmit.sept.bk_loginservices.payload;
 
+import com.rmit.sept.bk_loginservices.model.User;
+
 public class JWTLoginSucessReponse {
     private boolean success;
     private String token;
+    private User.AccountType accountType;
 
     public JWTLoginSucessReponse(boolean success, String token) {
         this.success = success;

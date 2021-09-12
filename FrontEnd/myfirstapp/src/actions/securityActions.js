@@ -1,7 +1,17 @@
 import axios from "axios";
-import {GET_ERRORS, SET_CURRENT_USER} from "./types";
+import {
+    GET_ERRORS,
+    SET_CURRENT_USER,
+    REGISTER_SUCCESS,
+    REGISTER_FAIL,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    LOGOUT,
+    CLEAR_MESSAGE,
+    SET_MESSAGE } from "./types";
 import setJWTToken from "../securityUtils/setJWTToken";
 import jwt_decode from "jwt-decode";
+import AuthService from "../services/AuthService";
 
 
 export const createNewUser = (newUser, history) => async dispatch => {
@@ -22,8 +32,8 @@ export const createNewUser = (newUser, history) => async dispatch => {
         // });
 
     }
-
 };
+
 
 export const login = LoginRequest => async dispatch => {
     console.log("securityActions.login");

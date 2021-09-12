@@ -14,7 +14,7 @@ import java.util.Collection;
 @Entity
 public class User implements UserDetails {
     
-    private enum AccountType {
+    public enum AccountType {
         CUSTOMER,
         PUBLISHER,
         ADMIN

@@ -162,23 +162,6 @@ class UploadBook extends Component {
                                     </div>
                                 </div>
 
-                                {/*Price*/}
-                                {/*<div className="form-group">*/}
-                                {/*    <label htmlFor="price">Price</label>*/}
-                                {/*    <CurrencyInput*/}
-                                {/*        intlConfig={{ locale: 'en-US', currency: 'AUD' }}*/}
-                                {/*        className="form-control form-control-lg"*/}
-                                {/*        name="price"*/}
-                                {/*        placeholder="Price"*/}
-                                {/*        decimalsLimit={2}*/}
-                                {/*        onValueChange={(value, name) => console.log(value, name)}*/}
-                                {/*        required*/}
-                                {/*    />*/}
-                                {/*    <div className="invalid-feedback">*/}
-                                {/*        Book needs a price.*/}
-                                {/*    </div>*/}
-                                {/*</div>*/}
-
                                 {/*Working solution - price is now present in JSON and therefore will be inserted into database*/}
                                 <div className="form-group">
                                     <label htmlFor="price">Price</label>
@@ -301,7 +284,7 @@ class UploadBook extends Component {
                                         required
                                     />
                                     {/*Book Cover Preview*/}
-                                    <div class="col-xs-6 col-md-3">
+                                    <div className="col-xs-6 col-md-3">
                                         <img src={this.state.imageData} />
                                     </div>
                                     <div className="invalid-feedback">

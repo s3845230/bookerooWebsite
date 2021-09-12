@@ -41,7 +41,6 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
-
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result){
         // Validate passwords match
@@ -62,8 +61,6 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-
-
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
@@ -80,6 +77,7 @@ public class UserController {
         String jwt = TOKEN_PREFIX +  tokenProvider.generateToken(authentication);
         
         System.out.println("LOGIN SUCCESS");
+        System.out.println(jwt);
 
         return ResponseEntity.ok(new JWTLoginSucessReponse(true, jwt));
     }
