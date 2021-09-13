@@ -51,4 +51,8 @@ public class BookService {
         return books;
     }
 
+    public Book getBookByID(Long search) {
+        return bookRepository.findById(search).get();
+    }
+
 }

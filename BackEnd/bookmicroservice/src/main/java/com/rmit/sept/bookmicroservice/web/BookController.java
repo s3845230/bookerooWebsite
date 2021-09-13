@@ -83,4 +83,8 @@ public class BookController {
         return bookService.getBookBySearch(search);
     }
 
+    @GetMapping("/searchbyid/{id}")
+    private Book getBookByID(@PathVariable("id") Long id) {
+        return bookService.getBookByID(id);
+    }
 }
