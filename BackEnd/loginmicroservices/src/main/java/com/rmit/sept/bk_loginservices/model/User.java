@@ -2,24 +2,21 @@ package com.rmit.sept.bk_loginservices.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.util.Date;
-import java.util.Collection;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Entity
 public class User implements UserDetails {
-    
-    public enum AccountType {
-        CUSTOMER,
-        PUBLISHER,
-        ADMIN
-    }
-    
+
+    private static final long serialVersionUDI = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,8 +26,11 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String username;
 
-//    @NotBlank(message = "Account type must be specified")
-    private AccountType accountType;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "UserRoles",
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "roleID"))
+    private Set<Role> roles = new HashSet<>();
 
     @NotBlank(message = "Please enter your full name")
     private String fullName;
@@ -39,14 +39,42 @@ public class User implements UserDetails {
     private String password;
 
     @Transient
+    private Collection<? extends GrantedAuthority> authorities;
+
+    @Transient
     private String confirmPassword;
     private Date create_At;
     private Date update_At;
 
-    //OneToMany with Project
+    /*
+    Constructors
+     */
 
     public User() {
     }
+
+    public User(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.authorities = authorities;
+    }
+
+    public static User build(User user) {
+        List<GrantedAuthority> authorities = user.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getAccountRole().name()))
+                .collect(Collectors.toList());
+        return new User(
+                user.getId(),
+                user.getUsername(),
+                user.getPassword(),
+                authorities
+        );
+    }
+
+    /*
+    Getters & Setters
+     */
 
     public Long getId() {
         return id;
@@ -64,12 +92,12 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    public AccountType getAccountType() {
-        return accountType;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public String getFullName() {
@@ -122,6 +150,7 @@ public class User implements UserDetails {
         this.update_At = new Date();
     }
 
+
     /*
     UserDetails interface methods
      */
@@ -129,7 +158,7 @@ public class User implements UserDetails {
     @Override
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override
@@ -154,5 +183,15 @@ public class User implements UserDetails {
     @JsonIgnore
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id);
     }
 }

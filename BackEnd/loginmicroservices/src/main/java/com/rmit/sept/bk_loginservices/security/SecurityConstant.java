@@ -1,7 +1,7 @@
 package com.rmit.sept.bk_loginservices.security;
 
+// Pre-defined values for all security classes
 public class SecurityConstant {
-
     public static final String SIGN_UP_URLS = "/api/users/**";
     public static final String H2_URL = "/h2-console/**";
     public static final String SECRET ="SecretKeyToGenJWTs";
