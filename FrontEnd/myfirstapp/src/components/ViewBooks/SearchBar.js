@@ -1,17 +1,32 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Redirect } from 'react-router';
+import { withRouter } from "react-router";
 
 class SearchBar extends Component {
     constructor() {
         super();
 
         this.state = {
-            search: ""
-        };  
+            // for search
+            search: "",
+            books: []
+        };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.books !== this.state.books) {
+            // redirect to search results page with books
+            this.props.history.push({
+                pathname: '/searchResults',
+                state: { books: this.state.books }
+            });
+        }
+    }
+
     onChange(e) {
         this.setState({
             [e.target.name]: e.target.value
@@ -20,13 +35,29 @@ class SearchBar extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        const searchQuery = {
-            search: this.state.search
+        const search = this.state.search
+        // if search not empty
+        if (search) {
+            axios.get(`http://localhost:8081/api/book/search/${search}`)
+            // returns results
+            .then((result) => {
+                this.setState({ books: result.data})
+
+                console.log(this.state.books);
+                console.log(this.state.books[0].title);
+
+            })
         }
+        // get all books
+        else {
+            axios.get(`http://localhost:8081/api/book/search`)
+            // return results
+            .then((result) => {
+                this.setState({ books: result.data})
 
-        console.log(searchQuery);
-
-        axios.get("http://localhost:8081/api/book/search", searchQuery);
+                console.log(this.state.books);
+            })
+        }
     }
 
     render() {
@@ -44,15 +75,17 @@ class SearchBar extends Component {
                                 type="text" 
                                 className="form-control mr-sm-2" 
                                 placeholder="Search"
-                                value={this.state.title}
+                                name="search"
+                                value={this.state.search}
                                 onChange={this.onChange}
                             />
                             <button type="submit" className="btn btn-outline-primary">Search</button>
                         </div>
                     </form>
                 </div>
+                {/*this.state.books.length > 0 && <Redirect to={{ pathname: "/searchResults", state: { books: this.state.books } }}/>*/}
             </React.Fragment>
         )
     }
 }
-export default SearchBar;
+export default withRouter(SearchBar);
