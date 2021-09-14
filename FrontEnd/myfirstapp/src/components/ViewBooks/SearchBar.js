@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router';
 import { withRouter } from "react-router";
 
 class SearchBar extends Component {
@@ -83,7 +82,6 @@ class SearchBar extends Component {
                         </div>
                     </form>
                 </div>
-                {/*this.state.books.length > 0 && <Redirect to={{ pathname: "/searchResults", state: { books: this.state.books } }}/>*/}
             </React.Fragment>
         )
     }

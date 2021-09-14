@@ -56,19 +56,6 @@ class Header extends Component {
                         
                         {/*Collapse Mobile Search*/}
                         <SearchBar />
-
-                        {/*<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
-                            Search
-                        </button>
-                        <div className="collapse navbar-collapse" id="collapseSearch">
-                            {/*Search Form
-                            <form className="navbar-left form-inline" role="search">
-                                <div className="card-body">
-                                    <input type="text" className="form-control mr-sm-2" placeholder="Search" />
-                                    <button type="submit" className="btn btn-outline-primary">Search</button>
-                                </div>
-                            </form>
-                        </div>*/}
                     </div>
                 </nav>
             </div>
