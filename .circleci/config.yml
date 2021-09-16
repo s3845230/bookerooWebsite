@@ -6,5 +6,5 @@ jobs:
     steps:
       - checkout
       - run: pwd && ls -al
-      - run: ./BackEnd/bookmicroservice/mvnw package
+      - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package
       - run: docker build -t septteam3/bookmicroservice ./BackEnd/bookmicroservice/
