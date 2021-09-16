@@ -1,4 +1,4 @@
-ush origin --delete BK-20-# RMIT SEPT 2021 Major Project
+# RMIT SEPT 2021 Major Project
 
 # Group WED-09:30
 
