@@ -2,8 +2,8 @@ version: 2
 jobs:
   build:
     machine: true
+    working_directory: BackEnd/bookmicroservice/
     steps:
       - checkout
-      - run: cd BackEnd/bookmicroservice/
       - run: ./mvnw package
       - run: docker build -t septteam3/bookmicroservice .
