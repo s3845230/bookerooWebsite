@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    machine: true
+#    machine: true
     docker: circleci/openjdk:8.0.292
     working_directory: ./BackEnd/bookmicroservice/
     steps:
