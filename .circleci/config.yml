@@ -2,9 +2,10 @@ version: 2
 jobs:
   build:
     machine: true
-#    working_directory: ./BackEnd/bookmicroservice/
+    docker: circleci/openjdk:8.0.292
+    working_directory: ./BackEnd/bookmicroservice/
     steps:
-#      - checkout
+      - checkout
       - run: pwd && ls -al
       - run: ./mvnw package
       - run: docker build -t septteam3/bookmicroservice .
