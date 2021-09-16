@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     machine: true
-    working_directory: ./BackEnd/bookmicroservice/
+#    working_directory: ./BackEnd/bookmicroservice/
     steps:
 #      - checkout
       - run: pwd && ls -al
