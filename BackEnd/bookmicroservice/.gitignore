@@ -26,7 +26,7 @@ bookmicroservice.iml
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
+docker/build.sh/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
