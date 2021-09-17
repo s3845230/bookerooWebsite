@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+//@CrossOrigin("http://localhost:3000")
 @RequestMapping("/api/book/")
 public class BookController {
 
@@ -47,8 +47,8 @@ public class BookController {
         JsonNode jsonNode = objectMapper.readTree(data);
 
         // Separate jsonNode imageData into imageType and imageBlob
-        String imageType = Base64Helper.base64ToDataType(jsonNode.get("imageData").asText());
-        byte[] imageBlob = Base64Helper.base64ToByteStream(jsonNode.get("imageData").asText());
+//        String imageType = Base64Helper.base64ToDataType(jsonNode.get("imageData").asText());
+//        byte[] imageBlob = Base64Helper.base64ToByteStream(jsonNode.get("imageData").asText());
 
         // Convert JSON date to Java Date object
         Date publicationDate = DateHelper.stringToDate(jsonNode.get("publicationDate").asText());
@@ -65,8 +65,8 @@ public class BookController {
         book.setTagline(jsonNode.get("title").asText());
         book.setTableOfContents(jsonNode.get("title").asText());
         book.setBlurb(jsonNode.get("title").asText());
-        book.setImageType(imageType);
-        book.setImageBlob(imageBlob);
+//        book.setImageType(imageType);
+//        book.setImageBlob(imageBlob);
 
         bookService.saveOrUpdateBook(book);
 
