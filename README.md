@@ -35,7 +35,7 @@ Please note that your IDE must have the maven dependencies loaded before it's ab
    1. Port is specified under ```[microservice]/src/main/resources/application.properties```, ```server.port=XXXX```
 
 ### Running Front-End
-1. ```cd FrontEnd/myfirstapp```
+1. ```cd FrontEnd/bookeroo```
 2. ```npm install``` (only first time) 
 3. ```npm start```
 4. Access via ```http://localhost:3000```
