@@ -69,11 +69,12 @@ public class Book {
     public Book() {
     }
     
-    public Book(Book book, byte[] imageBlob) {
+    public Book(Book book) {
         this.bookId = book.bookId;
         this.author = book.author;
         this.blurb = book.author;
         this.created_at = book.created_at;
+        this.genre = book.genre;
         this.imageBlob = book.imageBlob;
         this.imageType = book.imageType;
         this.isbn = book.isbn;
@@ -87,7 +88,7 @@ public class Book {
         this.updated_at = book.updated_at;
 
         // RECONSTRUCT JSON Base64 imageData to send to FrontEnd
-        this.imageData = Base64Helper.byteStreamToJson(this.imageType, imageBlob);
+        this.imageData = Base64Helper.byteStreamToJson(book.imageType, book.imageBlob);
     }
 
 
