@@ -1,11 +1,13 @@
 package com.rmit.sept.bookmicroservice.model;
 
+import com.rmit.sept.bookmicroservice.helper.Base64Helper;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class Book {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookId;
@@ -55,6 +57,44 @@ public class Book {
     private Date created_at;
     private Date updated_at;
 
+
+
+    @Transient
+    private String imageData;
+    
+    /*
+    Constructors
+     */
+
+    public Book() {
+    }
+    
+    public Book(Book book, byte[] imageBlob) {
+        this.bookId = book.bookId;
+        this.author = book.author;
+        this.blurb = book.author;
+        this.created_at = book.created_at;
+        this.imageBlob = book.imageBlob;
+        this.imageType = book.imageType;
+        this.isbn = book.isbn;
+        this.price = book.price;
+        this. publicationDate = book.publicationDate;
+        this.publisher = book.publisher;
+        this.tableOfContents = book.tableOfContents;
+        this.tagline = book.tagline;
+        this.title = book.title;
+        this.type = book.type;
+        this.updated_at = book.updated_at;
+
+        // RECONSTRUCT JSON Base64 imageData to send to FrontEnd
+        this.imageData = Base64Helper.byteStreamToJson(this.imageType, imageBlob);
+    }
+
+
+    /*
+    Getters & Setters
+     */
+
     public Long getId() {return bookId;}
     public void setId(Long bookId) {this.bookId = bookId;}
 
@@ -101,6 +141,13 @@ public class Book {
     public byte[] getImageBlob() {return imageBlob;}
     public void setImageBlob(byte[] imageBlob) {this.imageBlob = imageBlob;}
 
+    public String getImageData() {
+        return imageData;
+    }
+    public void setImageData(String imageData) {
+        this.imageData = imageData;
+    }
+
     @PrePersist
     protected void onCreation(){
         this.created_at = new Date();
@@ -108,5 +155,7 @@ public class Book {
     protected void onUpdate(){
         this.updated_at = new Date();
     }
+
+
 
 }

@@ -25,17 +25,6 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-//    @PostMapping("/new")
-//    public ResponseEntity<Book> createNewPerson(@RequestBody Book book) {
-//
-//        System.out.println(book);
-//        System.out.println(book.getImageData());
-//
-//        bookService.saveOrUpdateBook(book);
-//
-//        return new ResponseEntity<Book>(book, HttpStatus.CREATED);
-//    }
-
     @PostMapping("/new")
     public ResponseEntity<Object> createNewBook(@RequestBody String data) throws JsonProcessingException, ParseException {
         
@@ -67,9 +56,9 @@ public class BookController {
         book.setBlurb(jsonNode.get("title").asText());
         book.setImageType(imageType);
         book.setImageBlob(imageBlob);
+        book.setImageData(jsonNode.get("imageData").asText());
 
         bookService.saveOrUpdateBook(book);
-
         return new ResponseEntity<Object>(book, HttpStatus.CREATED);
     }
 
