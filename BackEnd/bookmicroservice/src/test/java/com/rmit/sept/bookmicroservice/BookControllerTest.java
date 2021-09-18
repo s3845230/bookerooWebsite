@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.*;
 
@@ -51,8 +50,8 @@ public class BookControllerTest {
             date,
             date);
 
-    @MockBean
-    BookRepository bookRepository;
+     @MockBean
+     BookRepository bookRepository;
 
     @Test
     public void createBook_success() throws Exception {
