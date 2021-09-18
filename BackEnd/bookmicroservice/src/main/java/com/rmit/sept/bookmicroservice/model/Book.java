@@ -68,28 +68,6 @@ public class Book {
 
     public Book() {
     }
-    
-    public Book(Book book) {
-        this.bookId = book.bookId;
-        this.author = book.author;
-        this.blurb = book.author;
-        this.created_at = book.created_at;
-        this.genre = book.genre;
-        this.imageBlob = book.imageBlob;
-        this.imageType = book.imageType;
-        this.isbn = book.isbn;
-        this.price = book.price;
-        this. publicationDate = book.publicationDate;
-        this.publisher = book.publisher;
-        this.tableOfContents = book.tableOfContents;
-        this.tagline = book.tagline;
-        this.title = book.title;
-        this.type = book.type;
-        this.updated_at = book.updated_at;
-
-        // RECONSTRUCT JSON Base64 imageData to send to FrontEnd
-        this.imageData = Base64Helper.byteStreamToJson(book.imageType, book.imageBlob);
-    }
 
 
     /*

@@ -15,10 +15,5 @@ public class Base64Helper {
         System.out.println(byteStream);
         return byteStream;
     }
-    
-    public static String byteStreamToJson(String dataType, byte[] data) {
-        String Json = dataType + "," + new String(Base64.getEncoder().encode(data));
-        System.out.println(Json);
-        return Json;
-    }
+
 }
