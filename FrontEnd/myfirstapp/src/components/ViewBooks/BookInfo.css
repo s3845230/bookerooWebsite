@@ -1,0 +1,14 @@
+#price {
+    margin-bottom: 30px;
+    margin-left: 30px;
+    width: 100%;
+}
+
+body {
+    padding-bottom: 150px;
+}
+
+.cover {
+    width: 250px;
+    height: 440px;
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import "./BookInfo.css";
 
 function BookInfo({ match }) {
     useEffect(() => {
@@ -21,24 +22,25 @@ function BookInfo({ match }) {
     return (
         <div className="bookInfo">
             <div className="container">
+                <h1 className="text-center">{book.title}</h1>
+                <h2 className="lead text-center" style={{ color: 'blue'}}>{book.author}</h2>
                 <div className="row">
-                    <div className="col-6 col-sm-3">
-                        <img src={`${book.imageType},${book.imageBlob}`} />
+                    <div className="col">
+                        <img className="cover rounded mx-auto d-block" src={`${book.imageType},${book.imageBlob}`} />
                     </div>
-
+                </div>
+                <div className="row" id="">
                     <div className="col-6">
-                        <h1 className="text-center">{book.title}</h1>
-                        <h2 className="lead text-center" style={{ color: 'blue'}}>{book.author}</h2>
-                        <h2 className="lead text-center" style={{ color: 'grey'}}>{book.publisher} | {book.publicationDate}</h2>
+                        <h2 className="lead text-center" style={{ color: 'grey'}}> Published by: {book.publisher} | {book.publicationDate}</h2>
                         <p className="text-center">{book.blurb}</p>
                     </div>
-                    
+
                     {/* Price information */}
-                    <div className="col-6 col-sm-3">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Price: ${book.price}</h5>
-                                <button className="btn btn-danger btn-lg">Add to Cart</button>
+                    <div className="col-5">
+                        <div className="card" id="price">
+                            <div className="card-body text-center">
+                                <h5 className="card-title">Price: ${book.price}</h5>
+                                <button className="btn btn-danger">Add to Cart</button>
                             </div>
                         </div>
                     </div>
