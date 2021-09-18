@@ -14,9 +14,6 @@ import java.util.stream.Collectors;
 
 @Entity
 public class User implements UserDetails {
-
-    private static final long serialVersionUDI = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,12 +22,8 @@ public class User implements UserDetails {
     @NotBlank(message = "Username is required")
     @Column(unique = true)
     private String username;
-
-    //    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "UserRoles",
-//            joinColumns = @JoinColumn(name = "userId"),
-//            inverseJoinColumns = @JoinColumn(name = "roleID"))
-//    private Set<Role> roles = new HashSet<>();
+    
+//    @NotBlank(message = "User must have an account role")
     private Role.AccountRole accountRole;
 
     @NotBlank(message = "Please enter your full name")
@@ -43,38 +36,16 @@ public class User implements UserDetails {
     private Date update_At;
 
     @Transient
-    private Collection<? extends GrantedAuthority> authorities;
+    private String confirmPassword;
 
     @Transient
-    private String confirmPassword;
+    private Collection<? extends GrantedAuthority> authorities;
 
     /*
     Constructors
      */
 
     public User() {
-    }
-
-    public User(Long id, String username, String password, Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.authorities = authorities;
-    }
-
-    /*/
-    Methods
-     */
-
-    public static User build(User user) {
-        List<GrantedAuthority> authorities = null;
-        authorities.add(new SimpleGrantedAuthority(user.getAccountRole().toString()));
-        return new User(
-                user.getId(),
-                user.getUsername(),
-                user.getPassword(),
-                authorities
-        );
     }
 
     /*
