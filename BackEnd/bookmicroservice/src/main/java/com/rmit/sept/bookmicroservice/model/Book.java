@@ -6,7 +6,17 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+
 public class Book {
     
     @Id

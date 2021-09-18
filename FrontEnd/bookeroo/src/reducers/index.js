@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 import errorReducer from "./errorReducer";
-import securityReducer from "./securityReducer";
+import bookReducer from "./bookReducer";
 
-export default combineReducers({
-  errors: errorReducer,
-  security: securityReducer
+const allReducers = combineReducers({
+    errors: errorReducer,
+    books: bookReducer
 });
+
+export default allReducers;
 
