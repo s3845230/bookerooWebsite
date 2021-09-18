@@ -60,11 +60,10 @@ public class UserController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserRepository userRepository;
-
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
+        System.out.println(loginRequest);
+        System.out.println(result);
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null) return errorMap;
 
@@ -79,7 +78,6 @@ public class UserController {
         String jwt = TOKEN_PREFIX + tokenProvider.generateToken(authentication);
 
         JWTLoginSucessReponse response = new JWTLoginSucessReponse(true, jwt);
-        System.out.println(response);
         return ResponseEntity.ok(response);
     }
 

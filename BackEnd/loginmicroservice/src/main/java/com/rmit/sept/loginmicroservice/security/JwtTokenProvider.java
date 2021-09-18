@@ -39,18 +39,23 @@ public class JwtTokenProvider {
 
     //Validate the token
     public boolean validateToken(String token){
-        try{
+        try {
             Jwts.parser().setSigningKey(SecurityConstant.SECRET).parseClaimsJws(token);
             return true;
-        }catch (SignatureException ex){
+        }
+        catch (SignatureException ex) {
             System.out.println("Invalid JWT Signature");
-        }catch (MalformedJwtException ex){
+        }
+        catch (MalformedJwtException ex) {
             System.out.println("Invalid JWT Token");
-        }catch (ExpiredJwtException ex){
+        }
+        catch (ExpiredJwtException ex) {
             System.out.println("Expired JWT token");
-        }catch (UnsupportedJwtException ex){
+        }
+        catch (UnsupportedJwtException ex) {
             System.out.println("Unsupported JWT token");
-        }catch (IllegalArgumentException ex){
+        }
+        catch (IllegalArgumentException ex) {
             System.out.println("JWT claims string is empty");
         }
         return false;
