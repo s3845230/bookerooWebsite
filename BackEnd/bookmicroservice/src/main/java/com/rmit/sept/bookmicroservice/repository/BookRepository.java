@@ -12,10 +12,10 @@ public interface BookRepository extends CrudRepository<Book, Long> {
     @Override
     Iterable<Book> findAllById(Iterable<Long> iterable);
 
-    List<Book> findByTitleContaining(String search);
-    List<Book> findByAuthorContaining(String search);
-    List<Book> findByTaglineContaining(String search);
-    List<Book> findByBlurbContaining(String search);
-    List<Book> findByPublisherContaining(String search);
-    List<Book> findByIsbnContaining(String search);
+    List<Book> findByTitleContainingIgnoreCase(String search);
+    List<Book> findByAuthorContainingIgnoreCase(String search);
+    List<Book> findByTaglineContainingIgnoreCase(String search);
+    List<Book> findByBlurbContainingIgnoreCase(String search);
+    List<Book> findByPublisherContainingIgnoreCase(String search);
+    List<Book> findByIsbnContainingIgnoreCase(String search);
 }
