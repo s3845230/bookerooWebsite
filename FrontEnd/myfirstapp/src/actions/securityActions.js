@@ -49,6 +49,8 @@ export const login = LoginRequest => async dispatch => {
             type: SET_CURRENT_USER,
             payload: decoded
         });
+
+        // const { accountRole } = res.data;
         
         console.log(localStorage.getItem("jwtToken"));
     }

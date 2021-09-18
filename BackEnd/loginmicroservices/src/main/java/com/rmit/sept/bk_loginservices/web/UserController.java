@@ -1,6 +1,8 @@
 package com.rmit.sept.bk_loginservices.web;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.rmit.sept.bk_loginservices.Repositories.UserRepository;
 import com.rmit.sept.bk_loginservices.model.User;
 import com.rmit.sept.bk_loginservices.payload.JWTLoginSucessReponse;
 import com.rmit.sept.bk_loginservices.payload.LoginRequest;
@@ -22,8 +24,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
-
-
 import javax.validation.Valid;
 
 import static com.rmit.sept.bk_loginservices.security.SecurityConstant.TOKEN_PREFIX;
@@ -44,7 +44,7 @@ public class UserController {
     private UserValidator userValidator;
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result){
+    public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result) throws JsonProcessingException {
         // Validate passwords match
         userValidator.validate(user,result);
 
@@ -52,16 +52,17 @@ public class UserController {
         if(errorMap != null)return errorMap;
 
         User newUser = userService.saveUser(user);
-
         return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
     }
-
 
     @Autowired
     private JwtTokenProvider tokenProvider;
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
@@ -76,15 +77,11 @@ public class UserController {
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = TOKEN_PREFIX +  tokenProvider.generateToken(authentication);
+        String jwt = TOKEN_PREFIX + tokenProvider.generateToken(authentication);
 
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        System.out.println(userDetails.getUsername());
-        System.out.println(userDetails.getAuthorities());
-        System.out.println(jwt);
-
-        return ResponseEntity.ok(new JWTLoginSucessReponse(true, jwt));
+        JWTLoginSucessReponse response = new JWTLoginSucessReponse(true, jwt);
+        System.out.println(response);
+        return ResponseEntity.ok(response);
     }
 
 }

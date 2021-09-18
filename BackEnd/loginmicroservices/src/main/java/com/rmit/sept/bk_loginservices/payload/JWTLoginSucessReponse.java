@@ -1,5 +1,6 @@
 package com.rmit.sept.bk_loginservices.payload;
 
+import com.rmit.sept.bk_loginservices.model.Role;
 import com.rmit.sept.bk_loginservices.model.User;
 
 public class JWTLoginSucessReponse {
@@ -29,9 +30,8 @@ public class JWTLoginSucessReponse {
 
     @Override
     public String toString() {
-        return "JWTLoginSucessReponse{" +
-                "success=" + success +
-                ", token='" + token + '\'' +
-                '}';
+        return "JWTLoginSuccessResponse{" +
+                "success="      + success       + ", " +
+                "token='"       + token         + '\'' + '}';
     }
 }

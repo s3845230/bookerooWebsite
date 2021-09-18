@@ -10,7 +10,7 @@ class Register extends Component {
 
     this.state = {
       username: "",
-      accountType: "",
+      accountRole: "",
       fullName: "",
       password: "",
       confirmPassword: "",
@@ -24,7 +24,7 @@ class Register extends Component {
     e.preventDefault();
     const newUser = {
       username: this.state.username,
-      accountType: this.state.accountType,
+      accountRole: this.state.accountRole,
       fullName: this.state.fullName,
       password: this.state.password,
       confirmPassword: this.state.confirmPassword
@@ -88,7 +88,7 @@ class Register extends Component {
                   />
                   {/*Type of Account*/}
                   <div className="form-group" style={{paddingTop:"15px"}}>
-                    <select className="form-control form-control-lg" id="accountType" name="accountType" value={this.state.type} onChange={this.onChange} required>
+                    <select className="form-control form-control-lg" id="accountRole" name="accountRole" value={this.state.accountRole} onChange={this.onChange} required>
                       <option selected disabled value="">Account type</option>
                       <option value="CUSTOMER">Customer</option>
                       <option value="PUBLISHER">Publisher</option>

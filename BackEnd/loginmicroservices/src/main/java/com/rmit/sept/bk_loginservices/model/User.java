@@ -26,11 +26,12 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String username;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "UserRoles",
-            joinColumns = @JoinColumn(name = "userId"),
-            inverseJoinColumns = @JoinColumn(name = "roleID"))
-    private Set<Role> roles = new HashSet<>();
+    //    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "UserRoles",
+//            joinColumns = @JoinColumn(name = "userId"),
+//            inverseJoinColumns = @JoinColumn(name = "roleID"))
+//    private Set<Role> roles = new HashSet<>();
+    private Role.AccountRole accountRole;
 
     @NotBlank(message = "Please enter your full name")
     private String fullName;
@@ -38,13 +39,14 @@ public class User implements UserDetails {
     @NotBlank(message = "Password field is required")
     private String password;
 
+    private Date create_At;
+    private Date update_At;
+
     @Transient
     private Collection<? extends GrantedAuthority> authorities;
 
     @Transient
     private String confirmPassword;
-    private Date create_At;
-    private Date update_At;
 
     /*
     Constructors
@@ -60,10 +62,13 @@ public class User implements UserDetails {
         this.authorities = authorities;
     }
 
+    /*/
+    Methods
+     */
+
     public static User build(User user) {
-        List<GrantedAuthority> authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getAccountRole().name()))
-                .collect(Collectors.toList());
+        List<GrantedAuthority> authorities = null;
+        authorities.add(new SimpleGrantedAuthority(user.getAccountRole().toString()));
         return new User(
                 user.getId(),
                 user.getUsername(),
@@ -90,14 +95,6 @@ public class User implements UserDetails {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 
     public String getFullName() {
@@ -138,6 +135,14 @@ public class User implements UserDetails {
 
     public void setUpdate_At(Date update_At) {
         this.update_At = update_At;
+    }
+
+    public Role.AccountRole getAccountRole() {
+        return accountRole;
+    }
+
+    public void setAccountRole(Role.AccountRole accountRole) {
+        this.accountRole = accountRole;
     }
 
     @PrePersist
