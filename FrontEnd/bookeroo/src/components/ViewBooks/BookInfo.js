@@ -114,6 +114,14 @@ function BookInfo({ match }) {
                                     <p>{book.publicationDate}</p>
                                 </div>
                             </div>
+                            <div className="row">
+                                <div className="col-6 col-sm-3">
+                                    <h5>Table of Contents:</h5>
+                                </div>
+                                <div className="col-6 col-sm-3">
+                                    <p>{book.tableOfContents}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
