@@ -36,7 +36,7 @@ Please note that your IDE must have the maven dependencies loaded before it's ab
 
 ### Running Front-End
 1. ```cd FrontEnd/bookeroo```
-2. ```npm install``` (only first time) 
+2. ```npm ci``` (only first time) 
 3. ```npm start```
 4. Access via ```http://localhost:3000```
 
