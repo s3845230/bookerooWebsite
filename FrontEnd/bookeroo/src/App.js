@@ -11,8 +11,8 @@ import store from "./store";
 
 import Landing from "./components/Layout/Landing";
 import PublisherLanding from "./components/Publisher/PublisherLanding";
-import Register from "./components/UserManagement/Register";
-import Login from "./components/UserManagement/Login";
+import Register from "./components/Authorisation/Register";
+import Login from "./components/Authorisation/Login";
 import UploadBook from "./components/BookManagement/UploadBook";
 import Footer from "./components/Layout/Footer";
 import SearchResults from "./components/ViewBooks/SearchResults";
