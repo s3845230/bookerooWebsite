@@ -4,6 +4,13 @@ jobs:
     machine: true
     steps:
       - checkout
+#     BOOK MICROSERVICE
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package
+      - run: cd ./BackEnd/bookmicroservice/ && ./mvnw test
       - run: docker build -t septteam3/bookmicroservice ./BackEnd/bookmicroservice/
+#     LOGIN MICROSERVICE
+      - run: cd ./BackEnd/loginmicroservice/ && ./mvnw package
+      - run: cd ./BackEnd/loginmicroservice/ && ./mvnw test
+      - run: docker build -t septteam3/loginmicroservice ./BackEnd/loginmicroservice/
+#      BOOKEROO (REACT)
       - run: docker build -t septteam3/bookeroo ./FrontEnd/bookeroo/
