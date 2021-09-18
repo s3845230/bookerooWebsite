@@ -3,7 +3,17 @@ package com.rmit.sept.bookmicroservice.model;
 import javax.persistence.*;
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+
 public class Book {
 
     @Id
@@ -47,10 +57,10 @@ public class Book {
 
     //    @NotBlank(message = "Book requires imageHash")
     
-    private String imageType;
-
-    @Lob
-    private byte[] imageBlob;
+//    private String imageType;
+//
+//    @Lob
+//    private byte[] imageBlob;
 
     private Date created_at;
     private Date updated_at;
@@ -91,15 +101,15 @@ public class Book {
     public String getBlurb() {return blurb;}
     public void setBlurb(String blurb) {this.blurb = blurb;}
 
-    public String getImageType() {
-        return imageType;
-    }
-    public void setImageType(String imageType) {
-        this.imageType = imageType;
-    }
+//    public String getImageType() {
+//        return imageType;
+//    }
+//    public void setImageType(String imageType) {
+//        this.imageType = imageType;
+//    }
 
-    public byte[] getImageBlob() {return imageBlob;}
-    public void setImageBlob(byte[] imageBlob) {this.imageBlob = imageBlob;}
+//    public byte[] getImageBlob() {return imageBlob;}
+//    public void setImageBlob(byte[] imageBlob) {this.imageBlob = imageBlob;}
 
     @PrePersist
     protected void onCreation(){
