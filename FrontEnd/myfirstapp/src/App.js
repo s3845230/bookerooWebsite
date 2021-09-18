@@ -33,7 +33,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/publisher" component={PublisherLanding} />
             <Route exact path="/searchResults" component={SearchResults} />
-            <Route path="/searchResults/:id" component={BookInfo} />
+            <Route path="/searchResults/:isbn" component={BookInfo} />
             {/*<Route exact path="/register" component={Register} />*/}
             {/*<Route exact path="/login" component={Login} />*/}
 

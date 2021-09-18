@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./UploadBook.css";
 import PropTypes from "prop-types";
 import CurrencyInput from 'react-currency-input-field';
+import { withRouter } from "react-router";
 import axios from 'axios';
 
 
@@ -54,6 +55,8 @@ class UploadBook extends Component {
         console.log(newBook);
         
         axios.post("http://localhost:8081/api/book/new/", newBook);
+
+        this.props.history.push(`/searchResults${newBook.isbn}`);
         
     }
 
@@ -323,4 +326,4 @@ UploadBook.propTypes = {
     // createProject: PropTypes.func.isRequired
 };
 
-export default UploadBook;
+export default withRouter(UploadBook);
