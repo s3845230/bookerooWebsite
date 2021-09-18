@@ -98,7 +98,7 @@ public class BookControllerTest {
         List<Book> records = new ArrayList<>(Arrays.asList(book1));
 
         //intercept from reaching database
-        Mockito.when(bookRepository.findByIsbnContaining(book1.getIsbn())).thenReturn(records);
+        Mockito.when(bookRepository.findByIsbnContainingIgnoreCase(book1.getIsbn())).thenReturn(records);
 
         //mock get request and check title is correct
         mockMvc.perform(MockMvcRequestBuilders
