@@ -74,14 +74,6 @@ public class Book {
 
     @Transient
     private String imageData;
-    
-    /*
-    Constructors
-     */
-
-    public Book() {
-    }
-
 
     /*
     Getters & Setters
