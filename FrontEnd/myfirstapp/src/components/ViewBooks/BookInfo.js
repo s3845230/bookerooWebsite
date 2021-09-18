@@ -23,7 +23,7 @@ function BookInfo({ match }) {
             <div className="container">
                 <div className="row">
                     <div className="col-6 col-sm-3">
-                        {/*Image Here */}
+                        <img src={`${book.imageType},${book.imageBlob}`} />
                     </div>
 
                     <div className="col-6">

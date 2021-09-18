@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 class SearchResults extends Component {
     constructor() {
@@ -10,26 +9,6 @@ class SearchResults extends Component {
             bookid: "",
             book: ""
         };
-
-        this.onClick = this.onClick.bind(this);
-    }
-
-    onClick(bookid) {
-        const id = this.state.bookid
-        if (id) {
-            axios.get(`http://localhost:8081/api/book/searchbyid/${id}`)
-            // returns results
-            .then((result) => {
-                this.setState({ book: result.data})
-
-                console.log(this.state.book);
-
-            })
-            // this.props.history.push({
-            //     pathname: `/searchResults/${id}`,
-            //     state: { book: this.state.book }
-            // });
-        }
     }
 
     render() {
