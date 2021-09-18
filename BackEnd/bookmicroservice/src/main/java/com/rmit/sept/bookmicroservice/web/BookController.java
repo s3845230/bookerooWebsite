@@ -14,26 +14,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/api/book/")
 public class BookController {
 
     @Autowired
     private BookService bookService;
-
-//    @PostMapping("/new")
-//    public ResponseEntity<Book> createNewPerson(@RequestBody Book book) {
-//
-//        System.out.println(book);
-//        System.out.println(book.getImageData());
-//
-//        bookService.saveOrUpdateBook(book);
-//
-//        return new ResponseEntity<Book>(book, HttpStatus.CREATED);
-//    }
 
     @PostMapping("/new")
     public ResponseEntity<Object> createNewBook(@RequestBody String data) throws JsonProcessingException, ParseException {
@@ -66,10 +56,24 @@ public class BookController {
         book.setBlurb(jsonNode.get("title").asText());
         book.setImageType(imageType);
         book.setImageBlob(imageBlob);
+        book.setImageData(jsonNode.get("imageData").asText());
 
         bookService.saveOrUpdateBook(book);
-
         return new ResponseEntity<Object>(book, HttpStatus.CREATED);
     }
 
+    @GetMapping("/search")
+    private List<Book> getAllBook() {
+        return bookService.getAllBook();
+    }
+
+    @GetMapping("/search/{search}")
+    private List<Book> getBook(@PathVariable("search") String search) {
+        return bookService.getBookBySearch(search);
+    }
+
+    @GetMapping("/searchbyid/{id}")
+    private Book getBookByID(@PathVariable("id") Long id) {
+        return bookService.getBookByID(id);
+    }
 }

@@ -1,12 +1,14 @@
 package com.rmit.sept.bookmicroservice.model;
 
+import com.rmit.sept.bookmicroservice.helper.Base64Helper;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
 public class Book {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookId;
@@ -58,6 +60,23 @@ public class Book {
     private Date created_at;
     private Date updated_at;
 
+
+
+    @Transient
+    private String imageData;
+    
+    /*
+    Constructors
+     */
+
+    public Book() {
+    }
+
+
+    /*
+    Getters & Setters
+     */
+
     public Long getId() {return bookId;}
     public void setId(Long bookId) {this.bookId = bookId;}
 
@@ -104,6 +123,13 @@ public class Book {
     public byte[] getImageBlob() {return imageBlob;}
     public void setImageBlob(byte[] imageBlob) {this.imageBlob = imageBlob;}
 
+    public String getImageData() {
+        return imageData;
+    }
+    public void setImageData(String imageData) {
+        this.imageData = imageData;
+    }
+
     @PrePersist
     protected void onCreation(){
         this.created_at = new Date();
@@ -111,5 +137,7 @@ public class Book {
     protected void onUpdate(){
         this.updated_at = new Date();
     }
+
+
 
 }

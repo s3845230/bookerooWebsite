@@ -15,6 +15,8 @@ import Register from "./components/UserManagement/Register";
 import Login from "./components/UserManagement/Login";
 import UploadBook from "./components/BookManagement/UploadBook";
 import Footer from "./components/Layout/Footer";
+import SearchResults from "./components/ViewBooks/SearchResults";
+import BookInfo from "./components/ViewBooks/BookInfo";
 
 import jwt_decode from "jwt-decode";
 import setJWTToken from "./securityUtils/setJWTToken";

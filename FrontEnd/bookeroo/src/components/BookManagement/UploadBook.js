@@ -1,8 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import "./UploadBook.css";
-import PropTypes from "prop-types";
+import * as PropTypes from "prop-types";
 import CurrencyInput from 'react-currency-input-field';
+import { withRouter } from "react-router";
 import axios from 'axios';
+
+import { connect } from "react-redux";
+import { createBook } from "../actions/BookActions";
 
 
 class UploadBook extends Component {
@@ -33,7 +37,7 @@ class UploadBook extends Component {
             [e.target.name]: e.target.value
         });
     }
-    onSubmit(e) {
+    async onSubmit(e) {
         e.preventDefault();
         e.target.className += " was-validated";
         const newBook = {
@@ -46,15 +50,27 @@ class UploadBook extends Component {
             publisher: this.state.publisher,
             publicationDate: this.state.publicationDate,
             tableOfContents: this.state.tableOfContents,
-            tagline:this.state.tagline,
+            tagline: this.state.tagline,
             blurb: this.state.blurb,
             imageData: this.state.imageData
         }
-        
+
         console.log(newBook);
-        
-        axios.post("http://localhost:8081/api/book/new/", newBook);
-        
+
+        this.props.createBook(newBook, this.props.history);
+
+        // try {
+        //     const response = await axios.post("http://localhost:8081/api/book/new/", newBook);
+        //     console.log(response);
+        //     const { bookID } = response.data;
+        //     console.log(bookID);
+        //     history.push(`/searchResults${bookID}`);
+        // }
+        // catch (err) {
+        //     console.log(err);
+        // }
+
+        // this.props.history.push(`/searchResults${newBook.isbn}`);
     }
 
     /* Reads the image file for preview */
@@ -149,7 +165,7 @@ class UploadBook extends Component {
                                 </div>
 
                                 {/*Type of Book*/}
-                                <div className="input-group mb-2">
+                                <div className="form-group">
                                     <label htmlFor="type">Type</label>
                                     <select className="form-control form-control-lg" id="type" name="type" value={this.state.type} onChange={this.onChange} required>
                                         <option selected disabled value="">Select type</option>
@@ -171,6 +187,7 @@ class UploadBook extends Component {
                                         name = "price"
                                         placeholder = "Price"
                                         // decimalsLimit = {2}
+                                        min={1}
                                         value = {this.state.price}
                                         onChange = {this.onChange}
                                         required
@@ -302,7 +319,14 @@ class UploadBook extends Component {
 }
 
 UploadBook.propTypes = {
-    // createProject: PropTypes.func.isRequired
+    createBook: PropTypes.func.isRequired
 };
 
-export default UploadBook;
+// export default withRouter(UploadBook);
+
+const mapStateToProps = state => ({
+    errors: state.errors
+});
+export default connect (
+    mapStateToProps, { createBook }
+) (UploadBook)

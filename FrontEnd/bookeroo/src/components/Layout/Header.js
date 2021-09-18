@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import logoLight from '../../images/bookerooLogo.png'
+import SearchBar from '../ViewBooks/SearchBar';
 
- class Header extends Component {
+class Header extends Component {
     render() {
         return (
             <div>
@@ -26,14 +27,14 @@ import logoLight from '../../images/bookerooLogo.png'
 
                                 {/*View Books*/}
                                 <li className="nav-item dropdown">
-                                    <a className="btn btn-default dropdown-toggle" id="navbarDropdown" role="button"
+                                    <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Books <span className="caret"></span>
+                                        Books
                                     </a>
                                     <ul className="dropdown-menu">
-                                        <li><a href="/" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Genre</a></li>
-                                        <li><a href="/" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Author</a></li>
-                                        <li><a href="/publisher" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Publisher</a></li>
+                                        <li><a className="dropdown-item" href="/" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Genre</a></li>
+                                        <li><a className="dropdown-item" href="/" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Author</a></li>
+                                        <li><a className="dropdown-item" href="/publisher" style={{ color: 'darkslategrey', textDecoration: 'none' }}>Publisher</a></li>
                                     </ul>
                                 </li>
 
@@ -52,18 +53,9 @@ import logoLight from '../../images/bookerooLogo.png'
                                 </li>
                             </ul>
                         </div>
-
-                        {/*Search Form*/}
-                        <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <form className="navbar-form navbar-left" role="search">
-                                    <div className="form-group">
-                                        <input type="text" className="form-control" placeholder="Search" />
-                                        {/*<button type="submit" className="btn btn-default">Submit</button>*/}
-                                    </div>
-                                </form>
-                            </li>
-                        </ul>
+                        
+                        {/*Collapse Mobile Search*/}
+                        <SearchBar />
                     </div>
                 </nav>
             </div>
