@@ -55,7 +55,11 @@ class Register extends Component {
                     name="fullName"
                     value={this.state.fullName}
                     onChange={this.onChange}
+                    required
                   />
+                  <div className="invalid-feedback">
+                    Name cannot be Empty.
+                  </div>
                 </div>
                 <div className="form-group">
                   <input
@@ -65,7 +69,11 @@ class Register extends Component {
                     name="username"
                     value={this.state.username}
                     onChange={this.onChange}
+                    required
                   />
+                  <div className="invalid-feedback">
+                    Username cannot be Empty.
+                  </div>
                 </div>
                 <div className="form-group">
                   <input
@@ -75,7 +83,11 @@ class Register extends Component {
                     name="password"
                     value={this.state.password}
                     onChange={this.onChange}
+                    required
                   />
+                  <div className="invalid-feedback">
+                    Password cannot be Empty.
+                  </div>
                 </div>
                 <div className="form-group">
                   <input
@@ -85,7 +97,11 @@ class Register extends Component {
                     placeholder="Confirm Password"
                     value={this.state.confirmPassword}
                     onChange={this.onChange}
+                    required
                   />
+                  <div className="invalid-feedback">
+                    Confirm password cannot be Empty.
+                  </div>
                   {/*Type of Account*/}
                   <div className="form-group" style={{paddingTop:"15px"}}>
                     <select className="form-control form-control-lg" id="accountRole" name="accountRole" value={this.state.accountRole} onChange={this.onChange} required>
