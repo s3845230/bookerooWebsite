@@ -23,13 +23,17 @@ public class BookService {
         List<Book> books = new ArrayList<>();
         List<Book> uniqueBooks = new ArrayList<>();
         Book currentBook;
-        //needs to avoid doubling up
-        bookRepository.findByTitleContaining(search).forEach(book -> books.add(book));
-        bookRepository.findByAuthorContaining(search).forEach(book -> books.add(book));
-        bookRepository.findByTaglineContaining(search).forEach(book -> books.add(book));
-        bookRepository.findByBlurbContaining(search).forEach(book -> books.add(book));
-        bookRepository.findByPublisherContaining(search).forEach(book -> books.add(book));
-        bookRepository.findByIsbnContaining(search).forEach(book -> books.add(book));
+
+        //finds all books containing the search phrase
+        bookRepository.findByTitleContainingIgnoreCase(search).forEach(book -> books.add(book));
+        bookRepository.findByAuthorContainingIgnoreCase(search).forEach(book -> books.add(book));
+        bookRepository.findByTaglineContainingIgnoreCase(search).forEach(book -> books.add(book));
+        bookRepository.findByBlurbContainingIgnoreCase(search).forEach(book -> books.add(book));
+        bookRepository.findByPublisherContainingIgnoreCase(search).forEach(book -> books.add(book));
+        bookRepository.findByIsbnContainingIgnoreCase(search).forEach(book -> books.add(book));
+
+        //this section is just to block books from being counted twice, for example:
+        //if a book had the author's name in the title, it would be counted twice
         for (int i = 0; i < books.size(); i++) {
             boolean newBook = true;
             currentBook = books.get(i);
