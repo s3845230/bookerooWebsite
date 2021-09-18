@@ -1,4 +1,4 @@
-package com.rmit.sept.loginmicroservice;
+package com.rmit.sept.loginmicroservice.web;
 
 import com.rmit.sept.loginmicroservice.model.Role;
 import com.rmit.sept.loginmicroservice.model.User;
@@ -13,6 +13,6 @@ public class UserControllerTest {
                         "username:          \"test@test.com\"";
 
     public void authenticateUserTest() {
-
+        // TEST LOGIC
     }
 }
