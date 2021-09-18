@@ -12,14 +12,5 @@ public class Base64HelperTest {
         String dataType = "data:image/png;base64";
         assertEquals(dataType, Base64Helper.base64ToDataType(data));
     }
-    
-    @Test
-    void byteStreamToJsonTest() {
-        byte[] byteStream = Base64Helper.base64ToByteStream(data);
-        String dataType = Base64Helper.base64ToDataType(data);
-
-        String JSON = Base64Helper.byteStreamToJson(dataType, byteStream);
-        assertEquals(data, JSON);
-    }
 
 }
