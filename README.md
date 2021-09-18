@@ -39,6 +39,12 @@ Please note that your IDE must have the maven dependencies loaded before it's ab
 2. ```npm install``` (only first time) 
 3. ```npm start```
 4. Access via ```http://localhost:3000```
+
+## How to send an authorised /api/users/register POST request
+1. Use Postman to send insert a user into the H2 database
+2. Login using that user at `localhost:3000/login`
+3. Register a user at `localhost:3000/register`
+
   
 
 
