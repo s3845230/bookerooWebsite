@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import "./UploadBook.css";
-import PropTypes from "prop-types";
+import * as PropTypes from "prop-types";
 import CurrencyInput from 'react-currency-input-field';
 import { withRouter } from "react-router";
 import axios from 'axios';
+
+import { connect } from "react-redux";
+import { createBook } from "../actions/BookActions";
 
 
 class UploadBook extends Component {
@@ -34,7 +37,7 @@ class UploadBook extends Component {
             [e.target.name]: e.target.value
         });
     }
-    onSubmit(e) {
+    async onSubmit(e) {
         e.preventDefault();
         e.target.className += " was-validated";
         const newBook = {
@@ -47,17 +50,27 @@ class UploadBook extends Component {
             publisher: this.state.publisher,
             publicationDate: this.state.publicationDate,
             tableOfContents: this.state.tableOfContents,
-            tagline:this.state.tagline,
+            tagline: this.state.tagline,
             blurb: this.state.blurb,
             imageData: this.state.imageData
         }
-        
-        console.log(newBook);
-        
-        axios.post("http://localhost:8081/api/book/new/", newBook);
 
-        this.props.history.push(`/searchResults${newBook.isbn}`);
-        
+        console.log(newBook);
+
+        this.props.createBook(newBook, this.props.history);
+
+        // try {
+        //     const response = await axios.post("http://localhost:8081/api/book/new/", newBook);
+        //     console.log(response);
+        //     const { bookID } = response.data;
+        //     console.log(bookID);
+        //     history.push(`/searchResults${bookID}`);
+        // }
+        // catch (err) {
+        //     console.log(err);
+        // }
+
+        // this.props.history.push(`/searchResults${newBook.isbn}`);
     }
 
     /* Reads the image file for preview */
@@ -323,7 +336,14 @@ class UploadBook extends Component {
 }
 
 UploadBook.propTypes = {
-    // createProject: PropTypes.func.isRequired
+    createBook: PropTypes.func.isRequired
 };
 
-export default withRouter(UploadBook);
+// export default withRouter(UploadBook);
+
+const mapStateToProps = state => ({
+    errors: state.errors
+});
+export default connect (
+    mapStateToProps, { createBook }
+) (UploadBook)
