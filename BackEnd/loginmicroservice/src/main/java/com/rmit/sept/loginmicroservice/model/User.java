@@ -30,6 +30,8 @@ public class User implements UserDetails {
     @NotBlank(message = "Password field is required")
     private String password;
 
+    private boolean approved;
+
     private Date create_At;
     private Date update_At;
 
@@ -80,6 +82,14 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
     public String getConfirmPassword() {

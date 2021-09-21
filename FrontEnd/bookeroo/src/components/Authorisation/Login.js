@@ -16,11 +16,12 @@ class Login extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidMount() {
-    if (this.props.security.validToken) {
-      this.props.history.push("/");
-    }
-  }
+  // If there is already a logged in user, redirects to root
+  // componentDidMount() {
+  //   if (this.props.security.validToken) {
+  //     this.props.history.push("/");
+  //   }
+  // }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.security.validToken) {
