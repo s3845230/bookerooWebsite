@@ -66,22 +66,34 @@ public class BookController {
     }
 
     @GetMapping("/search")
-    private ResponseEntity<Object> getAllBook() {
-        return new ResponseEntity<Object>(bookService.getAllBook(), HttpStatus.OK);
+    private List<Book> getAllBook() {
+        return bookService.getAllBook();
     }
+//    @GetMapping("/search")
+//    private ResponseEntity<Object> getAllBook() {
+//        return new ResponseEntity<Object>(bookService.getAllBook(), HttpStatus.OK);
+//  }
 
     @GetMapping("/search/{search}")
-    private ResponseEntity<Object> getBook(@PathVariable("search") String search) {
-        return new ResponseEntity<Object>(bookService.getBookBySearch(search), HttpStatus.OK);
+    private List<Book> getBook(@PathVariable("search") String search) {
+        return bookService.getBookBySearch(search);
     }
+//    @GetMapping("/search/{search}")
+//    private ResponseEntity<Object> getBook(@PathVariable("search") String search) {
+//        return new ResponseEntity<Object>(bookService.getBookBySearch(search), HttpStatus.OK);
+//    }
 
     @GetMapping("/searchbyid/{id}")
-    private ResponseEntity<Object> getBookByID(@PathVariable("id") Long id) {
-        // need if() for null return
-        return new ResponseEntity<Object>(bookService.getBookByID(id).get(), HttpStatus.OK);
+    private Book getBookByID(@PathVariable("id") Long id) {
+        return bookService.getBookByID(id).get();
     }
+//    @GetMapping("/searchbyid/{id}")
+//    private ResponseEntity<Object> getBookByID(@PathVariable("id") Long id) {
+//        // need if() for null return
+//        return new ResponseEntity<Object>(bookService.getBookByID(id).get(), HttpStatus.OK);
+//    }
 
-    @PutMapping("/updateBook")
+    @PutMapping("/updateBook/id")
     public ResponseEntity<Object> updatePatientRecord(@RequestBody Book book) throws Exception {
         if (book == null || book.getBookId() == null) {
             throw new IllegalArgumentException("Book or BookID must not be null!");
