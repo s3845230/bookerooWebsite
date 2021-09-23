@@ -58,6 +58,7 @@ public class BookController {
         book.setImageType(imageType);
         book.setImageBlob(imageBlob);
         book.setImageData(jsonNode.get("imageData").asText());
+        book.setBookSeller(jsonNode.get("bookSeller").asText());
 
         bookService.saveOrUpdateBook(book);
         return new ResponseEntity<Object>(book, HttpStatus.CREATED);
