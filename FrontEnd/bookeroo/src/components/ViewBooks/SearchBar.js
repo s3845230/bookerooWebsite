@@ -48,8 +48,6 @@ class SearchBar extends Component {
                 this.setState({ books: result.data})
 
                 console.log(this.state.books);
-                console.log(this.state.books[0].title);
-
             })
         }
         // get all books
