@@ -45,6 +45,7 @@ public class BookControllerTest {
             "author",
             "genre",
             "type",
+            "bookSeller",
             5.0,
             "publisher",
             date,
@@ -75,6 +76,7 @@ public class BookControllerTest {
                         "\"author\": \"author\"," +
                         "\"genre\": \"genre\"," +
                         "\"type\": \"NEW\"," +
+                        "\"bookSeller\": \"bookSeller\"," +
                         "\"price\": \"1\"," +
                         "\"publisher\": \"1\"," +
                         "\"publicationDate\": \"2020-08-02T23:58:22.702+00:00\"," +

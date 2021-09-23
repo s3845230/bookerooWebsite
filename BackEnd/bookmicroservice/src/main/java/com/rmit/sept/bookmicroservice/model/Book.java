@@ -31,7 +31,6 @@ public class Book {
     private String title;
 
     //    @NotBlank(message = "Book requires author")
-//    @Size(min = 3, max = 20, message = "3 to 20 chars")
     private String author;
 
     //    @NotBlank(message = "Book requires genre")
@@ -39,6 +38,8 @@ public class Book {
 
     //    @NotBlank(message = "Book requires type")
     private String type;
+
+    private String bookSeller;
 
     //    @NotBlank(message = "Book requires price")
     private Double price;
