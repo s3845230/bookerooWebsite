@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -65,18 +66,33 @@ public class BookController {
     }
 
     @GetMapping("/search")
-    private List<Book> getAllBook() {
-        return bookService.getAllBook();
+    private ResponseEntity<Object> getAllBook() {
+        return new ResponseEntity<Object>(bookService.getAllBook(), HttpStatus.OK);
     }
 
     @GetMapping("/search/{search}")
-    private List<Book> getBook(@PathVariable("search") String search) {
-        return bookService.getBookBySearch(search);
+    private ResponseEntity<Object> getBook(@PathVariable("search") String search) {
+        return new ResponseEntity<Object>(bookService.getBookBySearch(search), HttpStatus.OK);
     }
 
     @GetMapping("/searchbyid/{id}")
-    private Book getBookByID(@PathVariable("id") Long id) {
-        System.out.println(bookService.getBookByID(id));
-        return bookService.getBookByID(id);
+    private ResponseEntity<Object> getBookByID(@PathVariable("id") Long id) {
+        // need if() for null return
+        return new ResponseEntity<Object>(bookService.getBookByID(id).get(), HttpStatus.OK);
+    }
+
+    @PutMapping("/updateBook")
+    public ResponseEntity<Object> updatePatientRecord(@RequestBody Book book) throws Exception {
+        if (book == null || book.getBookId() == null) {
+            throw new IllegalArgumentException("Book or BookID must not be null!");
+        }
+        Optional<Book> optionalBook = bookService.getBookByID(book.getBookId());
+        if (optionalBook.isPresent() == false) {
+            throw new IllegalArgumentException("Book with ID " + book.getBookId() + " does not exist.");
+        }
+        Book existingBook = optionalBook.get();
+
+        bookService.saveOrUpdateBook(book);
+        return new ResponseEntity<Object>(book, HttpStatus.CREATED);
     }
 }

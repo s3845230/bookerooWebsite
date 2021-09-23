@@ -7,6 +7,7 @@ import com.rmit.sept.bookmicroservice.model.Book;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookService {
@@ -55,8 +56,8 @@ public class BookService {
         return books;
     }
 
-    public Book getBookByID(Long search) {
-        return bookRepository.findById(search).get();
+    public Optional<Book> getBookByID(Long search) {
+        return bookRepository.findById(search);
     }
 
 }
