@@ -93,7 +93,7 @@ public class BookController {
 //        return new ResponseEntity<Object>(bookService.getBookByID(id).get(), HttpStatus.OK);
 //    }
 
-    @PutMapping("/updateBook/id")
+    @PutMapping("/updateBook")
     public ResponseEntity<Object> updatePatientRecord(@RequestBody Book book) throws Exception {
         if (book == null || book.getBookId() == null) {
             throw new IllegalArgumentException("Book or BookID must not be null!");
