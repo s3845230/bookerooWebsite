@@ -26,6 +26,7 @@ class Login extends Component {
   //   }
   // }
 
+
   // componentWillReceiveProps(nextProps) {
   //   if (nextProps.security.validToken) {
   //     this.props.history.push("/");
@@ -109,6 +110,7 @@ Login.propTypes = {
 }
 
 const mapStateToProps = state => ({
+  // BUG: security is undefined
   security: state.security,
   errors: state.errors
 });

@@ -8,10 +8,10 @@
         <version>2.3.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.rmit.sept.loginmicroservice</groupId>
-    <artifactId>loginmicroservice</artifactId>
+    <groupId>com.rmit.sept.authmicroservice</groupId>
+    <artifactId>authmicroservice</artifactId>
     <version>0.0.1</version>
-    <name>loginmicroservice</name>
+    <name>authmicroservice</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

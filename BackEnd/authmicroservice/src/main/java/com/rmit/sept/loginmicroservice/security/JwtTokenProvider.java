@@ -13,7 +13,6 @@ import java.util.Map;
 public class JwtTokenProvider {
 
     //Generate the token
-
     public String generateToken(Authentication authentication){
         User user = (User)authentication.getPrincipal();
         Date now = new Date(System.currentTimeMillis());
@@ -27,6 +26,7 @@ public class JwtTokenProvider {
         claims.put("username", user.getUsername());
         claims.put("fullName", user.getFullName());
         claims.put("accountRole", user.getAccountRole());
+        claims.put("approved", user.isApproved());
 
         return Jwts.builder()
                 .setSubject(userId)
@@ -65,7 +65,7 @@ public class JwtTokenProvider {
     //Get user Id from token
     public Long getUserIdFromJWT(String token){
         Claims claims = Jwts.parser().setSigningKey(SecurityConstant.SECRET).parseClaimsJws(token).getBody();
-        String id = (String)claims.get("id");
+        String id = (String) claims.get("id");
 
         return Long.parseLong(id);
     }
