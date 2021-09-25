@@ -66,42 +66,41 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
-        System.out.println("loginRequest: " + loginRequest);
-        System.out.println("result: " + result);
 
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if (errorMap != null) {
-            System.out.println("errorMap: " + errorMap);
             return errorMap;
         }
+        
+        /*
+        User Login Approval Validation
+        Author: Roman O'Brien
 
-        System.out.println("CODE REACH ERRORMAP");
+        This simple method ensures that a non-approved user is not able to log in, but having the Spring Security AuthenticationManager fail to find a user with the same username (as we've appended a nonsense string to it).
 
-        // REJECT REQUEST IF USER IS NOT APPROVED
-//        User user = userRepository.findByUsername(loginRequest.getUsername());
-//        if (!user.isApproved()) {
-//            System.out.println("LOGIN REJECTED - USER NOT APPROVED");
-//            return null;
-//        }
+        Yes, this is not an elegant solution, but it fulfils the core requirement of this system - which is to not provide a non-approved user with a valid JWT. Otherwise this would give them an annoying attack vector, and we'd have to do a check on every single authorisation request to check whether the user is valid or not. Alternatively, we may be able to override the Spring Security AuthenticationProvider and have it reject based on the value of user.isApproved().
+         */
 
-        System.out.println("CODE REACH pre-AUTH");
+        User user = userRepository.findByUsername(loginRequest.getUsername());
+        String isApproved = "";
+        if (!user.isApproved()) {
+            System.out.println("LOGIN REJECTED - USER NOT APPROVED");
+            isApproved = "NotApproved";
+        }
+        
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername(),
+                        loginRequest.getUsername() + isApproved,
                         loginRequest.getPassword()
                 )
         );
-        System.out.println("CODE REACH post-AUTH");
         
-        System.out.println("authentication: " + authentication);
-
         // GENERATE JWT
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = TOKEN_PREFIX + tokenProvider.generateToken(authentication);
 
         // CREATE AND SEND RESPONSE
         JWTLoginSucessReponse response = new JWTLoginSucessReponse(true, jwt);
-        System.out.println("response: " + response);
         return ResponseEntity.ok(response);
     }
 }
