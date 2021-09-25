@@ -80,6 +80,7 @@ public class UserController {
 
         Yes, this is not an elegant solution, but it fulfils the core requirement of this system - which is to not provide a non-approved user with a valid JWT. Otherwise this would give them an annoying attack vector, and we'd have to do a check on every single authorisation request to check whether the user is valid or not. Alternatively, we may be able to override the Spring Security AuthenticationProvider and have it reject based on the value of user.isApproved().
          */
+
         User user = userRepository.findByUsername(loginRequest.getUsername());
         String isApproved = "";
         if (!user.isApproved()) {
