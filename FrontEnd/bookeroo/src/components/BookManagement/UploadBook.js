@@ -168,7 +168,7 @@ class UploadBook extends Component {
                                 <div className="form-group">
                                     <label htmlFor="type">Type</label>
                                     <select className="form-control form-control-lg" id="type" name="type" value={this.state.type} onChange={this.onChange} required>
-                                        <option selected disabled value="">Select type</option>
+                                        <option disabled value="">Select type</option>
                                         <option value="personal">Personal Book</option>
                                         <option value="new">New Book</option>
                                         <option value="old">Second Hand Book</option>

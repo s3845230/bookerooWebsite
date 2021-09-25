@@ -20,8 +20,9 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  onSubmit(event) {
+    event.preventDefault();
+
     const newUser = {
       username: this.state.username,
       accountRole: this.state.accountRole,
@@ -29,14 +30,16 @@ class Register extends Component {
       password: this.state.password,
       confirmPassword: this.state.confirmPassword
     };
+
     console.log(newUser);
     console.log(this.props.history);
+
     this.props.createNewUser(newUser, this.props.history);
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-    }
+  onChange(event) {
+      this.setState({ [event.target.name]: event.target.value });
+  }
     
   render() {
     return (
@@ -105,7 +108,7 @@ class Register extends Component {
                   {/*Type of Account*/}
                   <div className="form-group" style={{paddingTop:"15px"}}>
                     <select className="form-control form-control-lg" id="accountRole" name="accountRole" value={this.state.accountRole} onChange={this.onChange} required>
-                      <option selected disabled value="">Account type</option>
+                      <option disabled value="">Account type</option>
                       <option value="CUSTOMER">Customer</option>
                       <option value="PUBLISHER">Publisher</option>
                       <option value="ADMIN">Admin</option>
@@ -133,7 +136,5 @@ Register.propTypes = {
 const mapStateToProps = state => ({
     errors: state.errors
 });
-export default connect(
-    mapStateToProps,
-    { createNewUser }
-)(Register);
+
+export default connect(mapStateToProps, { createNewUser }) (Register);

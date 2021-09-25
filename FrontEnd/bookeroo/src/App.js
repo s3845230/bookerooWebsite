@@ -27,14 +27,18 @@ import SecuredRoute from "./securityUtils/SecureRoute";
 const jwtToken = localStorage.jwtToken;
 
 if (jwtToken) {
+
   setJWTToken(jwtToken);
+
   const decoded_jwtToken = jwt_decode(jwtToken);
+
   store.dispatch({
     type: SET_CURRENT_USER,
     payload: decoded_jwtToken
   });
 
   const currentTime = Date.now() / 1000;
+
   if (decoded_jwtToken.exp < currentTime) {
     store.dispatch(logout());
     window.location.href = "/";
@@ -43,31 +47,26 @@ if (jwtToken) {
 
 
 class App extends Component {
-
   render() {
     return (
       <Provider store={store}>
         <Router>
           <div className="App">
             <Header />
-            {
-              //Public Routes
-            }
+
+            {/*Public Routes*/}
             <Route exact path="/" component={Landing} />
             <Route exact path="/publisher" component={PublisherLanding} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
 
-            {
-              //Private Routes
-            }
+            {/*Private Routes*/}
+
             {/*<Route exact path="/dashboard" component={Dashboard} />*/}
             {/*<Route exact path="/addPerson" component={AddPerson} />*/}
             <Route exact path="/uploadBook" component={UploadBook} />
             <Route exact path="/searchResults/:id" component={BookInfo} />
-          
-          </div>
-          <div>
+
             <Footer />
           </div>
         </Router>

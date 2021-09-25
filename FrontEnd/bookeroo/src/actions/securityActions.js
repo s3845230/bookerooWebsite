@@ -27,15 +27,16 @@ export const createNewUser = (newUser, history) => async dispatch => {
 };
 
 
-export const login = LoginRequest => async dispatch => {
+export const loginUser = LoginRequest => async dispatch => {
     console.log("securityActions.login");
+    console.log(LoginRequest);
 
     try {
-
         // post => Login Request
-        const res = await axios.post("http://localhost:8080/api/users/login", LoginRequest);
+        const response = await axios.post("http://localhost:8080/api/users/login", LoginRequest);
+        console.log(response);
         // extract token from res.data
-        const { token } = res.data;
+        const { token } = response.data;
         console.log(token);
         // store the token in the localStorage
         localStorage.setItem("jwtToken", token);
@@ -49,9 +50,6 @@ export const login = LoginRequest => async dispatch => {
             type: SET_CURRENT_USER,
             payload: decoded
         });
-
-        // const { accountRole } = res.data;
-        
         console.log(localStorage.getItem("jwtToken"));
     }
     catch (err) {

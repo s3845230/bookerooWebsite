@@ -14,6 +14,8 @@ const booleanActionPayload = payload => {
 };
 
 export default function(state = initialState, action) {
+  console.log("securityReducer.function()");
+  console.log(state);
   switch (action.type) {
     case SET_CURRENT_USER:
       return {

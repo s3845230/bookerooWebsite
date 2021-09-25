@@ -1,3 +1,4 @@
+
 package com.rmit.sept.loginmicroservice.web;
 
 
@@ -59,26 +60,48 @@ public class UserController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+    
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, BindingResult result){
-        System.out.println(loginRequest);
-        System.out.println(result);
-        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-        if(errorMap != null) return errorMap;
+        System.out.println("loginRequest: " + loginRequest);
+        System.out.println("result: " + result);
 
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if (errorMap != null) {
+            System.out.println("errorMap: " + errorMap);
+            return errorMap;
+        }
+
+        System.out.println("CODE REACH ERRORMAP");
+
+        // REJECT REQUEST IF USER IS NOT APPROVED
+//        User user = userRepository.findByUsername(loginRequest.getUsername());
+//        if (!user.isApproved()) {
+//            System.out.println("LOGIN REJECTED - USER NOT APPROVED");
+//            return null;
+//        }
+
+        System.out.println("CODE REACH pre-AUTH");
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getUsername(),
                         loginRequest.getPassword()
                 )
         );
+        System.out.println("CODE REACH post-AUTH");
+        
+        System.out.println("authentication: " + authentication);
 
+        // GENERATE JWT
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = TOKEN_PREFIX + tokenProvider.generateToken(authentication);
 
+        // CREATE AND SEND RESPONSE
         JWTLoginSucessReponse response = new JWTLoginSucessReponse(true, jwt);
+        System.out.println("response: " + response);
         return ResponseEntity.ok(response);
     }
-
 }
