@@ -68,15 +68,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js"
                 ).permitAll()
-                .antMatchers(SecurityConstant.SIGN_UP_URLS).permitAll()
+                .antMatchers(SecurityConstant.AUTH_URL).permitAll()
                 //.antMatchers("/api/users/**").permitAll()
-                .antMatchers(SecurityConstant.H2_URL).permitAll()
-                .anyRequest().authenticated();
-        
+                .antMatchers(SecurityConstant.H2_URL).permitAll();
+//                .anyRequest().authenticated();
+
+        // AUTH ACCESS - NOT RESTRICTED
         http.authorizeRequests()
-                 .antMatchers("/publisher/**").hasAnyRole("PUBLISHER", "ADMIN");
+                .antMatchers("/api/auth/**").permitAll();
+        // PUBLISHER ACCESS
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN");
+                .antMatchers("/api/book/add", "/api/book/edit", "/api/book/delete")
+                .hasAnyRole("PUBLISHER", "ADMIN");
+        // ADMIN ACCESS
+        http.authorizeRequests()
+                .antMatchers("/api/user/**")
+                .hasRole("ADMIN");
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

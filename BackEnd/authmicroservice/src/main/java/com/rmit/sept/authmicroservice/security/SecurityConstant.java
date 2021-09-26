@@ -2,8 +2,9 @@ package com.rmit.sept.authmicroservice.security;
 
 // Pre-defined values for all security classes
 public class SecurityConstant {
-    public static final String SIGN_UP_URLS = "/api/users/**";
+    public static final String AUTH_URL = "/api/auth/**";
     public static final String H2_URL = "/h2-console/**";
+    public static final String FRONT_END_URL = "http://localhost:3000";
     public static final String SECRET ="SecretKeyToGenJWTs";
     public static final String TOKEN_PREFIX= "Bearer ";
     public static final String HEADER_STRING = "Authorization";

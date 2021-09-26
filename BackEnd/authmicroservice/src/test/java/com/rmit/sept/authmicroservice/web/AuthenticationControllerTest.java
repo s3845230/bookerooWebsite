@@ -1,6 +1,6 @@
 package com.rmit.sept.authmicroservice.web;
 
-import com.rmit.sept.authmicroservice.web.UserController;
+import com.rmit.sept.authmicroservice.web.AuthenticationController;
 
 public class AuthenticationControllerTest {
 

@@ -7,10 +7,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 // Main class for Login Microservice
 @SpringBootApplication
-public class ms_login {
+public class ms_auth {
 
     public static void main(String[] args) {
-        SpringApplication.run(ms_login.class, args);
+        SpringApplication.run(ms_auth.class, args);
     }
     @Bean
     BCryptPasswordEncoder bCryptPasswordEncoder(){

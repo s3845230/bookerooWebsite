@@ -11,6 +11,7 @@ import com.rmit.sept.authmicroservice.security.JwtTokenProvider;
 import com.rmit.sept.authmicroservice.service.MapValidationErrorService;
 import com.rmit.sept.authmicroservice.service.UserService;
 import com.rmit.sept.authmicroservice.validator.UserValidator;
+import com.rmit.sept.authmicroservice.security.SecurityConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,14 +31,14 @@ import static com.rmit.sept.authmicroservice.security.SecurityConstant.TOKEN_PRE
 
 
 /*/
-This class recieves the API Requests for User Authentication:
+This class receives the API Requests for User Authentication:
 1. registerUser(): Registering a user (inserting new user details into database)
 2. authenticateUser(): Logging them in (providing them with a JWT).
  */
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/api/users")
+@CrossOrigin(origins = SecurityConstant.FRONT_END_URL)
+@RequestMapping("/api/auth/")
 public class AuthenticationController {
 
     @Autowired
@@ -86,10 +87,13 @@ public class AuthenticationController {
 
         User user = userRepository.findByUsername(loginRequest.getUsername());
         String isApproved = "";
-        if (!user.isApproved()) {
-            System.out.println("LOGIN REJECTED - USER NOT APPROVED");
-            isApproved = "NotApproved";
-        }
+//        if (!user.isApproved()) {
+//            System.out.println("LOGIN REJECTED - USER NOT APPROVED");
+//            isApproved = "NotApproved";
+//        }
+        
+        System.out.println(loginRequest.getUsername());
+        System.out.println(loginRequest.getPassword());
         
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

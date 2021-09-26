@@ -10,7 +10,7 @@ export const createNewUser = (newUser, history) => async dispatch => {
     console.log("securityActions.createNewUser");
 
     try{
-        await axios.post("http://localhost:8080/api/users/register", newUser);
+        await axios.post("http://localhost:8080/api/auth/register", newUser);
         history.push("/login");
         // dispatch({
         //     payload: {}
@@ -33,7 +33,7 @@ export const loginUser = LoginRequest => async dispatch => {
 
     try {
         // post => Login Request
-        const response = await axios.post("http://localhost:8080/api/users/login", LoginRequest);
+        const response = await axios.post("http://localhost:8080/api/auth/login", LoginRequest);
         console.log(response);
         // extract token from res.data
         const { token } = response.data;

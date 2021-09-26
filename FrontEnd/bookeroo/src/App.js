@@ -64,7 +64,7 @@ class App extends Component {
 
             {/*<Route exact path="/dashboard" component={Dashboard} />*/}
             {/*<Route exact path="/addPerson" component={AddPerson} />*/}
-            <Route exact path="/uploadBook" component={UploadBook} />
+            <Route exact path="/publisher/uploadBook" component={UploadBook} />
             <Route exact path="/searchResults/:id" component={BookInfo} />
 
             <Footer />
