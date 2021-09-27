@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -41,5 +45,22 @@ public class UserService {
         catch (Exception e) {
             throw new UsernameAlreadyExistsException("Username '"+newUser.getUsername()+"' already exists");
         }
+    }
+
+    public List<User> getUnapprovedUserList() {
+        List<User> unapprovedUsers = new ArrayList<>();
+
+        //finds all users not currently approved
+        userRepository.findByApprovedContainingIgnoreCase("false").forEach(user -> unapprovedUsers.add(user));
+
+        return unapprovedUsers;
+    }
+
+    public Optional<User> getUserByID(Long id) {
+        return userRepository.findById(id);
+    }
+
+    public User saveOrUpdateUser(User user) {
+        return userRepository.save(user);
     }
 }
