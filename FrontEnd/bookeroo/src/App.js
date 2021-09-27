@@ -25,6 +25,7 @@ import { logout } from "./actions/securityActions";
 import SecuredRoute from "./securityUtils/SecureRoute";
 import AdminFunctions from "./components/Admin/AdminFunctions";
 import AddUser from "./components/Admin/AddUser";
+import AddBook from "./components/Admin/AddBook";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -70,6 +71,7 @@ class App extends Component {
             <Route path="/searchResults/:id" component={BookInfo} />
             <Route exact path="/admin" component={AdminFunctions} />
             <Route exact path="/admin/addUser" component={AddUser} />
+            <Route exact path="/admin/addBook" component={AddBook} />
           
           </div>
           <div>

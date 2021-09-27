@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as PropTypes from 'prop-types'
 import { connect } from "react-redux";
-import { adminCreateUser } from "../../actions/Admin/userActions"
+import { adminCreateUser } from "../../actions/Admin/userActions";
 
 class AddUser extends Component {
     constructor() {
