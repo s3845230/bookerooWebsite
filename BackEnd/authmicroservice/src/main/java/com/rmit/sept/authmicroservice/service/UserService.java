@@ -60,6 +60,12 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    public List<User> getAllUser(){
+        List<User> users = new ArrayList<>();
+        userRepository.findAll().forEach(user -> users.add(user));
+        return users;
+    }
+
     public User saveOrUpdateUser(User user) {
         return userRepository.save(user);
     }
