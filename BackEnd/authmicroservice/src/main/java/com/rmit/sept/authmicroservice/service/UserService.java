@@ -29,11 +29,15 @@ public class UserService {
             // Username has to be unique (exception)
             newUser.setUsername(newUser.getUsername());
             // Make sure that password and confirmPassword match
+
             // We don't persist or show the confirmPassword
             newUser.setConfirmPassword("");
 
             // Only automatically approve CUSTOMER users
-            newUser.setApproved(newUser.getAccountRole() == Role.AccountRole.valueOf("CUSTOMER"));
+            for (Role role : newUser.getRoles()) {
+                // NOTE: Could potentially be abused if user has more than one role, may flip setApproved to true.
+                newUser.setApproved(role.getName().equals("CUSTOMER"));
+            }
             
             return userRepository.save(newUser);
 

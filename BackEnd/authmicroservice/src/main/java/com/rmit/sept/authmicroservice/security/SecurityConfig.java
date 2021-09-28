@@ -79,11 +79,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // PUBLISHER ACCESS
         http.authorizeRequests()
                 .antMatchers("/api/book/add", "/api/book/edit", "/api/book/delete")
-                .hasAnyRole("PUBLISHER", "ADMIN");
+                .hasAnyAuthority("PUBLISHER", "ADMIN");
         // ADMIN ACCESS
         http.authorizeRequests()
                 .antMatchers("/api/user/**")
-                .hasRole("ADMIN");
+                .hasAuthority("ADMIN");
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

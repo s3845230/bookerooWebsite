@@ -2,7 +2,10 @@
 package com.rmit.sept.authmicroservice.web;
 
 
+import com.rmit.sept.authmicroservice.model.Role;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rmit.sept.authmicroservice.repository.UserRepository;
 import com.rmit.sept.authmicroservice.model.User;
 import com.rmit.sept.authmicroservice.payload.JWTLoginSucessReponse;
@@ -19,6 +22,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,16 +52,46 @@ public class AuthenticationController {
     @Autowired
     private UserValidator userValidator;
 
+//    @PostMapping("/register")
+//    public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result) throws JsonProcessingException {
+//        // Validate passwords match
+//        userValidator.validate(user,result);
+//
+//        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+//        if(errorMap != null)return errorMap;
+//
+//        // Import JSON data as jsonNode
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        JsonNode jsonNode = objectMapper.readTree(String.valueOf(user));
+//        System.out.println(jsonNode.get("accountRole"));
+//
+//        User newUser = userService.saveUser(user);
+//        return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
+//    }
+
+
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result) throws JsonProcessingException {
+    public ResponseEntity<?> registerUser(@RequestBody String data, BindingResult result) throws JsonProcessingException {
         // Validate passwords match
-        userValidator.validate(user,result);
+//        userValidator.validate(user,result);
 
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
 
-        User newUser = userService.saveUser(user);
-        return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
+        User user = new User();
+
+        // Import JSON data as jsonNode
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(data);
+
+        user.setFullName(jsonNode.get("fullName").asText());
+        user.setUsername(jsonNode.get("username").asText());
+        user.setPassword(jsonNode.get("password").asText());
+        user.setConfirmPassword(jsonNode.get("confirmPassword").asText());
+        user.addRole(new Role(jsonNode.get("accountRole").asText()));
+
+        userService.saveUser(user);
+        return new ResponseEntity<User>(user, HttpStatus.CREATED);
     }
 
 

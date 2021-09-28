@@ -2,6 +2,7 @@ package com.rmit.sept.authmicroservice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.*;
 
 
 @Entity
+@Table(name = "USERS")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +22,6 @@ public class User implements UserDetails {
     @NotBlank(message = "Username is required")
     @Column(unique = true)
     private String username;
-    
-//    @NotBlank(message = "User must have an account role")
-    private Role.AccountRole accountRole;
 
     @NotBlank(message = "Please enter your full name")
     private String fullName;
@@ -38,8 +37,16 @@ public class User implements UserDetails {
     @Transient
     private String confirmPassword;
 
-    @Transient
-    private Collection<? extends GrantedAuthority> authorities;
+//    @Transient
+//    private Collection<? extends GrantedAuthority> authorities;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     /*
     Constructors
@@ -92,6 +99,18 @@ public class User implements UserDetails {
         this.approved = approved;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+    
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
+
     public String getConfirmPassword() {
         return confirmPassword;
     }
@@ -116,13 +135,6 @@ public class User implements UserDetails {
         this.update_At = update_At;
     }
 
-    public Role.AccountRole getAccountRole() {
-        return accountRole;
-    }
-
-    public void setAccountRole(Role.AccountRole accountRole) {
-        this.accountRole = accountRole;
-    }
 
     @PrePersist
     protected void onCreate(){
@@ -142,6 +154,13 @@ public class User implements UserDetails {
     @Override
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<Role> roles = this.getRoles();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+
         return authorities;
     }
 
