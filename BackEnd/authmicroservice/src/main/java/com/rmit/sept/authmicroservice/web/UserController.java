@@ -54,4 +54,31 @@ public class UserController {
         userService.saveOrUpdateUser(existingUser);
         return new ResponseEntity<Object>(existingUser, HttpStatus.CREATED);
     }
+
+    @GetMapping("/allUser")
+    private List<User> getAllUser(){
+        return userService.getAllUser();
+    }
+
+    @GetMapping("/userById/{id}")
+    private User getUserById(@PathVariable("id") Long id){
+        return userService.getUserByID(id).get();
+    }
+
+    @PutMapping("/updateUser")
+    public ResponseEntity<Object> editUser(@RequestBody User user) throws Exception {
+        if (user == null || user.getId() == null){
+            throw new IllegalArgumentException("User or UserID must not be null! ");
+        }
+        Optional<User> optionalUser = userService.getUserByID(user.getId());
+        if(optionalUser.isPresent() == false){
+            throw new IllegalArgumentException("User with ID " + user.getId() + " does not exist.");
+        }
+        User newUser = optionalUser.get();
+        newUser.setUsername(user.getUsername());
+        newUser.setAccountRole(user.getAccountRole());
+
+        userService.saveOrUpdateUser(newUser);
+        return new ResponseEntity<Object>(newUser, HttpStatus.CREATED);
+    }
 }

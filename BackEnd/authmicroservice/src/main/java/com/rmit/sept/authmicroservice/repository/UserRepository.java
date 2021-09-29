@@ -12,5 +12,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
     User findByUsername(String username);
     User getById(Long id);
 
+    @Override
+    Iterable<User> findAllById(Iterable<Long> iterable);
+
     List<User> findByApprovedContainingIgnoreCase(String bool);
 }
