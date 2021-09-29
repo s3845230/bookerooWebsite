@@ -21,8 +21,9 @@ class AddUser extends Component {
             ABN: "",
 
             // validation
-            errors: {username: '', confirmPassword: ''},
+            errors: {username: '', password: '', confirmPassword: ''},
             usernameValid: false,
+            passwordValid: false,
             confirmPasswordValid: false,
             formValid: false,
             showABN: false
@@ -35,6 +36,7 @@ class AddUser extends Component {
     validateField(fieldName, value) {
         let validationErrors = this.state.errors;
         let usernameValid = this.state.usernameValid;
+        let passwordValid = this.state.passwordValid;
         let confirmPasswordValid = this.state.confirmPasswordValid;
         let showABN = this.state.showABN;
 
@@ -42,6 +44,10 @@ class AddUser extends Component {
             case 'username':
                 usernameValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
                 validationErrors.username = usernameValid ? '' : 'Username is not an Email';
+                break;
+            case 'password':
+                passwordValid = value.length >= 6;
+                validationErrors.password = passwordValid ? '': 'Password must be at least 6 characters long';
                 break;
             case 'confirmPassword':
                 confirmPasswordValid = value.match(this.state.password);
@@ -55,13 +61,14 @@ class AddUser extends Component {
         }
         this.setState({errors: validationErrors,
                         usernameValid: usernameValid,
+                        passwordValid: passwordValid,
                         confirmPasswordValid: confirmPasswordValid,
                         showABN: showABN
         }, this.validateRegisterForm);
     }
 
     validateRegisterForm() {
-        this.setState({formValid: this.state.usernameValid && this.state.confirmPasswordValid});
+        this.setState({formValid: this.state.usernameValid && this.state.passwordValid && this.state.confirmPasswordValid});
     }
 
     onChange(e) {
@@ -136,7 +143,7 @@ class AddUser extends Component {
                                 <div className="form-group">
                                     <input
                                         type="password"
-                                        className="form-control form-control-lg"
+                                        className={`form-control form-control-lg ${this.handleError(this.state.errors.password)}`}
                                         placeholder="Password"
                                         name="password"
                                         value={this.state.password}
@@ -144,7 +151,7 @@ class AddUser extends Component {
                                         required
                                     />
                                     <div className="invalid-feedback">
-                                        Password cannot be Empty.
+                                        {this.state.errors.password}
                                     </div>
                                 </div>
                                 <div className="form-group">
