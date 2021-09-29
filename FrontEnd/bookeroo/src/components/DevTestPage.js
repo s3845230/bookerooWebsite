@@ -11,11 +11,21 @@ class DevTestPage extends Component {
 
         this.state = {
             content: "",
+            publisher: "",
+            admin: ""
         };
     }
 
     componentDidMount() {
         console.log(authHeader());
+
+        if (UserService.isUserPublisher()) {
+            this.setState({publisher: "PUBLISHER"});
+        }
+        if (UserService.isUserAdmin()) {
+            this.setState({admin: "ADMIN"});
+        }
+
         axios.get(`http://localhost:8080/api/user/test`, { headers: authHeader() })
             .then(
         response => {
@@ -46,6 +56,8 @@ class DevTestPage extends Component {
                                     {this.state.content} <br/>
                                     {UserService.getUsername()} <br/>
                                     {UserService.getUserFullName()} <br/>
+                                    {this.state.publisher} <br/>
+                                    {this.state.admin} <br/>
                                     {UserService.getUserId()}
                                 </p>
                             </div>

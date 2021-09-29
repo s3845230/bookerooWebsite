@@ -3,19 +3,12 @@ class UserService {
     
     isUserPublisher() {
         const role = localStorage.getItem("userRole");
-        if (role && role === "PUBLISHER") {
-            return true;
-        }
-        return false;
-
+        return (role && role === "PUBLISHER");
     }
     
     isUserAdmin() {
         const role = localStorage.getItem("userRole");
-        if (role && role === "ADMIN") {
-            return true;
-        }
-        return false;
+        return (role && role === "ADMIN");
     }
     
     getUsername() {
