@@ -1,6 +1,4 @@
-
 package com.rmit.sept.authmicroservice.web;
-
 
 import com.rmit.sept.authmicroservice.model.Role;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -33,7 +31,6 @@ import javax.validation.Valid;
 
 import static com.rmit.sept.authmicroservice.security.SecurityConstant.TOKEN_PREFIX;
 
-
 /*/
 This class receives the API Requests for User Authentication:
 1. registerUser(): Registering a user (inserting new user details into database)
@@ -52,28 +49,10 @@ public class AuthenticationController {
     @Autowired
     private UserValidator userValidator;
 
-//    @PostMapping("/register")
-//    public ResponseEntity<?> registerUser(@Valid @RequestBody User user, BindingResult result) throws JsonProcessingException {
-//        // Validate passwords match
-//        userValidator.validate(user,result);
-//
-//        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
-//        if(errorMap != null)return errorMap;
-//
-//        // Import JSON data as jsonNode
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        JsonNode jsonNode = objectMapper.readTree(String.valueOf(user));
-//        System.out.println(jsonNode.get("accountRole"));
-//
-//        User newUser = userService.saveUser(user);
-//        return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
-//    }
-
+    // TODO: CLEAN UP /register API - ensure that passwords are being validated (shouldn't it be done in the front end?)
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody String data, BindingResult result) throws JsonProcessingException {
-        // Validate passwords match
-//        userValidator.validate(user,result);
 
         ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
         if(errorMap != null)return errorMap;
@@ -89,6 +68,9 @@ public class AuthenticationController {
         user.setPassword(jsonNode.get("password").asText());
         user.setConfirmPassword(jsonNode.get("confirmPassword").asText());
         user.addRole(new Role(jsonNode.get("accountRole").asText()));
+
+        // Validate passwords match
+        userValidator.validate(user,result);
 
         userService.saveUser(user);
         return new ResponseEntity<User>(user, HttpStatus.CREATED);

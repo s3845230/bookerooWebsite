@@ -23,6 +23,7 @@ import setJWTToken from "./securityUtils/setJWTToken";
 import { SET_CURRENT_USER } from "./actions/types";
 import { logout } from "./actions/securityActions";
 import SecuredRoute from "./securityUtils/SecureRoute";
+import DevTestPage from "./components/DevTestPage";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -59,6 +60,7 @@ class App extends Component {
             <Route exact path="/publisher" component={PublisherLanding} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/devtestpage" component={DevTestPage} />
 
             {/*Private Routes*/}
 

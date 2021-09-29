@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import UploadBookButton from "../BookManagement/UploadBookButton";
 
 class PublisherLanding extends Component {
+
     render() {
         return (
             <div className="publisherLanding">

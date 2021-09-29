@@ -44,6 +44,7 @@ export const loginUser = LoginRequest => async dispatch => {
         setJWTToken(token);
         // decode token on React
         const decoded = jwt_decode(token);
+        localStorage.setItem("decoded", decoded);
         console.log(decoded);
         // dispatch to our securityReducer
         dispatch({
