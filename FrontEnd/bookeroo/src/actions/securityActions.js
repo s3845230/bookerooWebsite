@@ -32,26 +32,28 @@ export const loginUser = LoginRequest => async dispatch => {
     console.log(LoginRequest);
 
     try {
-        // post => Login Request
         const response = await axios.post("http://localhost:8080/api/auth/login", LoginRequest);
-        console.log(response);
-        // extract token from res.data
+        console.log("response: " + response);
+
         const { token } = response.data;
-        console.log(token);
-        // store the token in the localStorage
+        console.log("token: " + token);
+
+        // STORE TOKEN IN LOCALSTORAGE
         localStorage.setItem("jwtToken", token);
-        // set our token in header ***
-        setJWTToken(token);
-        // decode token on React
+
+        // SET TOKEN AS HEADER
+        // setJWTToken(token);
+
+        // DECODE TOKEN
         const decoded = jwt_decode(token);
-        localStorage.setItem("decoded", decoded);
-        console.log(decoded);
-        // dispatch to our securityReducer
-        dispatch({
-            type: SET_CURRENT_USER,
-            payload: decoded
-        });
-        console.log(localStorage.getItem("jwtToken"));
+        console.log(JSON.stringify(decoded));
+        
+        // STORE USER PROPERTIES IN LOCALSTORAGE
+        localStorage.setItem("userId", decoded.id);
+        localStorage.setItem("username", decoded.username);
+        localStorage.setItem("userFullName", decoded.fullName);
+        localStorage.setItem("userRole", decoded.role);
+
     }
     catch (err) {
         console.log(err);

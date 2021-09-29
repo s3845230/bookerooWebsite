@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import authHeader from "../services/authHeader";
-import userService from "../services/UserService";
+import UserService from "../services/UserService";
+import securityReducer from "../reducers/securityReducer";
 
 class DevTestPage extends Component {
 
@@ -10,13 +11,13 @@ class DevTestPage extends Component {
 
         this.state = {
             content: "",
-            user: userService.getUser()
         };
     }
 
     componentDidMount() {
         console.log(authHeader());
-        axios.get(`http://localhost:8080/api/user/test`, { headers: authHeader() }).then(
+        axios.get(`http://localhost:8080/api/user/test`, { headers: authHeader() })
+            .then(
         response => {
             this.setState({
                 content: response.data
@@ -42,8 +43,10 @@ class DevTestPage extends Component {
                                     This is a page to test developing features
                                 </p>
                                 <p>
-                                    {this.state.content}
-                                    {this.state.user}
+                                    {this.state.content} <br/>
+                                    {UserService.getUsername()} <br/>
+                                    {UserService.getUserFullName()} <br/>
+                                    {UserService.getUserId()}
                                 </p>
                             </div>
                         </div>
