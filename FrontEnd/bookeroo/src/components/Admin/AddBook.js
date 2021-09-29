@@ -8,6 +8,7 @@ class AddBook extends Component {
         super();
 
         this.state = {
+            seller: "",
             title: "",
             author: "",
             isbn: "",
@@ -19,22 +20,60 @@ class AddBook extends Component {
             tagline: "",
             tableOfContents: "",
             blurb: "",
-            imageData: ""
+            imageData: "", 
+
+            // for validation
+            errors: {seller: '', title: ''},
+            sellerValid: false,
+            titleValid: false,
+            formValid: false
         };  
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onChange(e){
-        this.setState({
-            [e.target.name]: e.target.value
-        });
+    validateField(fieldName, value) {
+        let fieldValidationErrors = this.state.errors;
+        let sellerValid = this.state.sellerValid;
+        let titleValid = this.state.titleValid;
+
+        switch(fieldName) {
+            case 'seller':
+                sellerValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+                fieldValidationErrors.seller = sellerValid ? '' : 'Seller is in incorrect format';
+                break;
+            case 'title':
+                titleValid = value.length >= 3;
+                fieldValidationErrors.title = titleValid ? '': 'Title is too short';
+                break;
+            default:
+                break;
+        }
+        this.setState({errors: fieldValidationErrors,
+                        sellerValid: sellerValid,
+                        titleValid: titleValid
+        }, this.validateForm);
     }
+
+    validateForm() {
+        this.setState({formValid: this.state.sellerValid && this.state.titleValid});
+    }
+
+    onChange(e){
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({
+            [name]: value
+        }, () => { this.validateField(name, value) });
+    }
+    
     async onSubmit(e) {
         e.preventDefault();
         e.target.className += " was-validated";
+        // use if else for checking seller is valid
         const newBook = {
+            seller: this.state.seller,
             title: this.state.title,
             author: this.state.author,
             isbn: this.state.isbn,
@@ -63,7 +102,11 @@ class AddBook extends Component {
             }
         }
         bookCoverReader.readAsDataURL(e.target.files[0])
-    }  
+    }
+
+    handleError(error) {
+        return(error.length === 0 ? '' : 'is-invalid');
+    }
 
     render() {
         return (
@@ -73,12 +116,27 @@ class AddBook extends Component {
                     <div className="row">
                         <div className="col">
                             <form className="needs-validation" onSubmit={this.onSubmit} noValidate>
+                                {/*Seller (Email) */}
+                                <div className="form-group">
+                                    <label htmlFor="title">Seller (Email)</label>
+                                    <input
+                                        type="text"
+                                        className={`form-control form-control-lg ${this.handleError(this.state.errors.seller)}`}
+                                        placeholder="Seller (Email)"
+                                        name="seller"
+                                        value={this.state.seller}
+                                        onChange={this.onChange}
+                                    />
+                                    <div className="invalid-feedback">
+                                        {this.state.errors.seller}
+                                    </div>
+                                </div>
                                 {/*Title*/}
                                 <div className="form-group">
                                     <label htmlFor="title">Title</label>
                                     <input
                                         type="text"
-                                        className="form-control form-control-lg"
+                                        className={`form-control form-control-lg ${this.handleError(this.state.errors.title)}`}
                                         placeholder="Title"
                                         name="title"
                                         value={this.state.title}
@@ -86,7 +144,7 @@ class AddBook extends Component {
                                         required
                                     />
                                     <div className="invalid-feedback">
-                                        Title cannot be Empty.
+                                        {this.state.errors.title}
                                     </div>
                                 </div>
 
@@ -155,7 +213,7 @@ class AddBook extends Component {
                                     </div>
                                 </div>
 
-                                {/*Working solution - price is now present in JSON and therefore will be inserted into database*/}
+                                {/*Price*/}
                                 <div className="form-group">
                                     <label htmlFor="price">Price</label>
                                     <input
@@ -265,7 +323,6 @@ class AddBook extends Component {
                                     </div>
                                 </div>
 
-                                {/*TODO: Why doesn't BackEnd support the image format in the json?*/}
                                 {/*Book Cover*/}
                                 <div className="form-group">
                                     <label htmlFor="imageData">Upload Book Cover</label>
@@ -285,7 +342,7 @@ class AddBook extends Component {
                                         Need a Book Cover.
                                     </div>
                                 </div>
-                                <input type="submit" className="btn btn-primary btn-lg btn-block mt-4" data-toggle="modal" data-target="#successModal" />
+                                <input disabled={!this.state.formValid} type="submit" className="btn btn-primary btn-lg btn-block mt-4" data-toggle="modal" data-target="#successModal" />
                                 {/*Pop up Modal for successfully adding book*/}
                                 <div className="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
                                     <div className="modal-dialog">
