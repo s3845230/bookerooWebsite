@@ -13,7 +13,7 @@ import java.util.Map;
 @Component
 public class JwtTokenProvider {
 
-    //Generate the token
+    // GENERATE JWT
     public String generateToken(Authentication authentication){
         User user = (User)authentication.getPrincipal();
         Date now = new Date(System.currentTimeMillis());
@@ -37,8 +37,9 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    //Validate the token
+    // VALIDATE JWT
     public boolean validateToken(String token){
+        System.out.println("authmicroservice.JwtTokenProvider.validateToken()");
         try {
             Jwts.parser().setSigningKey(SecurityConstant.SECRET).parseClaimsJws(token);
             return true;
@@ -62,8 +63,9 @@ public class JwtTokenProvider {
     }
 
 
-    //Get user Id from token
+    // GET USER ID FROM JWT
     public Long getUserIdFromJWT(String token){
+        System.out.println("authmicroservice.JwtTokenProvider.getUserIdfromJWT()");
         Claims claims = Jwts.parser().setSigningKey(SecurityConstant.SECRET).parseClaimsJws(token).getBody();
         String id = (String) claims.get("id");
 

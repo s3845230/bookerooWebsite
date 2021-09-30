@@ -33,6 +33,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
                                     throws ServletException,IOException {
 
+        System.out.println("authmicroservice.JwtAuthenticationFilter.doFilterInternal()");
+
         try {
             String jwt = getJWTFromRequest(httpServletRequest);
 

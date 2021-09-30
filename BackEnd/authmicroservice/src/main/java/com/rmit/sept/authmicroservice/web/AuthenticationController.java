@@ -69,6 +69,8 @@ public class AuthenticationController {
         user.setConfirmPassword(jsonNode.get("confirmPassword").asText());
         user.addRole(new Role(jsonNode.get("accountRole").asText()));
 
+
+
         // Validate passwords match
         userValidator.validate(user,result);
 

@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://localhost:8080") // authmicroservice
 @RequestMapping("/api/book/")
 public class BookController {
 
@@ -27,6 +27,7 @@ public class BookController {
 
     @PostMapping("/new")
     public ResponseEntity<Object> createNewBook(@RequestBody String data) throws JsonProcessingException, ParseException {
+//        System.out.println(data);
         
         // Create empty book object
         Book book = new Book();
@@ -54,7 +55,7 @@ public class BookController {
         book.setPublicationDate(publicationDate);
         book.setTagline(jsonNode.get("tagline").asText());
         book.setTableOfContents(jsonNode.get("title").asText());
-        book.setBlurb(jsonNode.get("title").asText());
+        book.setBlurb(jsonNode.get("blurb").asText());
         book.setImageType(imageType);
         book.setImageBlob(imageBlob);
         book.setImageData(jsonNode.get("imageData").asText());
@@ -75,7 +76,7 @@ public class BookController {
 
     @GetMapping("/searchbyid/{id}")
     private Book getBookByID(@PathVariable("id") Long id) {
-        System.out.println(bookService.getBookByID(id));
+        System.out.println("bookmicroservice.BookController.getBookByID(" + id + ")");
         return bookService.getBookByID(id);
     }
 }

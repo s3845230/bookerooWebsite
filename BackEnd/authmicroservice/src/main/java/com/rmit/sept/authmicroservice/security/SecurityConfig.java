@@ -57,33 +57,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().sameOrigin() //To enable H2 Database
                 .and()
                 .authorizeRequests()
-                .antMatchers(
-                        "/",
-                        "/favicon.ico",
-                        "/**/*.png",
-                        "/**/*.gif",
-                        "/**/*.svg",
-                        "/**/*.jpg",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js"
-                ).permitAll()
-                .antMatchers(SecurityConstant.AUTH_URL).permitAll()
-                //.antMatchers("/api/users/**").permitAll()
                 .antMatchers(SecurityConstant.H2_URL).permitAll();
-//                .anyRequest().authenticated();
 
-        // AUTH ACCESS - NOT RESTRICTED
+        // AUTHORISE REQUESTS
         http.authorizeRequests()
-                .antMatchers("/api/auth/**").permitAll();
-        // PUBLISHER ACCESS
-        http.authorizeRequests()
-                .antMatchers("/api/book/add", "/api/book/edit", "/api/book/delete")
-                .hasAnyAuthority("PUBLISHER", "ADMIN");
-        // ADMIN ACCESS
-        http.authorizeRequests()
-                .antMatchers("/api/user/**")
-                .hasAuthority("ADMIN");
+                .antMatchers("/api/auth/**").permitAll()
+                .antMatchers("/api/book/search/*",
+                                        "/api/book/searchbyid/*").permitAll()
+                .antMatchers("/api/book/new/**",
+                                        "/api/book/edit/**",
+                                        "/api/book/delete/**").hasAnyAuthority("PUBLISHER", "ADMIN")
+                .antMatchers("/api/user/**").hasAuthority("ADMIN")
+                .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }

@@ -63,6 +63,11 @@ export const loginUser = LoginRequest => async dispatch => {
 
 export const logout = () => dispatch => {
     localStorage.removeItem("jwtToken");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("username");
+    localStorage.removeItem("userFullName");
+    localStorage.removeItem("userRole");
+
     setJWTToken(false);
     dispatch({
         type: SET_CURRENT_USER,

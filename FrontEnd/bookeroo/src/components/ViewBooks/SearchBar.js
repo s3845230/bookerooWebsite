@@ -42,7 +42,7 @@ class SearchBar extends Component {
         // this.props.getAllBooks(this.props.history);
         // if search not empty
         if (search) {
-            axios.get(`http://localhost:8081/api/book/search/${search}`)
+            axios.get(`http://localhost:8080/api/book/search/${search}`)
             // returns results
             .then((result) => {
                 this.setState({ books: result.data})
@@ -54,7 +54,7 @@ class SearchBar extends Component {
         }
         // get all books
         else {
-            axios.get(`http://localhost:8081/api/book/search`)
+            axios.get(`http://localhost:8080/api/book/search`)
             // return results
             .then((result) => {
                 this.setState({ books: result.data})
