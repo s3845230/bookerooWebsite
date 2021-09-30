@@ -66,6 +66,15 @@ public class UserService {
         return users;
     }
 
+    public boolean deleteUserById(Long id){
+        try{
+            userRepository.deleteById(id);
+            return true;
+        }catch (Exception e){
+            throw new IllegalArgumentException("User with id " + id + " doesn't exist");
+        }
+    }
+
     public User saveOrUpdateUser(User user) {
         return userRepository.save(user);
     }

@@ -7,6 +7,7 @@ import com.sun.org.apache.xpath.internal.operations.String;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
     
     // TEST API
     @GetMapping("/test")
@@ -74,11 +78,23 @@ public class UserController {
         if(optionalUser.isPresent() == false){
             throw new IllegalArgumentException("User with ID " + user.getId() + " does not exist.");
         }
-        User newUser = optionalUser.get();
-        newUser.setUsername(user.getUsername());
-        newUser.setAccountRole(user.getAccountRole());
+        User extUser = optionalUser.get();
+        extUser.setUsername(user.getUsername());
+        extUser.setAccountRole(user.getAccountRole());
+        extUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        extUser.setFullName(user.getFullName());
 
-        userService.saveOrUpdateUser(newUser);
-        return new ResponseEntity<Object>(newUser, HttpStatus.CREATED);
+
+        userService.saveOrUpdateUser(extUser);
+        return new ResponseEntity<Object>(extUser, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/deleteUser/{id}")
+    public ResponseEntity<Long> deleteUserById(@PathVariable("id") Long id){
+        boolean isRemoved = userService.deleteUserById(id);
+        if (!isRemoved){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }
