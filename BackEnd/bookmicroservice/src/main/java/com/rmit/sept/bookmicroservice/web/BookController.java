@@ -66,19 +66,11 @@ public class BookController {
         return new ResponseEntity<Object>(book, HttpStatus.CREATED);
     }
 
-//    @GetMapping("/search")
-//    private List<Book> getAllBook() {
-//        return bookService.getAllBook();
-//    }
     @GetMapping("/search")
     private ResponseEntity<Object> getAllBook() {
         return new ResponseEntity<Object>(bookService.getAllBook(), HttpStatus.OK);
   }
 
-//    @GetMapping("/search/{search}")
-//    private List<Book> getBook(@PathVariable("search") String search) {
-//        return bookService.getBookBySearch(search);
-//    }
     @GetMapping("/search/{search}")
     private ResponseEntity<Object> getBook(@PathVariable("search") String search) {
         return new ResponseEntity<Object>(bookService.getBookBySearch(search), HttpStatus.OK);
