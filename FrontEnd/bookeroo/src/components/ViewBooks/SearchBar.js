@@ -54,12 +54,14 @@ class SearchBar extends Component {
         }
         // get all books
         else {
+            console.log("GET ALL BOOKS");
             axios.get(`http://localhost:8080/api/book/search`)
             // return results
             .then((result) => {
                 this.setState({ books: result.data})
+                console.log(result.data);
 
-                console.log(this.state.books);
+                console.log(this.state.books[0]);
             })
         }
     }

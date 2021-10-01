@@ -3,6 +3,8 @@ import axios from "axios";
 import authHeader from "../services/authHeader";
 import UserService from "../services/UserService";
 import securityReducer from "../reducers/securityReducer";
+import {Link} from "react-router-dom";
+import { logout } from "../actions/securityActions";
 
 class DevTestPage extends Component {
 
@@ -15,6 +17,7 @@ class DevTestPage extends Component {
             admin: ""
         };
     }
+
 
     componentDidMount() {
         console.log(authHeader());
@@ -51,6 +54,11 @@ class DevTestPage extends Component {
                                 <h1 className="display-4 text-left">DevTestPage </h1>
                                 <p className="lead">
                                     This is a page to test developing features
+                                </p>
+                                <p>
+                                    <button className="btn btn-lg btn-secondary mb-2 mr-2" onClick={() => logout()}>
+                                        LOGOUT
+                                    </button>
                                 </p>
                                 <p>
                                     {this.state.content} <br/>

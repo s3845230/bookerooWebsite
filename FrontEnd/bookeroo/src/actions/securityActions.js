@@ -62,11 +62,17 @@ export const loginUser = LoginRequest => async dispatch => {
 };
 
 export const logout = () => dispatch => {
+
+    console.log("securityActions.logout()")
+    console.log(localStorage.getItem("jwtToken"));
+
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("userId");
     localStorage.removeItem("username");
     localStorage.removeItem("userFullName");
     localStorage.removeItem("userRole");
+
+    console.log(localStorage.getItem("jwtToken"));
 
     setJWTToken(false);
     dispatch({

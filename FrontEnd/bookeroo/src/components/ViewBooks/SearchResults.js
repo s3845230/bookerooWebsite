@@ -6,7 +6,7 @@ class SearchResults extends Component {
         super();
 
         this.state = {
-            bookid: "",
+            // bookid: "",
             book: ""
         };
     }

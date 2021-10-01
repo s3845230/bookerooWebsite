@@ -62,8 +62,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // AUTHORISE REQUESTS
         http.authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/book/search/*",
-                                        "/api/book/searchbyid/*").permitAll()
+                .antMatchers("/api/book/search/**",
+                                        "/api/book/searchbyid/**").permitAll()
                 .antMatchers("/api/book/new/**",
                                         "/api/book/edit/**",
                                         "/api/book/delete/**").hasAnyAuthority("PUBLISHER", "ADMIN")

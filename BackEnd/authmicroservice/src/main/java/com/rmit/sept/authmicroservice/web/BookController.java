@@ -28,6 +28,7 @@ public class BookController {
 
     @GetMapping("/search")
     private String getAllBook() {
+        System.out.println("authmicroservice.BookController.getAllBook()");
         String uri = bookmicroserviceUrl + "/search";
         RestTemplate restTemplate = new RestTemplate();
 
