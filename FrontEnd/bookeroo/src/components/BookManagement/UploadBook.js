@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import "./UploadBook.css";
 import * as PropTypes from "prop-types";
-import CurrencyInput from 'react-currency-input-field';
-import { withRouter } from "react-router";
-import axios from 'axios';
 
 import { connect } from "react-redux";
 import { createBook } from "../../actions/bookActions";
-
+import UserService from "../../services/UserService";
 
 class UploadBook extends Component {
     constructor() {
@@ -25,7 +22,8 @@ class UploadBook extends Component {
             tagline: "",
             tableOfContents: "",
             blurb: "",
-            imageData: ""
+            imageData: "",
+            bookSeller: ""
         };  
 
         this.onChange = this.onChange.bind(this);
@@ -52,25 +50,14 @@ class UploadBook extends Component {
             tableOfContents: this.state.tableOfContents,
             tagline: this.state.tagline,
             blurb: this.state.blurb,
-            imageData: this.state.imageData
+            imageData: this.state.imageData,
+            bookSeller: UserService.getUsername()
         }
 
         console.log(newBook);
 
         this.props.createBook(newBook, this.props.history);
 
-        // try {
-        //     const response = await axios.post("http://localhost:8081/api/book/new/", newBook);
-        //     console.log(response);
-        //     const { bookID } = response.data;
-        //     console.log(bookID);
-        //     history.push(`/searchResults${bookID}`);
-        // }
-        // catch (err) {
-        //     console.log(err);
-        // }
-
-        // this.props.history.push(`/searchResults${newBook.isbn}`);
     }
 
     /* Reads the image file for preview */
@@ -168,7 +155,7 @@ class UploadBook extends Component {
                                 <div className="form-group">
                                     <label htmlFor="type">Type</label>
                                     <select className="form-control form-control-lg" id="type" name="type" value={this.state.type} onChange={this.onChange} required>
-                                        <option selected disabled value="">Select type</option>
+                                        <option disabled value="">Select type</option>
                                         <option value="personal">Personal Book</option>
                                         <option value="new">New Book</option>
                                         <option value="old">Second Hand Book</option>

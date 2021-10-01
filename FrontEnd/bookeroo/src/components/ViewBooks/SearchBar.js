@@ -42,24 +42,26 @@ class SearchBar extends Component {
         // this.props.getAllBooks(this.props.history);
         // if search not empty
         if (search) {
-            axios.get(`http://localhost:8081/api/book/search/${search}`)
+            axios.get(`http://localhost:8080/api/book/search/${search}`)
             // returns results
             .then((result) => {
                 this.setState({ books: result.data})
 
                 console.log(this.state.books);
-                console.log(this.state.books[0].title);
+                // console.log(this.state.books[0].title);
 
             })
         }
         // get all books
         else {
-            axios.get(`http://localhost:8081/api/book/search`)
+            console.log("GET ALL BOOKS");
+            axios.get(`http://localhost:8080/api/book/search`)
             // return results
             .then((result) => {
                 this.setState({ books: result.data})
+                console.log(result.data);
 
-                console.log(this.state.books);
+                // console.log(this.state.books[0]);
             })
         }
     }

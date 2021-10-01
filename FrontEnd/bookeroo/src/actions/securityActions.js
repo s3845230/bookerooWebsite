@@ -10,7 +10,7 @@ export const createNewUser = (newUser, history) => async dispatch => {
     console.log("securityActions.createNewUser");
 
     try{
-        await axios.post("http://localhost:8080/api/users/register", newUser);
+        await axios.post("http://localhost:8080/api/auth/register", newUser);
         history.push("/login");
         // dispatch({
         //     payload: {}
@@ -27,32 +27,30 @@ export const createNewUser = (newUser, history) => async dispatch => {
 };
 
 
-export const login = LoginRequest => async dispatch => {
+export const loginUser = LoginRequest => async dispatch => {
     console.log("securityActions.login");
+    console.log(LoginRequest);
 
     try {
+        const response = await axios.post("http://localhost:8080/api/auth/login", LoginRequest);
+        console.log("response: " + response);
 
-        // post => Login Request
-        const res = await axios.post("http://localhost:8080/api/users/login", LoginRequest);
-        // extract token from res.data
-        const { token } = res.data;
-        console.log(token);
-        // store the token in the localStorage
+        const { token } = response.data;
+        console.log("token: " + token);
+
+        // STORE TOKEN IN LOCALSTORAGE
         localStorage.setItem("jwtToken", token);
-        // set our token in header ***
-        setJWTToken(token);
-        // decode token on React
-        const decoded = jwt_decode(token);
-        console.log(decoded);
-        // dispatch to our securityReducer
-        dispatch({
-            type: SET_CURRENT_USER,
-            payload: decoded
-        });
 
-        // const { accountRole } = res.data;
+        // DECODE TOKEN
+        const decoded = jwt_decode(token);
+        console.log(JSON.stringify(decoded));
         
-        console.log(localStorage.getItem("jwtToken"));
+        // STORE USER PROPERTIES IN LOCALSTORAGE
+        localStorage.setItem("userId", decoded.id);
+        localStorage.setItem("username", decoded.username);
+        localStorage.setItem("userFullName", decoded.fullName);
+        localStorage.setItem("userRole", decoded.role);
+
     }
     catch (err) {
         console.log(err);
@@ -64,7 +62,18 @@ export const login = LoginRequest => async dispatch => {
 };
 
 export const logout = () => dispatch => {
+
+    console.log("securityActions.logout()")
+    console.log(localStorage.getItem("jwtToken"));
+
     localStorage.removeItem("jwtToken");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("username");
+    localStorage.removeItem("userFullName");
+    localStorage.removeItem("userRole");
+
+    console.log(localStorage.getItem("jwtToken"));
+
     setJWTToken(false);
     dispatch({
         type: SET_CURRENT_USER,

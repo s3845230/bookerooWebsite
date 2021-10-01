@@ -6,7 +6,7 @@ class SearchResults extends Component {
         super();
 
         this.state = {
-            bookid: "",
+            // bookid: "",
             book: ""
         };
     }
@@ -18,7 +18,7 @@ class SearchResults extends Component {
                     <h1 className="display-4 text-center">Showing Results For</h1>
                         {this.props.location.state.books.map((book) => (
                             <h3 key={book.id}>
-                                <Link to={`/searchResults/${book.isbn}`}>{book.title}</Link>
+                                <Link to={`/searchResults/${book.id}`}>{book.title}</Link>
                             </h3>
                         ))}
                 </div>

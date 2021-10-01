@@ -8,9 +8,9 @@ jobs:
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw test
       - run: docker build -t septteam3/bookmicroservice ./BackEnd/bookmicroservice/
-#     LOGIN MICROSERVICE
-      - run: cd ./BackEnd/loginmicroservice/ && ./mvnw package
-      - run: cd ./BackEnd/loginmicroservice/ && ./mvnw test
-      - run: docker build -t septteam3/loginmicroservice ./BackEnd/loginmicroservice/
+#     AUTH MICROSERVICE
+      - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
+      - run: cd ./BackEnd/authmicroservice/ && ./mvnw test
+      - run: docker build -t septteam3/authmicroservice ./BackEnd/authmicroservice/
 #      BOOKEROO (REACT)
       - run: docker build -t septteam3/bookeroo ./FrontEnd/bookeroo/

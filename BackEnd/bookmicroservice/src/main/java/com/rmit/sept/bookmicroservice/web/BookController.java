@@ -19,7 +19,7 @@ import java.util.Optional;
 
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("http://localhost:8080") // authmicroservice
 @RequestMapping("/api/book/")
 public class BookController {
 
@@ -28,6 +28,7 @@ public class BookController {
 
     @PostMapping("/new")
     public ResponseEntity<Object> createNewBook(@RequestBody String data) throws JsonProcessingException, ParseException {
+//        System.out.println(data);
         
         // Create empty book object
         Book book = new Book();
@@ -55,7 +56,7 @@ public class BookController {
         book.setPublicationDate(publicationDate);
         book.setTagline(jsonNode.get("tagline").asText());
         book.setTableOfContents(jsonNode.get("title").asText());
-        book.setBlurb(jsonNode.get("title").asText());
+        book.setBlurb(jsonNode.get("blurb").asText());
         book.setImageType(imageType);
         book.setImageBlob(imageBlob);
         book.setImageData(jsonNode.get("imageData").asText());
@@ -65,33 +66,30 @@ public class BookController {
         return new ResponseEntity<Object>(book, HttpStatus.CREATED);
     }
 
-    @GetMapping("/search")
-    private List<Book> getAllBook() {
-        return bookService.getAllBook();
-    }
 //    @GetMapping("/search")
-//    private ResponseEntity<Object> getAllBook() {
-//        return new ResponseEntity<Object>(bookService.getAllBook(), HttpStatus.OK);
-//  }
-
-    @GetMapping("/search/{search}")
-    private List<Book> getBook(@PathVariable("search") String search) {
-        return bookService.getBookBySearch(search);
-    }
-//    @GetMapping("/search/{search}")
-//    private ResponseEntity<Object> getBook(@PathVariable("search") String search) {
-//        return new ResponseEntity<Object>(bookService.getBookBySearch(search), HttpStatus.OK);
+//    private List<Book> getAllBook() {
+//        return bookService.getAllBook();
 //    }
+    @GetMapping("/search")
+    private ResponseEntity<Object> getAllBook() {
+        return new ResponseEntity<Object>(bookService.getAllBook(), HttpStatus.OK);
+  }
+
+//    @GetMapping("/search/{search}")
+//    private List<Book> getBook(@PathVariable("search") String search) {
+//        return bookService.getBookBySearch(search);
+//    }
+    @GetMapping("/search/{search}")
+    private ResponseEntity<Object> getBook(@PathVariable("search") String search) {
+        return new ResponseEntity<Object>(bookService.getBookBySearch(search), HttpStatus.OK);
+    }
 
     @GetMapping("/searchbyid/{id}")
-    private Book getBookByID(@PathVariable("id") Long id) {
-        return bookService.getBookByID(id).get();
+    private ResponseEntity<Object> getBookByID(@PathVariable("id") Long id) {
+        System.out.println("bookmicroservice.BookController.getBookByID(" + id + ")");
+        // need if() for null return
+        return new ResponseEntity<Object>(bookService.getBookByID(id).get(), HttpStatus.OK);
     }
-//    @GetMapping("/searchbyid/{id}")
-//    private ResponseEntity<Object> getBookByID(@PathVariable("id") Long id) {
-//        // need if() for null return
-//        return new ResponseEntity<Object>(bookService.getBookByID(id).get(), HttpStatus.OK);
-//    }
 
     @PutMapping("/updateBook")
     public ResponseEntity<Object> updatePatientRecord(@RequestBody Book book) throws Exception {

@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER } from "../actions/types";
+import {GET_CURRENT_ROLE, SET_CURRENT_USER} from "../actions/types";
 
 const initialState = {
   validToken: false,
@@ -14,6 +14,8 @@ const booleanActionPayload = payload => {
 };
 
 export default function(state = initialState, action) {
+  console.log("securityReducer.function()");
+  console.log(state);
   switch (action.type) {
     case SET_CURRENT_USER:
       return {

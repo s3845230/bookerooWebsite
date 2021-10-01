@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./BookInfo.css";
+import axios from "axios";
+import authHeader from "../../services/authHeader";
 
 function BookInfo({ match }) {
     useEffect(() => {
@@ -10,11 +12,13 @@ function BookInfo({ match }) {
     const [book, setBook] = useState({});
 
     const fetchBook = async () => {
-        const fetchBook = await fetch(
-            `http://localhost:8081/api/book/searchbyid/${match.params.id}`
-        );
-        const book = await fetchBook.json();
-        setBook(book);
+
+        axios.get(`http://localhost:8080/api/book/searchbyid/${match.params.id}`)
+            .then(
+                response => {
+                    console.log(response.data);
+                    setBook(response.data);
+                });
 
         console.log(book);
     }
