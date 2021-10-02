@@ -33,12 +33,6 @@ public class UserService {
             // We don't persist or show the confirmPassword
             newUser.setConfirmPassword("");
 
-            // Only automatically approve CUSTOMER users
-            for (Role role : newUser.getRoles()) {
-                // NOTE: Could potentially be abused if user has more than one role, may flip setApproved to true.
-                newUser.setApproved(role.getName().equals("CUSTOMER"));
-            }
-            
             return userRepository.save(newUser);
 
         }

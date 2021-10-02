@@ -39,6 +39,9 @@ class Landing extends Component {
                     Below are the available front-end pages that have been developed.
                   </p>
                   <hr />
+                  <Link className="btn btn-lg btn-primary mb-2 mr-2" to="/admin">
+                    Admin Functions
+                  </Link>
                   <Link className="btn btn-lg btn-primary mb-2 mr-2" to="/publisher">
                     Publisher Landing
                   </Link>

@@ -49,8 +49,6 @@ public class AuthenticationController {
     @Autowired
     private UserValidator userValidator;
 
-    // TODO: CLEAN UP /register API - ensure that passwords are being validated (shouldn't it be done in the front end?)
-
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody String data, BindingResult result) throws JsonProcessingException {
 
@@ -69,7 +67,11 @@ public class AuthenticationController {
         user.setConfirmPassword(jsonNode.get("confirmPassword").asText());
         user.addRole(new Role(jsonNode.get("accountRole").asText()));
 
-
+        // Only automatically approve CUSTOMER users
+        for (Role role : user.getRoles()) {
+            // NOTE: Could potentially be abused if user has more than one role, may flip setApproved to true.
+            user.setApproved(role.getName().equals("CUSTOMER"));
+        }
 
         // Validate passwords match
         userValidator.validate(user,result);

@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
-// import Dashboard from "./components/Dashboard";
 import Header from "./components/Layout/Header";
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap/dist/js/bootstrap.js';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-// import AddPerson from "./components/Persons/AddPerson";
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -24,6 +22,8 @@ import { SET_CURRENT_USER } from "./actions/types";
 import { logout } from "./actions/securityActions";
 import SecuredRoute from "./securityUtils/SecureRoute";
 import DevTestPage from "./components/DevTestPage";
+import AdminFunctions from "./components/Admin/AdminFunctions";
+import AddUser from "./components/Admin/AddUser";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -63,12 +63,14 @@ class App extends Component {
             <Route exact path="/devtestpage" component={DevTestPage} />
 
             {/*Private Routes*/}
-
-            {/*<Route exact path="/dashboard" component={Dashboard} />*/}
-            {/*<Route exact path="/addPerson" component={AddPerson} />*/}
+            <Route exact path="/searchResults" component={SearchResults} />
             <Route exact path="/publisher/uploadBook" component={UploadBook} />
             <Route path="/searchResults/:id" component={BookInfo} />
+            <Route exact path="/admin" component={AdminFunctions} />
+            <Route exact path="/admin/addUser" component={AddUser} />
 
+          </div>
+          <div>
             <Footer />
           </div>
         </Router>
