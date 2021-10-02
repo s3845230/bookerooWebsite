@@ -61,10 +61,18 @@ public class AuthenticationController {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
 
-        user.setFullName(jsonNode.get("fullName").asText());
         user.setUsername(jsonNode.get("username").asText());
+        user.setFullName(jsonNode.get("fullName").asText());
         user.setPassword(jsonNode.get("password").asText());
         user.setConfirmPassword(jsonNode.get("confirmPassword").asText());
+        user.setAddress(jsonNode.get("address").asText());
+        user.setSuburb(jsonNode.get("suburb").asText());
+        user.setState(jsonNode.get("state").asText());
+        user.setPostcode(jsonNode.get("postcode").asText());
+        user.setPhoneNumber(jsonNode.get("phoneNo").asText());
+        user.setAbn(jsonNode.get("ABN").asText());
+        user.addRole(new Role(jsonNode.get("accountRole").asText()));
+
         user.addRole(new Role(jsonNode.get("accountRole").asText()));
 
         // Only automatically approve CUSTOMER users

@@ -19,7 +19,7 @@ class Register extends Component {
       postcode: "",
       phoneNo: "",
       accountRole: "",
-      ABN: "",
+      ABN: null,
 
       // validation
       errors: {username: '', password: '', confirmPassword: ''},
@@ -197,13 +197,13 @@ class Register extends Component {
                 <div className="form-group">
                   <select className="form-control form-control-lg" name="state" value={this.state.state} onChange={this.onChange} required>
                     <option disabled value="">State</option>
-                    <option value="VIC">VIC</option>
                     <option value="ACT">ACT</option>
                     <option value="NSW">NSW</option>
                     <option value="QLD">QLD</option>
-                    <option value="WA">WA</option>
                     <option value="SA">SA</option>
                     <option value="TAS">TAS</option>
+                    <option value="WA">WA</option>
+                    <option value="VIC">VIC</option>
                   </select>
                 </div>
                 <div className="form-group">
@@ -222,7 +222,7 @@ class Register extends Component {
                   <input
                     type="tel"
                     name="phoneNo"
-                    pattern="[0-9]{4} [0-9]{3} [0-9]{3}"
+                    pattern="[0-9]{10}"
                     className="form-control form-control-lg"
                     placeholder="Phone Number"
                     value={this.state.phoneNo}
@@ -251,7 +251,7 @@ class Register extends Component {
                   <input
                     type="tel"
                     name="ABN"
-                    pattern="[0-9]{2} [0-9]{3} [0-9]{3} [0-9]{3}"
+                    pattern="[0-9]{11}"
                     className="form-control form-control-lg"
                     placeholder="ABN"
                     value={this.state.ABN}
