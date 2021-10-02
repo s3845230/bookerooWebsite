@@ -41,3 +41,12 @@ export const getAllBooks = (history) => async dispatch => {
     });
 };
 
+export const updateBook = (updatedBook, history) => async => {
+    try {
+        axios.patch("http://localhost:8080/api/book/updateBook", updatedBook, { headers: authHeader() });
+        history.push(`/admin`);
+    }
+    catch (err) {
+        console.log(err)
+    }
+};

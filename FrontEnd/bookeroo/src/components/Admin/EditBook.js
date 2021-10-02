@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import * as PropTypes from "prop-types";
-
 import { connect } from "react-redux";
-import { createBook } from "../../actions/bookActions";
+import { updateBook } from "../../actions/bookActions";
 
 class EditBook extends Component {
     constructor(props) {
@@ -36,7 +35,7 @@ class EditBook extends Component {
     onSubmit(e) {
         e.preventDefault();
         e.target.className += " was-validated";
-        const newBook = {
+        const updatedBook = {
             title: this.state.title,
             author: this.state.author,
             isbn: this.state.isbn,
@@ -51,10 +50,10 @@ class EditBook extends Component {
             imageData: this.state.imageData,
         }
 
-        console.log(newBook);
+        console.log(updatedBook);
 
         // need update action here
-        this.props.createBook(newBook, this.props.history);
+        this.props.updateBook(updatedBook, this.props.history);
     }
 
     /* Reads the image file for preview */
@@ -264,17 +263,14 @@ class EditBook extends Component {
     }
 }
 
-export default EditBook;
+EditBook.propTypes = {
+    updateBook: PropTypes.func.isRequired
+};
 
-// UploadBook.propTypes = {
-//     createBook: PropTypes.func.isRequired
-// };
+const mapStateToProps = state => ({
+    errors: state.errors
+});
 
-// export default withRouter(UploadBook);
-
-// const mapStateToProps = state => ({
-//     errors: state.errors
-// });
-// export default connect (
-//     mapStateToProps, { createBook }
-// ) (UploadBook)
+export default connect (
+    mapStateToProps, { updateBook }
+) (EditBook)
