@@ -257,7 +257,7 @@ class Register extends Component {
                     value={this.state.ABN}
                     onChange={this.onChange}
                     hidden={!this.state.showABN}
-                    required
+                    required={this.state.showABN}
                   />
                 </div>
                 <input disabled={!this.state.formValid} type="submit" className="btn btn-info btn-block mt-4" />
