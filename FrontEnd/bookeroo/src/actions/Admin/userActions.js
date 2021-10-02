@@ -1,5 +1,4 @@
 import axios from "axios";
-import { GET_ERRORS } from "./../types";
 
 export const adminCreateUser = (newUser, history) => async dispatch => {
     try {
@@ -8,9 +7,5 @@ export const adminCreateUser = (newUser, history) => async dispatch => {
     }
     catch (err) {
         console.log(err);
-        // dispatch ({
-        //     type: GET_ERRORS,
-        //     payload: err.response.data
-        // });
     }
 };

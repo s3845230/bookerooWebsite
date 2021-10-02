@@ -75,7 +75,7 @@ class AddUser extends Component {
         const name = e.target.name;
         const value = e.target.value;
         this.setState({ 
-            [e.target.name]: e.target.value 
+            [name]: value 
         }, () => { this.validateField(name, value) });
     }
 
@@ -100,6 +100,7 @@ class AddUser extends Component {
         this.props.adminCreateUser(newUser, this.props.history);
     }
 
+    // for displaying bootstrap validation error messages
     handleError(error) {
         return(error.length === 0 ? '' : 'is-invalid');
     }
@@ -112,6 +113,7 @@ class AddUser extends Component {
                         <div className="col-md-8 m-auto">
                             <h1 className="display-4 text-center">Add User</h1>
                             <form onSubmit={this.onSubmit}>
+                                {/* Email */}
                                 <div className="form-group">
                                     <input
                                         type="text"
@@ -126,6 +128,7 @@ class AddUser extends Component {
                                         {this.state.errors.username}
                                     </div>
                                 </div>
+                                {/* Full Name */}
                                 <div className="form-group">
                                     <input
                                         type="text"
@@ -136,10 +139,8 @@ class AddUser extends Component {
                                         onChange={this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Name cannot be Empty.
-                                    </div>
                                 </div>
+                                {/* Password */}
                                 <div className="form-group">
                                     <input
                                         type="password"
@@ -154,6 +155,7 @@ class AddUser extends Component {
                                         {this.state.errors.password}
                                     </div>
                                 </div>
+                                {/* Confirm Password */}
                                 <div className="form-group">
                                     <input
                                         type="password"
@@ -180,6 +182,7 @@ class AddUser extends Component {
                                         required
                                     />
                                 </div>
+                                {/* Suburb */}
                                 <div className="form-group">
                                     <input
                                         type="text"
@@ -191,6 +194,7 @@ class AddUser extends Component {
                                         required
                                     />
                                 </div>
+                                {/* State */}
                                 <div className="form-group">
                                     <select className="form-control form-control-lg" name="state" value={this.state.state} onChange={this.onChange} required>
                                         <option disabled value="">State</option>
@@ -203,6 +207,7 @@ class AddUser extends Component {
                                         <option value="TAS">TAS</option>
                                     </select>
                                 </div>
+                                {/* Postcode */}
                                 <div className="form-group">
                                     <input
                                         type="number"
@@ -226,9 +231,6 @@ class AddUser extends Component {
                                         onChange={this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Phone Number cannot be Empty.
-                                    </div>
                                 </div>
                                 {/*Type of Account*/}
                                 <div className="form-group" style={{paddingTop:"15px"}}>
@@ -238,9 +240,6 @@ class AddUser extends Component {
                                         <option value="PUBLISHER">Publisher</option>
                                         <option value="ADMIN">Admin</option>
                                     </select>
-                                    <div className="invalid-feedback">
-                                        Need to select an option.
-                                    </div>
                                 </div>
                                 {/*ABN*/}
                                 {/* Displays only if Publisher Role is selected */}
