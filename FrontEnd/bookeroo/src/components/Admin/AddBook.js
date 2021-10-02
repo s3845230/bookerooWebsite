@@ -337,6 +337,10 @@ AddBook.propTypes = {
     adminCreateBook: PropTypes.func.isRequired
 };
 
+const mapStateToProps = state => ({
+    errors: state.errors
+});
+
 export default connect (
-    { adminCreateBook }
+    mapStateToProps, { adminCreateBook }
 ) (AddBook)
