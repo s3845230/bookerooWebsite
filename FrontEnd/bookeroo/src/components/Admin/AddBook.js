@@ -34,28 +34,29 @@ class AddBook extends Component {
     }
 
     validateField(fieldName, value) {
-        let fieldValidationErrors = this.state.errors;
+        let errorMessages = this.state.errors;
         let sellerValid = this.state.sellerValid;
         let titleValid = this.state.titleValid;
 
         switch(fieldName) {
             case 'seller':
                 sellerValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-                fieldValidationErrors.seller = sellerValid ? '' : 'Seller is in incorrect format';
+                errorMessages.seller = sellerValid ? '' : 'Seller is in incorrect format';
                 break;
             case 'title':
                 titleValid = value.length >= 3;
-                fieldValidationErrors.title = titleValid ? '': 'Title is too short';
+                errorMessages.title = titleValid ? '': 'Title is too short';
                 break;
             default:
                 break;
         }
-        this.setState({errors: fieldValidationErrors,
+        this.setState({errors: errorMessages,
                         sellerValid: sellerValid,
                         titleValid: titleValid
         }, this.validateForm);
     }
 
+    // makes sure there's no error, otherwise disables form submit button
     validateForm() {
         this.setState({formValid: this.state.sellerValid && this.state.titleValid});
     }
@@ -68,10 +69,9 @@ class AddBook extends Component {
         }, () => { this.validateField(name, value) });
     }
     
-    async onSubmit(e) {
+    onSubmit(e) {
         e.preventDefault();
         e.target.className += " was-validated";
-        // use if else for checking seller is valid
         const newBook = {
             seller: this.state.seller,
             title: this.state.title,
@@ -90,7 +90,7 @@ class AddBook extends Component {
 
         console.log(newBook);
 
-        this.props.adminCreateBook(newBook, this.props.history);
+        this.props.adminCreateBook(newBook);
     }
 
     /* Reads the image file for preview */
@@ -104,6 +104,7 @@ class AddBook extends Component {
         bookCoverReader.readAsDataURL(e.target.files[0])
     }
 
+    // for bootstrap validation message popup
     handleError(error) {
         return(error.length === 0 ? '' : 'is-invalid');
     }
@@ -131,6 +132,7 @@ class AddBook extends Component {
                                         {this.state.errors.seller}
                                     </div>
                                 </div>
+                                
                                 {/*Title*/}
                                 <div className="form-group">
                                     <label htmlFor="title">Title</label>
@@ -160,9 +162,6 @@ class AddBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Author cannot be Empty.
-                                    </div>
                                 </div>
 
                                 {/*ISBN*/}
@@ -177,9 +176,6 @@ class AddBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        ISBN cannot be Empty.
-                                    </div>
                                 </div>
 
                                 {/*Genre*/}
@@ -194,9 +190,6 @@ class AddBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Genre cannot be Empty.
-                                    </div>
                                 </div>
 
                                 {/*Type of Book*/}
@@ -208,9 +201,6 @@ class AddBook extends Component {
                                         <option value="new">New Book</option>
                                         <option value="old">Second Hand Book</option>
                                     </select>
-                                    <div className="invalid-feedback">
-                                        Need to select an option.
-                                    </div>
                                 </div>
 
                                 {/*Price*/}
@@ -221,15 +211,11 @@ class AddBook extends Component {
                                         className = "form-control form-control-lg"
                                         name = "price"
                                         placeholder = "Price"
-                                        // decimalsLimit = {2}
                                         min={1}
                                         value = {this.state.price}
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Book needs a price.
-                                    </div>
                                 </div>
 
                                 {/*Publisher*/}
@@ -244,9 +230,6 @@ class AddBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Publisher cannot be Empty.
-                                    </div>
                                 </div>
 
                                 {/*Date of Publication*/}
@@ -261,9 +244,6 @@ class AddBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Date cannot be Empty.
-                                    </div>
                                 </div>
 
                                 {/*Tagline*/}
@@ -280,9 +260,6 @@ class AddBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Please enter at least one tagline.
-                                    </div>
                                 </div>
 
                                 {/*Table of Contents*/}
@@ -299,9 +276,6 @@ class AddBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Every book needs a Table of Contents.
-                                    </div>
                                 </div>
 
                                 {/*Blurb*/}
@@ -318,9 +292,6 @@ class AddBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Every book needs a Blurb.
-                                    </div>
                                 </div>
 
                                 {/*Book Cover*/}
@@ -337,9 +308,6 @@ class AddBook extends Component {
                                     {/*Book Cover Preview*/}
                                     <div className="col-xs-6 col-md-3">
                                         <img src={this.state.imageData} />
-                                    </div>
-                                    <div className="invalid-feedback">
-                                        Need a Book Cover.
                                     </div>
                                 </div>
                                 <input disabled={!this.state.formValid} type="submit" className="btn btn-primary btn-lg btn-block mt-4" data-toggle="modal" data-target="#successModal" />
@@ -369,10 +337,6 @@ AddBook.propTypes = {
     adminCreateBook: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-    errors: state.errors
-});
-
 export default connect (
-    mapStateToProps, { adminCreateBook }
+    { adminCreateBook }
 ) (AddBook)
