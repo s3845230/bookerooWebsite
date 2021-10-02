@@ -1,10 +1,7 @@
 package com.rmit.sept.bookmicroservice.model;
 
-import com.rmit.sept.bookmicroservice.helper.Base64Helper;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -48,7 +45,7 @@ public class Book {
     private String publisher;
 
     //    @NotBlank(message = "Book requires publicationDate")
-    private Date publicationDate;
+    private java.sql.Date publicationDate;
 
     //    @NotBlank(message = "Book requires tagline")
     private String tagline;
@@ -68,10 +65,8 @@ public class Book {
     @Lob
     private byte[] imageBlob;
 
-    private Date created_at;
-    private Date updated_at;
-
-
+    private java.util.Date created_at;
+    private java.util.Date updated_at;
 
     @Transient
     private String imageData;
@@ -104,8 +99,8 @@ public class Book {
     public String getPublisher() {return publisher;}
     public void setPublisher(String publisher) {this.publisher = publisher;}
 
-    public Date getPublicationDate() {return publicationDate;}
-    public void setPublicationDate(Date publicationDate) {this.publicationDate = publicationDate;}
+    public java.sql.Date getPublicationDate() {return publicationDate;}
+    public void setPublicationDate(java.sql.Date publicationDate) {this.publicationDate = publicationDate;}
 
     public String getTagline() {return tagline;}
     public void setTagline(String tagLine) {this.tagline = tagLine;}
@@ -135,10 +130,10 @@ public class Book {
 
     @PrePersist
     protected void onCreation(){
-        this.created_at = new Date();
+        this.created_at = new java.util.Date();
     }
     protected void onUpdate(){
-        this.updated_at = new Date();
+        this.updated_at = new java.util.Date();
     }
 
 

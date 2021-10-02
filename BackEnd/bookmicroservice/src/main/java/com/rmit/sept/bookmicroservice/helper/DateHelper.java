@@ -5,13 +5,13 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class DateHelper {
-    
-    public static Date stringToDate(String dateString) {
+
+    static SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+    public static Date jsonToDate(String dateString) {
         Date date = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         try {
-            // TODO: df.parse() is parsing Day as Month and vice versa
             date = df.parse(dateString);
         }
         catch (ParseException e) {
@@ -19,5 +19,10 @@ public class DateHelper {
         }
         return date;
     }
-    
+
+    public static String dateToJson(Date date) {
+        String dateString = df.format(date);
+        return dateString.substring(0, 10);
+    }
+
 }

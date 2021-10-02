@@ -13,8 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 import java.util.Optional;
 
 
@@ -43,7 +42,7 @@ public class BookController {
         byte[] imageBlob = Base64Helper.base64ToByteStream(jsonNode.get("imageData").asText());
 
         // Convert JSON date to Java Date object
-        Date publicationDate = DateHelper.stringToDate(jsonNode.get("publicationDate").asText());
+//        Date publicationDate = DateHelper.jsonToDate(jsonNode.get("publicationDate").asText());
 
         // Write jsonNode data to book object
         book.setTitle(jsonNode.get("title").asText());
@@ -53,7 +52,12 @@ public class BookController {
         book.setType(jsonNode.get("type").asText());
         book.setPrice(jsonNode.get("price").asDouble());
         book.setPublisher(jsonNode.get("publisher").asText());
-        book.setPublicationDate(publicationDate);
+        
+        
+//        book.setPublicationDate(publicationDate);
+        book.setPublicationDate(Date.valueOf(jsonNode.get("publicationDate").asText()));
+        
+        
         book.setTagline(jsonNode.get("tagline").asText());
         book.setTableOfContents(jsonNode.get("title").asText());
         book.setBlurb(jsonNode.get("blurb").asText());

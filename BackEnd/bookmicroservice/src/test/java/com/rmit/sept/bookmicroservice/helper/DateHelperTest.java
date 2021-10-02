@@ -16,7 +16,7 @@ public class DateHelperTest {
         String dateString = "2021-01-01";
         Date date = df.parse(dateString);
         
-        assertEquals(date, DateHelper.stringToDate(dateString));
+        assertEquals(date, DateHelper.jsonToDate(dateString));
     }
 
 }
