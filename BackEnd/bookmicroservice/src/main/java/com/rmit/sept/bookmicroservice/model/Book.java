@@ -4,7 +4,9 @@ import com.rmit.sept.bookmicroservice.helper.Base64Helper;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,6 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "books")
 
 public class Book {
     
@@ -71,7 +74,9 @@ public class Book {
     private Date created_at;
     private Date updated_at;
 
-
+    // https://stackoverflow.com/questions/52004135/spring-boot-jpa-how-to-implement-foreign-key-between-users-and-authorities-table
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, orphanRemoval = false)
+    private List<Review> listReviews = new ArrayList<>();
 
     @Transient
     private String imageData;
