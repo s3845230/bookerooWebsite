@@ -17,6 +17,7 @@ import UploadBook from "./components/BookManagement/UploadBook";
 import Footer from "./components/Layout/Footer";
 import SearchResults from "./components/ViewBooks/SearchResults";
 import BookInfo from "./components/ViewBooks/BookInfo";
+import AdminFunctions from "./components/Admin/AdminFunctions";
 
 import jwt_decode from "jwt-decode";
 import setJWTToken from "./securityUtils/setJWTToken";
@@ -24,6 +25,8 @@ import { SET_CURRENT_USER } from "./actions/types";
 import { logout } from "./actions/securityActions";
 import SecuredRoute from "./securityUtils/SecureRoute";
 import DevTestPage from "./components/DevTestPage";
+import ViewBooks from "./components/Admin/ViewBooks";
+import EditBook from "./components/Admin/EditBook";
 
 const jwtToken = localStorage.jwtToken;
 
@@ -67,7 +70,11 @@ class App extends Component {
             {/*<Route exact path="/dashboard" component={Dashboard} />*/}
             {/*<Route exact path="/addPerson" component={AddPerson} />*/}
             <Route exact path="/publisher/uploadBook" component={UploadBook} />
+            <Route exact path="/searchResults" component={SearchResults} />
             <Route path="/searchResults/:id" component={BookInfo} />
+            <Route exact path="/admin" component={AdminFunctions} />
+            <Route exact path="/admin/viewAllBooks" component={ViewBooks} />
+            <Route path="/admin/viewAllBooks/editBook/:id" component={EditBook} />
 
             <Footer />
           </div>
