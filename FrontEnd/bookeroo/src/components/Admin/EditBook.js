@@ -35,7 +35,7 @@ class EditBook extends Component {
     onSubmit(e) {
         e.preventDefault();
         e.target.className += " was-validated";
-        const updatedBook = {
+        const book = {
             title: this.state.title,
             author: this.state.author,
             isbn: this.state.isbn,
@@ -50,10 +50,9 @@ class EditBook extends Component {
             imageData: this.state.imageData,
         }
 
-        console.log(updatedBook);
+        console.log(book);
 
-        // need update action here
-        this.props.updateBook(updatedBook, this.props.history);
+        this.props.updateBook(book, this.props.history);
     }
 
     /* Reads the image file for preview */
@@ -266,6 +265,11 @@ class EditBook extends Component {
 EditBook.propTypes = {
     updateBook: PropTypes.func.isRequired
 };
+// export default EditBook;
+
+// UploadBook.propTypes = {
+//     createBook: PropTypes.func.isRequired
+// };
 
 const mapStateToProps = state => ({
     errors: state.errors

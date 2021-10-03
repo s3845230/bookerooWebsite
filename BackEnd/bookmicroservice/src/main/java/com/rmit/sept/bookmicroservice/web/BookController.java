@@ -77,15 +77,19 @@ public class BookController {
     }
 
     @PutMapping("/updateBook")
-    public ResponseEntity<Object> updatePatientRecord(@RequestBody Book book) throws Exception {
+    public ResponseEntity<Object> updateBook(@RequestBody Book book) throws Exception {
+        System.out.println("bookmicroservice.BookController.updateBook()");
+        
         if (book == null || book.getBookId() == null) {
             throw new IllegalArgumentException("Book or BookID must not be null!");
         }
+
         Optional<Book> optionalBook = bookService.getBookByID(book.getBookId());
-        if (optionalBook.isPresent() == false) {
+        if (!optionalBook.isPresent()) {
             throw new IllegalArgumentException("Book with ID " + book.getBookId() + " does not exist.");
         }
-        Book existingBook = optionalBook.get();
+
+//        Book existingBook = optionalBook.get();
 
         bookService.saveOrUpdateBook(book);
         return new ResponseEntity<Object>(book, HttpStatus.CREATED);
