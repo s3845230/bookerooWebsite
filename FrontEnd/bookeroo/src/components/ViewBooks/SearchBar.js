@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from "react-router";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { getBooks, getAllBooks } from "../../actions/bookActions";
 
 class SearchBar extends Component {
     constructor() {
         super();
 
         this.state = {
-            // for search
             search: "",
             books: []
         };
@@ -39,7 +35,6 @@ class SearchBar extends Component {
         e.preventDefault();
         const search = this.state.search
 
-        // this.props.getAllBooks(this.props.history);
         // if search not empty
         if (search) {
             axios.get(`http://localhost:8080/api/book/search/${search}`)
@@ -58,8 +53,6 @@ class SearchBar extends Component {
             .then((result) => {
                 this.setState({ books: result.data})
                 console.log(result.data);
-
-                // console.log(this.state.books[0]);
             })
         }
     }
@@ -91,18 +84,5 @@ class SearchBar extends Component {
         )
     }
 }
+
 export default withRouter(SearchBar);
-
-// SearchBar.propTypes = {
-//     getAllBooks: PropTypes.func.isRequired,
-//     books: PropTypes.object.isRequired
-// };
-
-// const mapStateToProps = state => ({
-//     books: state.books
-// });
-
-// export default connect(
-//     mapStateToProps,
-//     { getAllBooks }
-// )(SearchBar);

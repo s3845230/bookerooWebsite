@@ -72,7 +72,6 @@ class UploadBook extends Component {
     }  
 
     render() {
-        const { errors, imageData } = this.state;
         return (
             <div className="uploadBook">
                 <div className="container">
@@ -81,8 +80,6 @@ class UploadBook extends Component {
                     <div className="row">
                         <div className="col">
                             <form className="needs-validation" onSubmit={this.onSubmit} noValidate>
-                            {/*<form onSubmit={this.onSubmit}>*/}
-
                                 {/*Title*/}
                                 <div className="form-group">
                                     <label htmlFor="title">Title</label>
@@ -95,9 +92,6 @@ class UploadBook extends Component {
                                         onChange={this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Title cannot be Empty.
-                                    </div>
                                 </div>
 
                                 {/*Author*/}
@@ -112,9 +106,6 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Author cannot be Empty.
-                                    </div>
                                 </div>
 
                                 {/*ISBN*/}
@@ -129,9 +120,6 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        ISBN cannot be Empty.
-                                    </div>
                                 </div>
 
                                 {/*Genre*/}
@@ -146,9 +134,6 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Genre cannot be Empty.
-                                    </div>
                                 </div>
 
                                 {/*Type of Book*/}
@@ -160,9 +145,6 @@ class UploadBook extends Component {
                                         <option value="new">New Book</option>
                                         <option value="old">Second Hand Book</option>
                                     </select>
-                                    <div className="invalid-feedback">
-                                        Need to select an option.
-                                    </div>
                                 </div>
 
                                 {/*Price*/}
@@ -179,9 +161,6 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Book needs a price.
-                                    </div>
                                 </div>
 
                                 {/*Publisher*/}
@@ -196,9 +175,6 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Publisher cannot be Empty.
-                                    </div>
                                 </div>
 
                                 {/*Date of Publication*/}
@@ -213,9 +189,6 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Date cannot be Empty.
-                                    </div>
                                 </div>
 
                                 {/*Tagline*/}
@@ -232,9 +205,6 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Please enter at least one tagline.
-                                    </div>
                                 </div>
 
                                 {/*Table of Contents*/}
@@ -251,9 +221,6 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Every book needs a Table of Contents.
-                                    </div>
                                 </div>
 
                                 {/*Blurb*/}
@@ -270,12 +237,8 @@ class UploadBook extends Component {
                                         onChange = {this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
-                                        Every book needs a Blurb.
-                                    </div>
                                 </div>
 
-                                {/*TODO: Why doesn't BackEnd support the image format in the json?*/}
                                 {/*Book Cover*/}
                                 <div className="form-group">
                                     <label htmlFor="imageData">Upload Book Cover</label>
@@ -291,9 +254,6 @@ class UploadBook extends Component {
                                     <div className="col-xs-6 col-md-3">
                                         <img src={this.state.imageData} />
                                     </div>
-                                    <div className="invalid-feedback">
-                                        Need a Book Cover.
-                                    </div>
                                 </div>
                                 <input type="submit" className="btn btn-primary btn-lg btn-block mt-4" />
                             </form>
@@ -308,8 +268,6 @@ class UploadBook extends Component {
 UploadBook.propTypes = {
     createBook: PropTypes.func.isRequired
 };
-
-// export default withRouter(UploadBook);
 
 const mapStateToProps = state => ({
     errors: state.errors
