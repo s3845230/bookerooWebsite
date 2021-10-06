@@ -84,17 +84,16 @@ public class BookController {
     }
 
     @PutMapping("/updateBook")
-    public ResponseEntity<Object> updatePatientRecord(@RequestBody Book book) throws Exception {
-        if (book == null || book.getBookId() == null) {
-            throw new IllegalArgumentException("Book or BookID must not be null!");
+    public ResponseEntity<Object> updateBook(@RequestBody String data) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(data);
+        if (jsonNode.get("id").asText() == null) {
+            throw new IllegalArgumentException("BookID must not be null!");
         }
-        Optional<Book> optionalBook = bookService.getBookByID(book.getBookId());
+        Optional<Book> optionalBook = bookService.getBookByID(Long.valueOf(jsonNode.get("id").asText()));
         if (optionalBook.isPresent() == false) {
-            throw new IllegalArgumentException("Book with ID " + book.getBookId() + " does not exist.");
+            throw new IllegalArgumentException("Book with ID " + jsonNode.get("id").asText() + " does not exist.");
         }
-        Book existingBook = optionalBook.get();
-
-        bookService.saveOrUpdateBook(book);
-        return new ResponseEntity<Object>(book, HttpStatus.CREATED);
+        return createNewBook(data);
     }
 }
