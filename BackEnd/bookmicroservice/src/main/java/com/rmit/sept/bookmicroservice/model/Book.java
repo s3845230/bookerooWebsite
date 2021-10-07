@@ -1,7 +1,6 @@
 package com.rmit.sept.bookmicroservice.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +17,7 @@ public class Book {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookId;
+    private Long id;
 
     //this probably needs @min @max if isbn has a set size
 //    @NotBlank(message = "Book requires isbn")
@@ -75,8 +74,8 @@ public class Book {
     Getters & Setters
      */
 
-    public Long getId() {return bookId;}
-    public void setId(Long bookId) {this.bookId = bookId;}
+    public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
 
     public String getIsbn() {return isbn;}
     public void setIsbn(String isbn) {this.isbn = isbn;}

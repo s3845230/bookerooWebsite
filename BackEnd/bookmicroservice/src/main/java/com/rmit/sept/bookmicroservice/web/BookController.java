@@ -76,17 +76,42 @@ public class BookController {
         return new ResponseEntity<Object>(bookService.getBookByID(id).get(), HttpStatus.OK);
     }
 
-    @PutMapping("/updateBook")
+    @PutMapping("/update")
     public ResponseEntity<Object> updateBook(@RequestBody String data) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
-        if (jsonNode.get("bookId").asText() == null) {
-            throw new IllegalArgumentException("BookID must not be null!");
+        if (jsonNode.get("id").asText() == null) {
+            throw new IllegalArgumentException("id must not be null!");
         }
-//        Optional<Book> optionalBook = bookService.getBookByID(Long.valueOf(jsonNode.get("id").asText()));
+        Optional<Book> optionalBook = bookService.getBookByID(Long.valueOf(jsonNode.get("id").asText()));
 //        if (optionalBook.isPresent() == false) {
 //            throw new IllegalArgumentException("Book with ID " + jsonNode.get("id").asText() + " does not exist.");
 //        }
-        return createNewBook(data);
+        Book book = optionalBook.get();
+
+        // Separate jsonNode imageData into imageType and imageBlob
+        String imageType = Base64Helper.base64ToDataType(jsonNode.get("imageData").asText());
+        byte[] imageBlob = Base64Helper.base64ToByteStream(jsonNode.get("imageData").asText());
+
+        // Write jsonNode data to book object
+        book.setId(jsonNode.get("id").asLong());
+        book.setTitle(jsonNode.get("title").asText());
+        book.setAuthor(jsonNode.get("author").asText());
+        book.setIsbn(jsonNode.get("isbn").asText());
+        book.setGenre(jsonNode.get("genre").asText());
+        book.setType(jsonNode.get("type").asText());
+        book.setPrice(jsonNode.get("price").asDouble());
+        book.setPublisher(jsonNode.get("publisher").asText());
+        book.setPublicationDate(Date.valueOf(jsonNode.get("publicationDate").asText()));
+        book.setTagline(jsonNode.get("tagline").asText());
+        book.setTableOfContents(jsonNode.get("title").asText());
+        book.setBlurb(jsonNode.get("blurb").asText());
+        book.setImageType(imageType);
+        book.setImageBlob(imageBlob);
+//        book.setImageData(jsonNode.get("imageData").asText());
+//        book.setBookSeller(jsonNode.get("bookSeller").asText());
+
+        bookService.saveOrUpdateBook(book);
+        return new ResponseEntity<Object>(book, HttpStatus.CREATED);
     }
 }

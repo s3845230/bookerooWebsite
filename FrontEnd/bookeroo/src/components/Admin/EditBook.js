@@ -8,7 +8,7 @@ class EditBook extends Component {
         super();
 
         this.state = {
-            bookId: props.location.state.book.bookId,
+            id: props.location.state.book.id,
             title: props.location.state.book.title,
             author: props.location.state.book.author,
             isbn: props.location.state.book.isbn,
@@ -37,7 +37,7 @@ class EditBook extends Component {
         e.preventDefault();
         e.target.className += " was-validated";
         const book = {
-            bookId: this.state.bookId,
+            id: this.state.id,
             title: this.state.title,
             author: this.state.author,
             isbn: this.state.isbn,

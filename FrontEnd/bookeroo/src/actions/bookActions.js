@@ -26,7 +26,7 @@ export const getAllBooks = (history) => async dispatch => {
 
 export const updateBook = (updatedBook, history) => async => {
     try {
-        axios.put(`http://localhost:8080/api/book/updateBook`, updatedBook, { headers: authHeader() });
+        axios.put(`http://localhost:8080/api/book/update`, updatedBook, { headers: authHeader() });
         history.push(`/admin`);
     }
     catch (err) {

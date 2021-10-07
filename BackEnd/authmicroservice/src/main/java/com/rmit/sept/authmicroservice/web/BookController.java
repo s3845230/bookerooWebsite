@@ -1,13 +1,8 @@
 package com.rmit.sept.authmicroservice.web;
 
 import com.rmit.sept.authmicroservice.security.SecurityConstant;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Optional;
 
 /*
 This class acts as a REST request relay between the FrontEnd and bookmicroservice. It has been implemented this way to allow authmicroservice to perform any authorisation actions before allowing the api requests to be sent to the bookmicroservice. This means that no user authorisation has to be performed in bookmicroservice.
@@ -56,11 +51,11 @@ public class BookController {
         return restTemplate.getForObject(uri, String.class, id);
     }
 
-    @PutMapping("/updateBook")
+    @PutMapping("/update")
     public void updateBook(@RequestBody String data) {
         System.out.println("authmicroservice.BookController.updateBook()");
 
-        String uri = bookmicroserviceUrl + "/updateBook";
+        String uri = bookmicroserviceUrl + "/update";
 
         restTemplate.put(uri, data, String.class);
     }
