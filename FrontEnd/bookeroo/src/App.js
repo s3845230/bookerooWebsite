@@ -67,7 +67,6 @@ class App extends Component {
             {/*Private Routes*/}
             <Route exact path="/searchResults" component={SearchResults} />
             <Route exact path="/publisher/uploadBook" component={UploadBook} />
-            <Route exact path="/searchResults" component={SearchResults} />
             <Route path="/searchResults/:id" component={BookInfo} />
             <Route exact path="/admin" component={AdminFunctions} />
             <Route exact path="/admin/addUser" component={AddUser} />

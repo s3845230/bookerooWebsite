@@ -267,11 +267,6 @@ class EditBook extends Component {
 EditBook.propTypes = {
     updateBook: PropTypes.func.isRequired
 };
-// export default EditBook;
-
-// UploadBook.propTypes = {
-//     createBook: PropTypes.func.isRequired
-// };
 
 const mapStateToProps = state => ({
     errors: state.errors
