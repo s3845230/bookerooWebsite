@@ -1,7 +1,37 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 class AdminFunctions extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            books: []
+        };
+
+        this.fetchBooks = this.fetchBooks.bind(this);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.books !== this.state.books) {
+            this.props.history.push({
+                pathname: '/admin/viewAllBooks',
+                state: { books: this.state.books }
+            });
+        }
+    }
+
+    fetchBooks(e) {
+        e.preventDefault();
+        axios.get(`http://localhost:8080/api/book/search`)
+        // return results
+        .then((result) => {
+            this.setState({ books: result.data})
+            console.log(result.data);
+        })
+    }
+
     render() {
         return (
             <div className="adminMenu">
@@ -23,9 +53,9 @@ class AdminFunctions extends Component {
                                         <Link className="btn btn-lg btn-primary mb-5 mr-3" to="/admin/addBook">
                                             Add Book
                                         </Link>
-                                        <Link className="btn btn-lg btn-primary mb-5 mr-3" to="/admin/viewAllBooks">
+                                        <button className="btn btn-lg btn-primary mb-5 mr-3" onClick={this.fetchBooks}>
                                             View All Books
-                                        </Link>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

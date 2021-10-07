@@ -66,8 +66,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                         "/api/book/searchbyid/**").permitAll()
                 .antMatchers("/api/book/new/**").hasAnyAuthority("PUBLISHER", "ADMIN")
                 .antMatchers("/api/user/**",
-                                        "/api/book/edit/**",
+                                        "/api/book/updateBook/**",
                                         "/api/book/delete/**").hasAuthority("ADMIN")
+                .antMatchers("/api/user/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated();
 
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

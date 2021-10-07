@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rmit.sept.bookmicroservice.helper.Base64Helper;
-import com.rmit.sept.bookmicroservice.helper.DateHelper;
 import com.rmit.sept.bookmicroservice.model.Book;
 import com.rmit.sept.bookmicroservice.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 import java.util.Optional;
 
 
@@ -28,8 +26,7 @@ public class BookController {
 
     @PostMapping("/new")
     public ResponseEntity<Object> createNewBook(@RequestBody String data) throws JsonProcessingException, ParseException {
-//        System.out.println(data);
-        
+
         // Create empty book object
         Book book = new Book();
 
@@ -38,12 +35,8 @@ public class BookController {
         JsonNode jsonNode = objectMapper.readTree(data);
 
         // Separate jsonNode imageData into imageType and imageBlob
-
         String imageType = Base64Helper.base64ToDataType(jsonNode.get("imageData").asText());
         byte[] imageBlob = Base64Helper.base64ToByteStream(jsonNode.get("imageData").asText());
-
-        // Convert JSON date to Java Date object
-        Date publicationDate = DateHelper.stringToDate(jsonNode.get("publicationDate").asText());
 
         // Write jsonNode data to book object
         book.setTitle(jsonNode.get("title").asText());
@@ -53,14 +46,14 @@ public class BookController {
         book.setType(jsonNode.get("type").asText());
         book.setPrice(jsonNode.get("price").asDouble());
         book.setPublisher(jsonNode.get("publisher").asText());
-        book.setPublicationDate(publicationDate);
+        book.setPublicationDate(Date.valueOf(jsonNode.get("publicationDate").asText()));
         book.setTagline(jsonNode.get("tagline").asText());
         book.setTableOfContents(jsonNode.get("title").asText());
         book.setBlurb(jsonNode.get("blurb").asText());
         book.setImageType(imageType);
         book.setImageBlob(imageBlob);
-        book.setImageData(jsonNode.get("imageData").asText());
-        book.setBookSeller(jsonNode.get("bookSeller").asText());
+//        book.setImageData(jsonNode.get("imageData").asText());
+//        book.setBookSeller(jsonNode.get("bookSeller").asText());
 
         bookService.saveOrUpdateBook(book);
         return new ResponseEntity<Object>(book, HttpStatus.CREATED);
@@ -87,13 +80,13 @@ public class BookController {
     public ResponseEntity<Object> updateBook(@RequestBody String data) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(data);
-        if (jsonNode.get("id").asText() == null) {
+        if (jsonNode.get("bookId").asText() == null) {
             throw new IllegalArgumentException("BookID must not be null!");
         }
-        Optional<Book> optionalBook = bookService.getBookByID(Long.valueOf(jsonNode.get("id").asText()));
-        if (optionalBook.isPresent() == false) {
-            throw new IllegalArgumentException("Book with ID " + jsonNode.get("id").asText() + " does not exist.");
-        }
+//        Optional<Book> optionalBook = bookService.getBookByID(Long.valueOf(jsonNode.get("id").asText()));
+//        if (optionalBook.isPresent() == false) {
+//            throw new IllegalArgumentException("Book with ID " + jsonNode.get("id").asText() + " does not exist.");
+//        }
         return createNewBook(data);
     }
 }

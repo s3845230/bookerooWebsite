@@ -1,5 +1,6 @@
 import axios from "axios";
 import authHeader from "../services/authHeader";
+import {GET_ALL_BOOKS} from "./types";
 
 export const createBook = (newBook, history) => async dispatch => {
     try {
@@ -13,3 +14,22 @@ export const createBook = (newBook, history) => async dispatch => {
         console.log(err)
     }
 }
+
+export const getAllBooks = (history) => async dispatch => {
+    const response = await axios.get(`http://localhost:8080/api/book/search`);
+    history.push("/searchResults");
+    dispatch({
+      type: GET_ALL_BOOKS,
+      payload: response.data
+    });
+};
+
+export const updateBook = (updatedBook, history) => async => {
+    try {
+        axios.put(`http://localhost:8080/api/book/updateBook`, updatedBook, { headers: authHeader() });
+        history.push(`/admin`);
+    }
+    catch (err) {
+        console.log(err)
+    }
+};

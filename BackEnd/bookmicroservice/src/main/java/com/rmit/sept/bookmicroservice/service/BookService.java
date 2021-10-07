@@ -47,6 +47,7 @@ public class BookService {
                 uniqueBooks.add(currentBook);
             }
         }
+
         return uniqueBooks;
     }
 

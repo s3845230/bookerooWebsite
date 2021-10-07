@@ -103,29 +103,19 @@ public class AuthenticationController {
         if (errorMap != null) {
             return errorMap;
         }
-        
-        /*
-        User Login Approval Validation
-        Author: Roman O'Brien
 
-        This simple method ensures that a non-approved user is not able to log in, by having the Spring Security AuthenticationManager fail to find a user with the same username (as we've appended a nonsense string to it).
-
-        Yes, this is not an elegant solution, but it fulfils the core requirement of this system - which is to not provide a non-approved user with a valid JWT. Otherwise this would give them an annoying attack vector, and we'd have to do a check on every single authorisation request to check whether the user is valid or not. Alternatively, we may be able to override the Spring Security AuthenticationProvider and have it reject based on the value of user.isApproved().
-         */
 
         User user = userRepository.findByUsername(loginRequest.getUsername());
-        String isApproved = "";
-//        if (!user.isApproved()) {
-//            System.out.println("LOGIN REJECTED - USER NOT APPROVED");
-//            isApproved = "NotApproved";
-//        }
+        /*
+        TODO: USER APPROVAL VALIDATION LOGIC
+         */
         
         System.out.println(loginRequest.getUsername());
         System.out.println(loginRequest.getPassword());
         
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsername() + isApproved,
+                        loginRequest.getUsername(),
                         loginRequest.getPassword()
                 )
         );
