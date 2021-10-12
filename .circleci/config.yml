@@ -4,13 +4,29 @@ jobs:
     machine: true
     steps:
       - checkout
-#     BOOK MICROSERVICE
+#     INSTALL AWS CLI
+      - run: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install
+#     AUTHENTICATE TO ECR REPOSITORY
+      - run: aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com
+
+#     TEST & BUILD BOOKMICROSERVICE
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw test
       - run: docker build -t septteam3/bookmicroservice ./BackEnd/bookmicroservice/
-#     AUTH MICROSERVICE
+#     PUSH IMAGE TO REGISTRY
+      - run: docker tag bookmicroservice:latest 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com/bookmicroservice:latest
+      - run: docker push 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com/bookmicroservice:latest
+
+#     TEST & BUILD AUTHMICROSERVICE
       - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
       - run: cd ./BackEnd/authmicroservice/ && ./mvnw test
       - run: docker build -t septteam3/authmicroservice ./BackEnd/authmicroservice/
-#      BOOKEROO (REACT)
+#     PUSH IMAGE TO REGISTRY
+      - run: docker tag authmicroservice:latest 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com/authmicroservice:latest
+      - run: docker push 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com/authmicroservice:latest
+
+#     TEST & BUILD BOOKEROO (REACT)
       - run: docker build -t septteam3/bookeroo ./FrontEnd/bookeroo/
+#     PUSH IMAGE TO REGISTRY
+      - run: docker tag bookeroo:latest 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com/bookeroo:latest
+      - run: docker push 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com/bookeroo:latest
