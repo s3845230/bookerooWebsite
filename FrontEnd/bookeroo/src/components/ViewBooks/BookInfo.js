@@ -12,7 +12,6 @@ function BookInfo({ match }) {
     const [book, setBook] = useState({});
 
     const fetchBook = async () => {
-
         axios.get(`http://localhost:8080/api/book/searchbyid/${match.params.id}`)
             .then(
                 response => {
