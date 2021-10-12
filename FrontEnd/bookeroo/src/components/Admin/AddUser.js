@@ -116,6 +116,7 @@ class AddUser extends Component {
                             <form onSubmit={this.onSubmit}>
                                 {/* Email */}
                                 <div className="form-group">
+                                    <label htmlFor="username">Email Address</label>
                                     <input
                                         type="text"
                                         className={`form-control form-control-lg ${this.handleError(this.state.errors.username)}`}
@@ -131,6 +132,7 @@ class AddUser extends Component {
                                 </div>
                                 {/* Full Name */}
                                 <div className="form-group">
+                                    <label htmlFor="fullname">Full Name</label>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
@@ -143,6 +145,7 @@ class AddUser extends Component {
                                 </div>
                                 {/* Password */}
                                 <div className="form-group">
+                                    <label htmlFor="password">Password</label>
                                     <input
                                         type="password"
                                         className={`form-control form-control-lg ${this.handleError(this.state.errors.password)}`}
@@ -158,6 +161,7 @@ class AddUser extends Component {
                                 </div>
                                 {/* Confirm Password */}
                                 <div className="form-group">
+                                    <label htmlFor="confirmPassword">Confirm Password</label>
                                     <input
                                         type="password"
                                         name="confirmPassword"
@@ -173,6 +177,7 @@ class AddUser extends Component {
                                 </div>
                                 {/* Address */}
                                 <div className="form-group">
+                                    <label htmlFor="address">Address</label>
                                     <input
                                         type="text"
                                         name="address"
@@ -185,6 +190,7 @@ class AddUser extends Component {
                                 </div>
                                 {/* Suburb */}
                                 <div className="form-group">
+                                    <label htmlFor="suburb">Suburb</label>
                                     <input
                                         type="text"
                                         name="suburb"
@@ -197,6 +203,7 @@ class AddUser extends Component {
                                 </div>
                                 {/* State */}
                                 <div className="form-group">
+                                    <label htmlFor="state">State</label>
                                     <select className="form-control form-control-lg" name="state" value={this.state.state} onChange={this.onChange} required>
                                         <option disabled value="">State</option>
                                         <option value="VIC">VIC</option>
@@ -210,6 +217,7 @@ class AddUser extends Component {
                                 </div>
                                 {/* Postcode */}
                                 <div className="form-group">
+                                    <label htmlFor="postcode">Postcode</label>
                                     <input
                                         type="number"
                                         name="postcode"
@@ -222,6 +230,7 @@ class AddUser extends Component {
                                 </div>
                                 {/* Phone Number */}
                                 <div className="form-group">
+                                    <label htmlFor="phoneNo">Phone Number</label>
                                     <input
                                         type="tel"
                                         name="phoneNo"
@@ -235,6 +244,7 @@ class AddUser extends Component {
                                 </div>
                                 {/*Type of Account*/}
                                 <div className="form-group" style={{paddingTop:"15px"}}>
+                                    <label htmlFor="accountRole">Type of Account</label>
                                     <select className="form-control form-control-lg" id="accountRole" name="accountRole" value={this.state.accountRole} onChange={this.onChange} required>
                                         <option disabled value="">Account type</option>
                                         <option value="CUSTOMER">Customer</option>
@@ -245,6 +255,7 @@ class AddUser extends Component {
                                 {/* ABN */}
                                 {/* Displays only if Publisher Role is selected */}
                                 <div className="form-group">
+                                    <label htmlFor="ABN">ABN</label>
                                     <input
                                         type="tel"
                                         name="ABN"

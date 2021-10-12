@@ -62,13 +62,14 @@ class SearchBar extends Component {
             <React.Fragment>
                 {/*Collapse Mobile Search*/}
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
-                    Search
+                    Search Book
                 </button>
                 <div className="collapse navbar-collapse" id="collapseSearch">
                     {/*Search Form*/}
                     <form className="navbar-left form-inline" role="search" onSubmit={this.onSubmit}>
                         <div className="card-body">
                             <input 
+                                data-testid="searchInput"
                                 type="text" 
                                 className="form-control mr-sm-2" 
                                 placeholder="Search"

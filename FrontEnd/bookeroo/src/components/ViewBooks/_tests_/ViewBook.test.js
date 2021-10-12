@@ -1,6 +1,16 @@
+import React from 'react';
+import { createMemoryHistory } from 'history';
+import { BrowserRouter as Router } from "react-router-dom";
 import axios from "axios";
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import SearchBar from "../SearchBar";
 
-jest.mock('axios');
+jest.mock('axios', () => {
+    return {
+      get: jest.fn(),
+    }
+});
 
 // create books
 const books = [{
@@ -35,6 +45,9 @@ const books = [{
 
 describe("SearchBar", () => {
     describe("when API call is successful", () => {
+        const mockHistory = {
+            push: jest.fn(),
+        }
         it("should return all books if search is empty", async () => {
             // mock axios post
             axios.get.mockResolvedValueOnce(books);
@@ -85,8 +98,19 @@ describe("SearchBar", () => {
 
             expect(result).toEqual(books[0]);
         });
-        it("should redirect to SearchResults page", async () => {
-            // TODO
+    });
+
+    describe("when search button is clicked", () => {
+        it("should redirect to SearchResults page", () => {
+            const history = createMemoryHistory();
+            axios.get.mockResolvedValueOnce(books[0]);
+            
+            render(<Router history={history}><SearchBar /></Router>);
+            userEvent.type(screen.getByTestId('searchInput'), "book1");
+            userEvent.click(screen.getByText('Search'));
+            history.push("/searchResults");
+            
+            expect(history.location.pathname).toBe("/searchResults")
         });
     });
 });
