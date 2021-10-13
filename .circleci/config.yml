@@ -11,7 +11,7 @@ jobs:
       #  TEST & PACKAGE BOOKMICROSERVICE
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package && ls target/
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw test
-      - run: sudo docker build -t septteam3/bookmicroservice:$CIRCLE_BUILD_NUM ./BackEnd/bookmicroservice/
+#      - run: sudo docker build -t septteam3/bookmicroservice:$CIRCLE_BUILD_NUM ./BackEnd/bookmicroservice/
       #  TEST & PACKAGE AUTHMICROSERVICE
 #      - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
 #      - run: cd ./BackEnd/authmicroservice/ && ./mvnw test
@@ -27,7 +27,7 @@ workflows:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
-          dockerfile: ./BackEnd/bookmicroservice/Dockerfile
+          dockerfile: BackEnd/bookmicroservice/Dockerfile
           extra-build-args:
 #          path: ./BackEnd/bookmicroservice
           region: AWS_REGION
