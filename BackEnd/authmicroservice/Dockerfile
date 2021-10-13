@@ -3,5 +3,5 @@ EXPOSE 8080
 
 RUN mkdir -p /home/authmicroservice/
 WORKDIR /home/authmicroservice/
-COPY ./target/*.jar authmicroservice.jar
+COPY ./Backend/bookmicroservice/target/*.jar authmicroservice.jar
 ENTRYPOINT ["java", "-jar", "authmicroservice.jar"]
