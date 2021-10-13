@@ -22,12 +22,12 @@ workflows:
   build_and_push_bookmicroservice_image:
     jobs:
       - aws-ecr/build-and-push-image:
-          account-url: AWS_ECR_ACCOUNT_URL}
-          aws-access-key-id: AWS_ACCESS_KEY_ID}
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY}
+          account-url: $AWS_ECR_ACCOUNT_URL
+          aws-access-key-id: $AWS_ACCESS_KEY_ID
+          aws-secret-access-key: $AWS_SECRET_ACCESS_KEY
           create-repo: true
           dockerfile: Dockerfile
           path: ./BackEnd/bookmicroservice/
-          region: AWS_REGION
+          region: $AWS_REGION
           repo: bookmicroservice
           tag: $CIRCLE_BUILD_NUM
