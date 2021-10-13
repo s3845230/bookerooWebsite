@@ -4,7 +4,7 @@ orbs:
   aws-ecr: circleci/aws-ecr@7.2.0
 
 jobs:
-  build:
+  package:
     machine: true
     steps:
       - checkout
@@ -22,31 +22,18 @@ workflows:
       - build
   build_and_push_bookmicroservice_image:
     jobs:
-#      - aws-ecr/build-and-push-image:
-#          attach-workspace: true
-#          workspace-root: ./Backend/bookmicroservice/
-#          account-url: AWS_ECR_ACCOUNT_URL
-#          aws-access-key-id: AWS_ACCESS_KEY_ID
-#          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-#          create-repo: true
-#          dockerfile: Dockerfile
-#          path: ./BackEnd/bookmicroservice/
-#          region: AWS_REGION
-#          repo: bookmicroservice
-#          tag: "$CIRCLE_BUILD_NUM"
-#          requires:
-#            - build
-      - aws-ecr/push-image:
-#          attach-workspace: true
-#          workspace-root: ./Backend/bookmicroservice/
+      - aws-ecr/build-and-push-image:
+          attach-workspace: true
+          workspace-root: ./Backend/bookmicroservice/
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-#          create-repo: true
-#          dockerfile: Dockerfile
-#          path: ./BackEnd/bookmicroservice/
+          create-repo: true
+          dockerfile: Dockerfile
+          extra-build-args: ./Backend/bookmicroservice/
+          path: ./BackEnd/bookmicroservice/
           region: AWS_REGION
           repo: bookmicroservice
-          tag: septteam3/bookmicroservice:"$CIRCLE_BUILD_NUM"
+          tag: "$CIRCLE_BUILD_NUM"
           requires:
-            - build
+            - package
