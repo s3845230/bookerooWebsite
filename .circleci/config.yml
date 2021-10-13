@@ -9,8 +9,12 @@ jobs:
     steps:
       - checkout
       #  TEST & PACKAGE BOOKMICROSERVICE
-      - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package && cp -R target ../../
+      - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw test
+      - persist_to_workspace:
+          root: BackEnd/bookmicroservice/
+          paths:
+          - target/
 #      - run: sudo docker build -t septteam3/bookmicroservice:$CIRCLE_BUILD_NUM ./BackEnd/bookmicroservice/
       #  TEST & PACKAGE AUTHMICROSERVICE
 #      - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
