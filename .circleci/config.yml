@@ -11,7 +11,7 @@ jobs:
       #  TEST & PACKAGE BOOKMICROSERVICE
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package && ls target/
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw test
-      - run: sudo docker build -t septteam3/bookmicroservice:$CIRCLE_BUILD_NUM ./Backend/bookmicroservice/
+      - run: sudo docker build -t septteam3/bookmicroservice:$CIRCLE_BUILD_NUM ./BackEnd/bookmicroservice/
       #  TEST & PACKAGE AUTHMICROSERVICE
 #      - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
 #      - run: cd ./BackEnd/authmicroservice/ && ./mvnw test
@@ -22,13 +22,13 @@ workflows:
       - package
       - aws-ecr/build-and-push-image:
           attach-workspace: true
-          workspace-root: ./Backend/bookmicroservice/
+          workspace-root: ./BackEnd/bookmicroservice/
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
           dockerfile: Dockerfile
-          extra-build-args: ./Backend/bookmicroservice/
+          extra-build-args: ../BackEnd/bookmicroservice/
           path: ./BackEnd/bookmicroservice/
           region: AWS_REGION
           repo: bookmicroservice
