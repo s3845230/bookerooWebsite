@@ -4,20 +4,22 @@ orbs:
   aws-ecr: circleci/aws-ecr@6.7.0
 
 workflows:
-  build:
-    machine: true
-    steps:
-      - checkout
-      #  TEST & PACKAGE BOOKMICROSERVICE
-      - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package
-      - run: cd ./BackEnd/bookmicroservice/ && ./mvnw test
-#      - run: docker build -t septteam3/bookmicroservice ./BackEnd/bookmicroservice/
-      #  TEST & PACKAGE AUTHMICROSERVICE
-      - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
-      - run: cd ./BackEnd/authmicroservice/ && ./mvnw test
-#      - run: docker build -t septteam3/authmicroservice ./BackEnd/authmicroservice/
-      # TEST & BUILD BOOKEROO (REACT)
-#      - run: docker build -t septteam3/bookeroo ./FrontEnd/bookeroo/
+  test_and_package_microservices:
+    jobs:
+      build:
+        machine: true
+        steps:
+          - checkout
+          #  TEST & PACKAGE BOOKMICROSERVICE
+          - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package
+          - run: cd ./BackEnd/bookmicroservice/ && ./mvnw test
+    #      - run: docker build -t septteam3/bookmicroservice ./BackEnd/bookmicroservice/
+          #  TEST & PACKAGE AUTHMICROSERVICE
+          - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
+          - run: cd ./BackEnd/authmicroservice/ && ./mvnw test
+    #      - run: docker build -t septteam3/authmicroservice ./BackEnd/authmicroservice/
+          # TEST & BUILD BOOKEROO (REACT)
+    #      - run: docker build -t septteam3/bookeroo ./FrontEnd/bookeroo/
   build_and_push_bookmicroservice_image:
     jobs:
       - aws-ecr/build-and-push-image:
