@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       #  TEST & PACKAGE BOOKMICROSERVICE
-      - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package && ls
+      - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package && ls target/
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw test
       #  TEST & PACKAGE AUTHMICROSERVICE
       - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
