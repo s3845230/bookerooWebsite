@@ -21,15 +21,15 @@ workflows:
     jobs:
       - package
       - aws-ecr/build-and-push-image:
-          attach-workspace: true
-          workspace-root: ./BackEnd/bookmicroservice/
+#          attach-workspace: true
+#          workspace-root: ./BackEnd/bookmicroservice/
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
           dockerfile: Dockerfile
-          extra-build-args: ../BackEnd/bookmicroservice/
-          path: ./BackEnd/bookmicroservice/
+          extra-build-args:
+          path: ./BackEnd/bookmicroservice
           region: AWS_REGION
           repo: bookmicroservice
           tag: "$CIRCLE_BUILD_NUM"
