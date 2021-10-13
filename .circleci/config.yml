@@ -28,7 +28,7 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
           dockerfile: BackEnd/bookmicroservice/Dockerfile
-          extra-build-args:
+          extra-build-args: && pwd && ls
 #          path: ./BackEnd/bookmicroservice
           region: AWS_REGION
           repo: bookmicroservice
