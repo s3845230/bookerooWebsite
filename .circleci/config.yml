@@ -1,36 +1,32 @@
-version: 2
-jobs:
+version: 2.1
+
+orbs:
+  aws-ecr: circleci/aws-ecr@6.7.0
+
+workflows:
   build:
     machine: true
     steps:
       - checkout
-#     INSTALL AWS CLI
-      - run: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install
-#     AUTHENTICATE TO ECR REPOSITORY
-      - run: export AWS_ACCESS_KEY_ID=AKIAZKH242LGO7FIEOO6
-      - run: export AWS_SECRET_ACCESS_KEY=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
-      - run: export AWS_DEFAULT_REGION=ap-southeast-2
-      - run: ls ./aws
-      - run: aws ecr get-login-password --region ap-southeast-2 | sudo docker login --username AWS --password-stdin 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com
-
-#     TEST & BUILD BOOKMICROSERVICE
+      #  TEST & PACKAGE BOOKMICROSERVICE
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw test
-      - run: docker build -t septteam3/bookmicroservice ./BackEnd/bookmicroservice/
-#     PUSH IMAGE TO REGISTRY
-      - run: docker tag bookmicroservice:latest 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com/bookmicroservice:latest
-      - run: docker push 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com/bookmicroservice:latest
-
-#     TEST & BUILD AUTHMICROSERVICE
+#      - run: docker build -t septteam3/bookmicroservice ./BackEnd/bookmicroservice/
+      #  TEST & PACKAGE AUTHMICROSERVICE
       - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
       - run: cd ./BackEnd/authmicroservice/ && ./mvnw test
-      - run: docker build -t septteam3/authmicroservice ./BackEnd/authmicroservice/
-#     PUSH IMAGE TO REGISTRY
-      - run: docker tag authmicroservice:latest 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com/authmicroservice:latest
-      - run: docker push 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com/authmicroservice:latest
-
-#     TEST & BUILD BOOKEROO (REACT)
-      - run: docker build -t septteam3/bookeroo ./FrontEnd/bookeroo/
-#     PUSH IMAGE TO REGISTRY
-      - run: docker tag bookeroo:latest 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com/bookeroo:latest
-      - run: docker push 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com/bookeroo:latest
+#      - run: docker build -t septteam3/authmicroservice ./BackEnd/authmicroservice/
+      # TEST & BUILD BOOKEROO (REACT)
+#      - run: docker build -t septteam3/bookeroo ./FrontEnd/bookeroo/
+  build_and_push_bookmicroservice_image:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          account-url: 640476304076.dkr.ecr.ap-southeast-2.amazonaws.com
+          aws-access-key-id: AKIAZKH242LGO7FIEOO6
+          aws-secret-access-key: 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
+          create-repo: true
+          dockerfile: Dockerfile
+          path: ./BackEnd/bookmicroservice/
+          region: ap-southeast-2
+          repo: bookmicroservice
+          tag: "$CIRCLE_BUILD_NUM"
