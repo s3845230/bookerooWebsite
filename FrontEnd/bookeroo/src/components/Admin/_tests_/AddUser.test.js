@@ -6,7 +6,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import axios from "axios";
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { adminCreateUser } from "../../../actions/Admin/userActions";
 import AddUser from "../AddUser";
 
 jest.mock("axios");
@@ -25,7 +24,7 @@ const user = {
     ABN: null
 };
 
-describe('AddUser', () => {
+describe('When Admin creates a user', () => {
     it("should create user and redirect to admin dashboard", async () => {
         const history = createMemoryHistory();
         render(
