@@ -121,6 +121,7 @@ class AddUser extends Component {
                                         type="text"
                                         className={`form-control form-control-lg ${this.handleError(this.state.errors.username)}`}
                                         placeholder="Email Address (Username)"
+                                        id="username"
                                         name="username"
                                         value={this.state.username}
                                         onChange={this.onChange}
@@ -132,11 +133,12 @@ class AddUser extends Component {
                                 </div>
                                 {/* Full Name */}
                                 <div className="form-group">
-                                    <label htmlFor="fullname">Full Name</label>
+                                    <label htmlFor="fullName">Full Name</label>
                                     <input
                                         type="text"
                                         className="form-control form-control-lg"
                                         placeholder="Full Name"
+                                        id="fullName"
                                         name="fullName"
                                         value={this.state.fullName}
                                         onChange={this.onChange}
@@ -150,6 +152,7 @@ class AddUser extends Component {
                                         type="password"
                                         className={`form-control form-control-lg ${this.handleError(this.state.errors.password)}`}
                                         placeholder="Password"
+                                        id="password"
                                         name="password"
                                         value={this.state.password}
                                         onChange={this.onChange}
@@ -164,6 +167,7 @@ class AddUser extends Component {
                                     <label htmlFor="confirmPassword">Confirm Password</label>
                                     <input
                                         type="password"
+                                        id="confirmPassword"
                                         name="confirmPassword"
                                         className={`form-control form-control-lg ${this.handleError(this.state.errors.confirmPassword)}`}
                                         placeholder="Confirm Password"
@@ -180,6 +184,7 @@ class AddUser extends Component {
                                     <label htmlFor="address">Address</label>
                                     <input
                                         type="text"
+                                        id="address"
                                         name="address"
                                         className="form-control form-control-lg"
                                         placeholder="Address"
@@ -193,6 +198,7 @@ class AddUser extends Component {
                                     <label htmlFor="suburb">Suburb</label>
                                     <input
                                         type="text"
+                                        id="suburb"
                                         name="suburb"
                                         className="form-control form-control-lg"
                                         placeholder="Suburb"
@@ -204,7 +210,7 @@ class AddUser extends Component {
                                 {/* State */}
                                 <div className="form-group">
                                     <label htmlFor="state">State</label>
-                                    <select className="form-control form-control-lg" name="state" value={this.state.state} onChange={this.onChange} required>
+                                    <select className="form-control form-control-lg" id="state" name="state" value={this.state.state} onChange={this.onChange} required>
                                         <option disabled value="">State</option>
                                         <option value="VIC">VIC</option>
                                         <option value="ACT">ACT</option>
@@ -220,6 +226,7 @@ class AddUser extends Component {
                                     <label htmlFor="postcode">Postcode</label>
                                     <input
                                         type="number"
+                                        id="postcode"
                                         name="postcode"
                                         className="form-control form-control-lg"
                                         placeholder="Postcode"
@@ -233,6 +240,7 @@ class AddUser extends Component {
                                     <label htmlFor="phoneNo">Phone Number</label>
                                     <input
                                         type="tel"
+                                        id="phoneNo"
                                         name="phoneNo"
                                         pattern="[0-9]{10}"
                                         className="form-control form-control-lg"
@@ -258,6 +266,7 @@ class AddUser extends Component {
                                     <label htmlFor="ABN">ABN</label>
                                     <input
                                         type="tel"
+                                        id="ABN"
                                         name="ABN"
                                         pattern="[0-9]{11}"
                                         className="form-control form-control-lg"
@@ -268,7 +277,7 @@ class AddUser extends Component {
                                         required={this.state.showABN}
                                     />
                                 </div>
-                                <input disabled={!this.state.formValid} type="submit" className="btn btn-info btn-block mt-4" />
+                                <input data-testid="submit" disabled={!this.state.formValid} type="submit" className="btn btn-info btn-block mt-4" />
                             </form>
                         </div>
                     </div>
