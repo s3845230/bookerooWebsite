@@ -17,11 +17,9 @@ jobs:
 #      - run: cd ./BackEnd/authmicroservice/ && ./mvnw test
 
 workflows:
-  test_and_package_microservices:
+  package_build_and_push_images:
     jobs:
       - package
-  build_and_push_bookmicroservice_image:
-    jobs:
       - aws-ecr/build-and-push-image:
           attach-workspace: true
           workspace-root: ./Backend/bookmicroservice/
