@@ -19,7 +19,7 @@ jobs:
 workflows:
   test_and_package_microservices:
     jobs:
-      - build
+      - package
   build_and_push_bookmicroservice_image:
     jobs:
       - aws-ecr/build-and-push-image:
