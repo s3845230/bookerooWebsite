@@ -3,5 +3,5 @@ EXPOSE 8081
 
 RUN mkdir -p /home/bookmicroservice/
 WORKDIR /home/bookmicroservice/
-COPY ./target/*.jar bookmicroservice.jar
+COPY ./target/bookmicroservice*.jar bookmicroservice.jar
 ENTRYPOINT ["java", "-jar", "bookmicroservice.jar"]
