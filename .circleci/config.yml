@@ -12,9 +12,9 @@ jobs:
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw test
       - persist_to_workspace:
-          root: BackEnd/bookmicroservice/
+          root: BackEnd/bookmicroservice/target/
           paths:
-          - target/
+          - *
 #      - run: sudo docker build -t septteam3/bookmicroservice:$CIRCLE_BUILD_NUM ./BackEnd/bookmicroservice/
       #  TEST & PACKAGE AUTHMICROSERVICE
 #      - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
