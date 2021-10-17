@@ -47,7 +47,7 @@ workflows:
           path: ./BackEnd/bookmicroservice
           region: AWS_REGION
           repo: bookmicroservice
-          tag: "!!v<< pipeline.number >>"
+          tag: "v<< pipeline.number >>"
           requires:
             - package
 
@@ -64,7 +64,7 @@ workflows:
           path: ./BackEnd/authmicroservice
           region: AWS_REGION
           repo: authmicroservice
-          tag: "!!v<< pipeline.number >>"
+          tag: "v<< pipeline.number >>"
           requires:
             - package
 
