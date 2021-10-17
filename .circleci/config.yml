@@ -12,9 +12,9 @@ jobs:
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw test
       - persist_to_workspace:
-          root: BackEnd/bookmicroservice/target/
+          root: BackEnd/bookmicroservice
           paths:
-          - *
+            - target/*.jar
 #      - run: sudo docker build -t septteam3/bookmicroservice:$CIRCLE_BUILD_NUM ./BackEnd/bookmicroservice/
       #  TEST & PACKAGE AUTHMICROSERVICE
 #      - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
@@ -25,7 +25,8 @@ workflows:
     jobs:
       - package
       - aws-ecr/build-and-push-image:
-#          attach-workspace: true
+          attach-workspace:
+            at: BackEnd/bookmicroservice
 #          workspace-root: ./BackEnd/bookmicroservice/
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
