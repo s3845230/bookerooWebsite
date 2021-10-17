@@ -13,17 +13,17 @@ jobs:
 #      - run: cd ./BackEnd/bookmicroservice/ && ./mvnw test
       - run: ls ./BackEnd/bookmicroservice/target/
       - persist_to_workspace:
-          root: BackEnd/bookmicroservice/target
+          root: BackEnd/bookmicroservice
           paths:
-            - ./*.jar
+            - target/*.jar
       #  TEST & PACKAGE AUTHMICROSERVICE
       - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
 #      - run: cd ./BackEnd/authmicroservice/ && ./mvnw test
       - run: ls ./BackEnd/authmicroservice/target/
       - persist_to_workspace:
-          root: BackEnd/authmicroservice/target
+          root: BackEnd/authmicroservice
           paths:
-            - ./*.jar
+            - target/*.jar
       # TEST REACT
       # TODO: Add testing commands - branch not yet merged with testing branch
 
@@ -46,7 +46,7 @@ workflows:
           path: ./BackEnd/bookmicroservice
           region: AWS_REGION
           repo: bookmicroservice
-          tag: "$CIRCLE_BUILD_NUM"
+          tag: "$CIRCLE_WORKFLOW_ID"
           requires:
             - package
 
@@ -63,7 +63,7 @@ workflows:
           path: ./BackEnd/authmicroservice
           region: AWS_REGION
           repo: authmicroservice
-          tag: "$CIRCLE_BUILD_NUM"
+          tag: "$CIRCLE_WORKFLOW_ID"
           requires:
             - package
 
@@ -78,6 +78,6 @@ workflows:
           path: ./FrontEnd/bookeroo/
           region: AWS_REGION
           repo: bookeroo
-          tag: "$CIRCLE_BUILD_NUM"
+          tag: "$CIRCLE_WORKFLOW_ID"
           requires:
             - package
