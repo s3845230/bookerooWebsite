@@ -15,15 +15,23 @@ jobs:
           root: BackEnd/bookmicroservice
           paths:
             - target/*.jar
-#      - run: sudo docker build -t septteam3/bookmicroservice:$CIRCLE_BUILD_NUM ./BackEnd/bookmicroservice/
       #  TEST & PACKAGE AUTHMICROSERVICE
-#      - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
-#      - run: cd ./BackEnd/authmicroservice/ && ./mvnw test
+      - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
+      - run: cd ./BackEnd/authmicroservice/ && ./mvnw test
+      - persist_to_workspace:
+          root: BackEnd/authmicroservice
+          paths:
+            - target/*.jar
+      # TEST REACT
+      # TODO: Add testing commands - branch not yet merged with testing branch
 
 workflows:
   package_build_and_push_images:
     jobs:
+      # TEST & PACKAGE MICROSERVICES
       - package
+
+      # BUILD & PUSH BOOKMICROSERVICE IMAGE
       - aws-ecr/build-and-push-image:
           attach-workspace: true
           workspace-root: ./BackEnd/bookmicroservice/
@@ -32,10 +40,39 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
           dockerfile: Dockerfile
-#          extra-build-args:
           path: ./BackEnd/bookmicroservice
           region: AWS_REGION
           repo: bookmicroservice
+          tag: "$CIRCLE_BUILD_NUM"
+          requires:
+            - package
+
+      # BUILD AND PUSH AUTHMICROSERVICE IMAGE
+      - aws-ecr/build-and-push-image:
+          attach-workspace: true
+          workspace-root: ./BackEnd/authmicroservice/
+          account-url: AWS_ECR_ACCOUNT_URL
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: Dockerfile
+          path: ./BackEnd/authmicroservice
+          region: AWS_REGION
+          repo: authmicroservice
+          tag: "$CIRCLE_BUILD_NUM"
+          requires:
+            - package
+
+      # BUILD AND PUSH BOOKEROO IMAGE
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: Dockerfile
+          path: ./FrontEnd/bookeroo/
+          region: AWS_REGION
+          repo: bookeroo
           tag: "$CIRCLE_BUILD_NUM"
           requires:
             - package
