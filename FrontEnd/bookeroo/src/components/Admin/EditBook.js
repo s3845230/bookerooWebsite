@@ -3,7 +3,7 @@ import * as PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { updateBook } from "../../actions/bookActions";
 
-class EditBook extends Component {
+export class EditBook extends Component {
     constructor(props) {
         super();
 
@@ -16,7 +16,7 @@ class EditBook extends Component {
             type: props.location.state.book.type,
             price: props.location.state.book.price,
             publisher: props.location.state.book.publisher,
-            publicationDate: props.location.state.book.publicationDate, // not prefilled
+            publicationDate: props.location.state.book.publicationDate,
             tagline: props.location.state.book.tagline,
             tableOfContents: props.location.state.book.tableOfContents,
             blurb: props.location.state.book.blurb,
@@ -83,6 +83,7 @@ class EditBook extends Component {
                                         type="text"
                                         className="form-control form-control-lg"
                                         placeholder="Title"
+                                        id="title"
                                         name="title"
                                         value={this.state.title}
                                         onChange={this.onChange}
