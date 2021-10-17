@@ -11,17 +11,19 @@ jobs:
       #  TEST & PACKAGE BOOKMICROSERVICE
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw test
+      - run: ls ./BackEnd/bookmicroservice/target/
       - persist_to_workspace:
-          root: BackEnd/bookmicroservice
+          root: BackEnd/bookmicroservice/target
           paths:
-            - target/*.jar
+            - ./*.jar
       #  TEST & PACKAGE AUTHMICROSERVICE
       - run: cd ./BackEnd/authmicroservice/ && ./mvnw package
       - run: cd ./BackEnd/authmicroservice/ && ./mvnw test
+      - run: ls ./BackEnd/authmicroservice/target/
       - persist_to_workspace:
           root: BackEnd/authmicroservice
           paths:
-            - target/*.jar
+            - ./*.jar
       # TEST REACT
       # TODO: Add testing commands - branch not yet merged with testing branch
 
