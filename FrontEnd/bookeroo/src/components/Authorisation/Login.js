@@ -67,10 +67,12 @@ class Login extends Component {
 
                 {/*USERNAME*/}
                 <div className="form-group">
+                  <label htmlFor="username">Email Address</label>
                   <input
                       type="text"
                       className={classnames("form-control form-control-lg", {"is-invalid": errors.username})}
                       placeholder="Email Address"
+                      id="username"
                       name="username"
                       value={this.state.username}
                       onChange={this.onChange}
@@ -80,10 +82,12 @@ class Login extends Component {
 
                 {/*PASSWORD*/}
                 <div className="form-group">
+                  <label htmlFor="password">Password</label>
                   <input
                     type="password"
                     className={classnames("form-control form-control-lg", {"is-invalid": errors.password})}
                     placeholder="Password"
+                    id="password"
                     name="password"
                     value={this.state.password}
                     onChange={this.onChange}
@@ -92,7 +96,7 @@ class Login extends Component {
                 </div>
 
                 {/*BUTTON*/}
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <input data-testid="login" type="submit" className="btn btn-info btn-block mt-4" />
 
               </form>
             </div>
