@@ -127,7 +127,7 @@ class AddUser extends Component {
                                         onChange={this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
+                                    <div data-testid="usernameError" className="invalid-feedback">
                                         {this.state.errors.username}
                                     </div>
                                 </div>
@@ -158,7 +158,7 @@ class AddUser extends Component {
                                         onChange={this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
+                                    <div data-testid="passwordError" className="invalid-feedback">
                                         {this.state.errors.password}
                                     </div>
                                 </div>
@@ -175,7 +175,7 @@ class AddUser extends Component {
                                         onChange={this.onChange}
                                         required
                                     />
-                                    <div className="invalid-feedback">
+                                    <div data-testid="cpasswordError" className="invalid-feedback">
                                         {this.state.errors.confirmPassword}
                                     </div>
                                 </div>

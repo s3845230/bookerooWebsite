@@ -22,7 +22,7 @@ const book = {
     tagline: "test",
     tableOfContents: "test",
     blurb: "test",
-    imageData: "", // need to fix
+    imageData: "",
     bookSeller: null
 };
 
@@ -81,8 +81,6 @@ describe('When publisher uploads a book for sale', () => {
 
         expect(axios.post).toHaveBeenCalledWith("http://localhost:8080/api/book/new/", book, {"headers": {}});
 
-        const result = await axios.post("http://localhost:8080/api/book/new/", book, {"headers": {}});
-        
         // result.data is undefined --> temporary solution
         const { id } = 1;
         history.push(`/searchResults/${id}`);

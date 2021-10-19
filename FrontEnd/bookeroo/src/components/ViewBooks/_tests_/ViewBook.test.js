@@ -5,8 +5,6 @@ import axios from "axios";
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SearchBar from "../SearchBar";
-import SearchResults from "../SearchResults";
-import BookInfo from '../BookInfo';
 
 jest.mock('axios', () => {
     return {
@@ -151,27 +149,6 @@ describe("BookInfo", () => {
 
             expect(axios.get).toHaveBeenCalledWith(`http://localhost:8080/api/book/searchbyid/${bookid}`);
             expect(result).toEqual(books[0]);
-        });
-        it("should display related information about book", async () => {
-            const history = createMemoryHistory();
-            const state = { book: books[0] }
-            history.push("/searchResults/1", state);
-
-            expect(history.location.pathname).toBe("/searchResults/1");
-            expect(history.location.state).toEqual({book: books[0]});
-
-            // const bookid = 1;
-            // const { getByText } = render(
-            //     // <BookInfo />
-            //     // <BookInfo match={{params: {id: bookid}, isExact: true, path: "", url: ""}} />
-            //     // <Provider store={store}>
-            //         <Router history={history}>
-            //             <Route path="/searchResults/1" component={BookInfo} />
-            //         </Router>
-            //     // </Provider>
-            // );
-
-            // expect(getByText(books[0].title));
         });
     });
 });

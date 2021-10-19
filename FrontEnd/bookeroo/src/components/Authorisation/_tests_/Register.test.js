@@ -24,7 +24,20 @@ const user = {
     ABN: null
 };
 
-describe('When user registers for an account', () => {
+describe('When customer registers for an account', () => {
+    it("should not display ABN field", () => {
+        render(
+            <Provider store={store}>
+                <Router>
+                    <Register />
+                </Router>
+            </Provider>
+        );
+
+        userEvent.selectOptions(screen.getByLabelText('Type of Account'), "CUSTOMER");
+
+        expect(screen.getByLabelText('ABN')).not.toBeVisible();
+    });
     it("should create account and redirect to login page", async () => {
         const history = createMemoryHistory();
         render(
@@ -51,11 +64,10 @@ describe('When user registers for an account', () => {
         expect(axios.post).toHaveBeenCalledWith("http://localhost:8080/api/auth/register", user);
         expect(history.location.pathname).toBe('/login');
     });
-    it("should return error when user types incorrect email", async () => {
-        const history = createMemoryHistory();
+    it("should return error when user types incorrect email", () => {
         render(
             <Provider store={store}>
-                <Router history={history}>
+                <Router>
                     <Register />
                 </Router>
             </Provider>
@@ -76,11 +88,10 @@ describe('When user registers for an account', () => {
         expect(screen.getByTestId('usernameError')).toHaveTextContent("Username is not an Email");
         expect(screen.getByTestId('submit')).toBeDisabled();
     });
-    it("should return error when password is too short", async () => {
-        const history = createMemoryHistory();
+    it("should return error when password is too short", () => {
         render(
             <Provider store={store}>
-                <Router history={history}>
+                <Router>
                     <Register />
                 </Router>
             </Provider>
@@ -101,11 +112,10 @@ describe('When user registers for an account', () => {
         expect(screen.getByTestId('passwordError')).toHaveTextContent("Password needs to be at least 6 characters long");
         expect(screen.getByTestId('submit')).toBeDisabled();
     });
-    it("should return error when passwords don't match", async () => {
-        const history = createMemoryHistory();
+    it("should return error when passwords don't match", () => {
         render(
             <Provider store={store}>
-                <Router history={history}>
+                <Router>
                     <Register />
                 </Router>
             </Provider>
@@ -125,5 +135,21 @@ describe('When user registers for an account', () => {
 
         expect(screen.getByTestId('cpasswordError')).toHaveTextContent("Passwords Do Not Match");
         expect(screen.getByTestId('submit')).toBeDisabled();
+    });
+});
+
+describe("When Publisher registers for an account", () => {
+    it("should display ABN field when 'PUBLISHER' is selected as account role", () => {
+        render(
+            <Provider store={store}>
+                <Router>
+                    <Register />
+                </Router>
+            </Provider>
+        );
+
+        userEvent.selectOptions(screen.getByLabelText('Type of Account'), "PUBLISHER");
+
+        expect(screen.getByLabelText('ABN')).toBeVisible();
     });
 });
