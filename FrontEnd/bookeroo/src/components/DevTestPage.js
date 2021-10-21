@@ -51,7 +51,7 @@ class DevTestPage extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12 text-left">
-                                <h1 className="display-4 text-left">DevTestPage </h1>
+                                <h1 className="display-4 text-left">DevTestPage - Now deployed in AWS!</h1>
                                 <p className="lead">
                                     This is a page to test developing features
                                 </p>

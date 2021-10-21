@@ -59,6 +59,7 @@ class App extends Component {
 
             {/*Public Routes*/}
             <Route exact path="/" component={Landing} />
+            <Route exact path="/landing" component={Landing} />
             <Route exact path="/publisher" component={PublisherLanding} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
