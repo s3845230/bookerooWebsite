@@ -4,13 +4,14 @@ import {
     SET_CURRENT_USER} from "./types";
 import setJWTToken from "../securityUtils/setJWTToken";
 import jwt_decode from "jwt-decode";
+import {AUTHMICROSERVICE_IP} from "../constants";
 
 
 export const createNewUser = (newUser, history) => async dispatch => {
     console.log("securityActions.createNewUser");
 
     try{
-        await axios.post("http://localhost:8080/api/auth/register", newUser);
+        await axios.post(AUTHMICROSERVICE_IP + "/api/auth/register", newUser);
         history.push("/login");
         // dispatch({
         //     payload: {}
@@ -32,7 +33,7 @@ export const loginUser = LoginRequest => async dispatch => {
     console.log(LoginRequest);
 
     try {
-        const response = await axios.post("http://localhost:8080/api/auth/login", LoginRequest);
+        const response = await axios.post(AUTHMICROSERVICE_IP + "/api/auth/login", LoginRequest);
         console.log("response: " + response);
 
         const { token } = response.data;

@@ -1,10 +1,11 @@
 import axios from "axios";
 import authHeader from "../services/authHeader";
 import {GET_ALL_BOOKS} from "./types";
+import {AUTHMICROSERVICE_IP} from "../constants";
 
 export const createBook = (newBook, history) => async dispatch => {
     try {
-        const response = await axios.post("http://localhost:8080/api/book/new/", newBook,{ headers: authHeader() });
+        const response = await axios.post(AUTHMICROSERVICE_IP + "/api/book/new/", newBook,{ headers: authHeader() });
         console.log(response);
         const { id } = response.data;
         console.log(id);
@@ -16,7 +17,7 @@ export const createBook = (newBook, history) => async dispatch => {
 }
 
 export const getAllBooks = (history) => async dispatch => {
-    const response = await axios.get(`http://localhost:8080/api/book/search`);
+    const response = await axios.get(AUTHMICROSERVICE_IP + "/api/book/search");
     history.push("/searchResults");
     dispatch({
       type: GET_ALL_BOOKS,
@@ -26,7 +27,7 @@ export const getAllBooks = (history) => async dispatch => {
 
 export const updateBook = (updatedBook, history) => async => {
     try {
-        axios.put(`http://localhost:8080/api/book/update`, updatedBook, { headers: authHeader() });
+        axios.put(AUTHMICROSERVICE_IP + "/api/book/update", updatedBook, { headers: authHeader() });
         history.push(`/admin`);
     }
     catch (err) {

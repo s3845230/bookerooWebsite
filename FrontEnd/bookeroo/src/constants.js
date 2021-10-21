@@ -1,0 +1,1 @@
+export const AUTHMICROSERVICE_IP = "internal-authmicroservice-balancer-176433370.ap-southeast-2.elb.amazonaws.com";
