@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./BookInfo.css";
 import axios from "axios";
 import authHeader from "../../services/authHeader";
+import {AUTHMICROSERVICE_IP} from "../../constants"
 
 function BookInfo({ match }) {
     useEffect(() => {
@@ -13,7 +14,7 @@ function BookInfo({ match }) {
 
     const fetchBook = async () => {
 
-        axios.get(`http://localhost:8080/api/book/searchbyid/${match.params.id}`)
+        axios.get(AUTHMICROSERVICE_IP + `/api/book/searchbyid/${match.params.id}`)
             .then(
                 response => {
                     console.log(response.data);

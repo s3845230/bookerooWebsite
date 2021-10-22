@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import {AUTHMICROSERVICE_IP} from "../../constants"
 
 class AdminFunctions extends Component {
     constructor() {
@@ -24,7 +25,7 @@ class AdminFunctions extends Component {
 
     fetchBooks(e) {
         e.preventDefault();
-        axios.get(`http://localhost:8080/api/book/search`)
+        axios.get(AUTHMICROSERVICE_IP + `/api/book/search`)
         // return results
         .then((result) => {
             this.setState({ books: result.data})

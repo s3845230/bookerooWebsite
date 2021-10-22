@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import { Link } from "react-router-dom";
+import {AUTHMICROSERVICE_IP} from "../../constants"
 
 class ViewBooks extends Component {
     constructor() {
@@ -26,7 +27,7 @@ class ViewBooks extends Component {
 
     // updates the selectedBook state
     setSelectedBook(id) {
-        axios.get(`http://localhost:8080/api/book/searchbyid/${id}`)
+        axios.get(AUTHMICROSERVICE_IP + `/api/book/searchbyid/${id}`)
         // return results
         .then((result) => {
             this.setState({ selectedBook: result.data})

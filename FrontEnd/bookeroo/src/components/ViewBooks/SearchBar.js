@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from "react-router";
+import {AUTHMICROSERVICE_IP} from "../../constants";
 
 class SearchBar extends Component {
     constructor() {
@@ -37,7 +38,7 @@ class SearchBar extends Component {
 
         // if search not empty
         if (search) {
-            axios.get(`http://localhost:8080/api/book/search/${search}`)
+            axios.get(AUTHMICROSERVIE_IP + `/api/book/search/${search}`)
             // returns results
             .then((result) => {
                 this.setState({ books: result.data})
@@ -48,7 +49,7 @@ class SearchBar extends Component {
         // get all books
         else {
             console.log("GET ALL BOOKS");
-            axios.get(`http://localhost:8080/api/book/search`)
+            axios.get(AUTHMICROSERVIE_IP + `/api/book/search`)
             // return results
             .then((result) => {
                 this.setState({ books: result.data})

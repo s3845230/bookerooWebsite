@@ -5,6 +5,7 @@ import UserService from "../services/UserService";
 import securityReducer from "../reducers/securityReducer";
 import {Link} from "react-router-dom";
 import { logout } from "../actions/securityActions";
+import {AUTHMICROSERVICE_IP} from "../constants"
 
 class DevTestPage extends Component {
 
@@ -29,7 +30,7 @@ class DevTestPage extends Component {
             this.setState({admin: "ADMIN"});
         }
 
-        axios.get(`http://localhost:8080/api/user/test`, { headers: authHeader() })
+        axios.get(AUTHMICROSERVICE_IP + `/api/user/test`, { headers: authHeader() })
             .then(
         response => {
             this.setState({

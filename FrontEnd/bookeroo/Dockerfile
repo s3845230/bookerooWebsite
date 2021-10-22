@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:lts-alpine AS BUILD_IMAGE
 ENV NODE_ENV production
 EXPOSE 3000
 
