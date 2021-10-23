@@ -26,8 +26,8 @@ jobs:
             - target/*.jar
 
       # TEST REACT
-      - run: cd ./FrontEnd/bookeroo/ && npm ci --only=production
-      - run: cd ./FrontEnd/bookeroo/ && npm test -- --watchAll=false
+      - run: cd ./FrontEnd/bookeroo/ && `npm ci --only=production`
+      - run: cd ./FrontEnd/bookeroo/ && `npm test -- --watchAll=false`
 
 workflows:
   package_build_and_push_images:
