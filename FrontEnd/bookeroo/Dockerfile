@@ -6,4 +6,5 @@ WORKDIR /home/app
 COPY . .
 RUN apk add git
 RUN apk add dumb-init
+RUN npm ci --only=production
 CMD ["dumb-init", "npm", "start"]

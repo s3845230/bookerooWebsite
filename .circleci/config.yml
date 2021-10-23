@@ -9,6 +9,15 @@ jobs:
     steps:
       - checkout
 
+      # TEST REACT
+#      - run: apt install node
+#      - run: cd ./FrontEnd/bookeroo/ && npm ci --only=production
+#      - run: cd ./FrontEnd/bookeroo/ && npm test -- --watchAll=false
+#      - persist_to_workspace:
+#          root: FrontEnd/bookeroo/
+#          paths:
+#            - node_modules/*
+
       #  TEST & PACKAGE BOOKMICROSERVICE
       - run: cd ./BackEnd/bookmicroservice/ && ./mvnw package
       - run: ls ./BackEnd/bookmicroservice/target/
@@ -24,10 +33,6 @@ jobs:
           root: BackEnd/authmicroservice
           paths:
             - target/*.jar
-
-      # TEST REACT
-      - run: cd ./FrontEnd/bookeroo/ && `npm ci --only=production`
-      - run: cd ./FrontEnd/bookeroo/ && `npm test -- --watchAll=false`
 
 workflows:
   package_build_and_push_images:
@@ -49,7 +54,6 @@ workflows:
           region: AWS_REGION
           repo: bookmicroservice
           tag:
-#          tag: "v<< pipeline.number >>"
           requires:
             - test_and_package
 
@@ -67,13 +71,14 @@ workflows:
           region: AWS_REGION
           repo: authmicroservice
           tag:
-#          tag: "v<< pipeline.number >>"
           requires:
             - test_and_package
 
       # BUILD AND PUSH BOOKEROO IMAGE
       - aws-ecr/build-and-push-image:
           name: aws-ecr/bookeroo
+#          attach-workspace: true
+#          workspace-root: ./FrontEnd/bookeroo/
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
@@ -83,6 +88,5 @@ workflows:
           region: AWS_REGION
           repo: bookeroo
           tag:
-#          tag: "v<< pipeline.number >>"
           requires:
             - test_and_package
