@@ -38,8 +38,7 @@ This class receives the API Requests for User Authentication:
  */
 
 @RestController
-//@CrossOrigin(origins = SecurityConstant.FRONT_END_URL)
-@CrossOrigin(origins = "http://bookeroo-balancer-2011454518.ap-southeast-2.elb.amazonaws.com")
+@CrossOrigin(origins = SecurityConstant.FRONT_END_URL)
 @RequestMapping("/api/auth/")
 public class AuthenticationController {
 
