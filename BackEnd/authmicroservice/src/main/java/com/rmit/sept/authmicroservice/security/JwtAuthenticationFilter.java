@@ -3,6 +3,8 @@ package com.rmit.sept.authmicroservice.security;
 import com.rmit.sept.authmicroservice.service.CustomUserDetailsService;
 import com.rmit.sept.authmicroservice.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
