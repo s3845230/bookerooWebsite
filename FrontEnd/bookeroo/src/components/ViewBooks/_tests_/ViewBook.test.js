@@ -112,23 +112,6 @@ describe("SearchBar", () => {
             
             expect(history.location.pathname).toBe("/searchResults")
         });
-        it("should display results in SearchResults page", () => {
-            // jest.mock("../SearchResults", () => {
-            //     return {
-            //         state: jest.fn()
-            //     }
-            // });
-            // const history = createMemoryHistory();
-            // axios.get.mockResolvedValueOnce(books[0]);
-            // const state = { books: books[0] };
-            // history.push("/searchResults", state);
-            // const { getByText } = render(
-            //     <Router history={history}>
-            //         <SearchResults />
-            //     </Router>
-            // );
-            // expect(getByText(books[0].title));
-        });
     });
 });
 
