@@ -87,6 +87,7 @@ class UploadBook extends Component {
                                         type="text"
                                         className="form-control form-control-lg"
                                         placeholder="Title"
+                                        id="title"
                                         name="title"
                                         value={this.state.title}
                                         onChange={this.onChange}
@@ -101,6 +102,7 @@ class UploadBook extends Component {
                                         type="text"
                                         className="form-control form-control-lg"
                                         placeholder="Author"
+                                        id="author"
                                         name="author"
                                         value= {this.state.author}
                                         onChange = {this.onChange}
@@ -115,6 +117,7 @@ class UploadBook extends Component {
                                         type="text"
                                         className="form-control form-control-lg"
                                         placeholder="ISBN"
+                                        id="isbn"
                                         name="isbn"
                                         value= {this.state.isbn}
                                         onChange = {this.onChange}
@@ -129,6 +132,7 @@ class UploadBook extends Component {
                                         type="text"
                                         className="form-control form-control-lg"
                                         placeholder="Genre"
+                                        id="genre"
                                         name="genre"
                                         value= {this.state.genre}
                                         onChange = {this.onChange}
@@ -154,6 +158,7 @@ class UploadBook extends Component {
                                         type="number"
                                         pattern="[0-9]*"
                                         className = "form-control form-control-lg"
+                                        id="price"
                                         name = "price"
                                         placeholder = "Price"
                                         min={1}
@@ -170,6 +175,7 @@ class UploadBook extends Component {
                                         type="text"
                                         className="form-control form-control-lg"
                                         placeholder="Publisher"
+                                        id="publisher"
                                         name="publisher"
                                         value= {this.state.publisher}
                                         onChange = {this.onChange}
@@ -184,6 +190,7 @@ class UploadBook extends Component {
                                         type="date"
                                         className="form-control form-control-lg"
                                         placeholder="Date of Publication"
+                                        id="publicationDate"
                                         name="publicationDate"
                                         value= {this.state.publicationDate}
                                         onChange = {this.onChange}
@@ -198,6 +205,7 @@ class UploadBook extends Component {
                                         type="paragraph"
                                         className="form-control form-control-lg"
                                         placeholder="Add Taglines Here"
+                                        id="tagline"
                                         name="tagline"
                                         rows={7}
                                         cols={7}
@@ -214,6 +222,7 @@ class UploadBook extends Component {
                                         type="paragraph"
                                         className="form-control form-control-lg"
                                         placeholder="Add Table Of Contents here"
+                                        id="tableOfContents"
                                         name="tableOfContents"
                                         rows={10}
                                         cols={10}
@@ -230,6 +239,7 @@ class UploadBook extends Component {
                                         type="paragraph"
                                         className="form-control form-control-lg"
                                         placeholder="Add Blurb here"
+                                        id="blurb"
                                         name="blurb"
                                         rows={10}
                                         cols={10}
@@ -245,6 +255,7 @@ class UploadBook extends Component {
                                     <input
                                         type="file"
                                         className="form-control-file"
+                                        id="imageData"
                                         name="imageData"
                                         accept="image/*"
                                         onChange={this.onChange && this.imageHandler}
@@ -255,7 +266,7 @@ class UploadBook extends Component {
                                         <img src={this.state.imageData} />
                                     </div>
                                 </div>
-                                <input type="submit" className="btn btn-primary btn-lg btn-block mt-4" />
+                                <input data-testid="submit" type="submit" className="btn btn-primary btn-lg btn-block mt-4" />
                             </form>
                         </div>
                     </div>

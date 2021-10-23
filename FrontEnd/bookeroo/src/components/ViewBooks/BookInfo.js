@@ -13,7 +13,6 @@ function BookInfo({ match }) {
     const [book, setBook] = useState({});
 
     const fetchBook = async () => {
-
         axios.get(AUTHMICROSERVICE_IP + `/api/book/searchbyid/${match.params.id}`)
             .then(
                 response => {
