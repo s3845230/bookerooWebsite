@@ -1,5 +1,4 @@
 # RMIT SEPT 2021 Major Project
-
 # Group WED-09:30
 
 ## Members
@@ -16,15 +15,11 @@
 * Jira: https://sept-team3.atlassian.net/
 * Teams: https://teams.microsoft.com/l/team/19%3aTXhYFFQDSUVu5XG7tYr2sWNFR3TL_IO2qxqgOINDEFI1%40thread.tacv2/conversations?groupId=6a30cc33-1dd7-452b-b54f-a2bc62b6d36d&tenantId=d1323671-cdbe-4417-b4d4-bdb24b51316b
 
-
-	
-[comment]: <> (## Code documentation - Release 0.1.0 - date)
-
-[comment]: <> (* feature 1)
-
-[comment]: <> (* feature 2)
-
-[comment]: <> (* feature 3)
+## Deployment
+* CircleCI: https://app.circleci.com/pipelines/github/s3845295/septteam3
+* bookeroo: http://bookeroo-balancer-2011454518.ap-southeast-2.elb.amazonaws.com/
+* authmicroservice: http://authmicroservice-lb-1717063688.ap-southeast-2.elb.amazonaws.com/
+* bookmicroservice:
 
 ## Running Project
 ### Running Back-End Microservices
@@ -40,10 +35,9 @@ Please note that your IDE must have the maven dependencies loaded before it's ab
 3. ```npm start```
 4. Access via ```http://localhost:3000```
 
-## How to send an authorised /api/users/register POST request
-1. Use Postman to send insert a user into the H2 database
-2. Login using that user at `localhost:3000/login`
-3. Register a user at `localhost:3000/register`
+## How to Deploy
+Assuming your code passes the automated testing in CircleCI, it will build the Docker images for you, push, and deploy them to AWS for you.
+1. `git push`
 
   
 
