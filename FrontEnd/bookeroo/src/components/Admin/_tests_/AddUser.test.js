@@ -7,6 +7,7 @@ import axios from "axios";
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import AddUser from "../AddUser";
+import {AUTHMICROSERVICE_IP} from "../../../constants";
 
 jest.mock("axios");
 
@@ -61,7 +62,7 @@ describe('When Admin creates an admin user', () => {
         userEvent.click(screen.getByTestId('submit'));
         history.push("/admin");
 
-        expect(axios.post).toHaveBeenCalledWith("http://localhost:8080/api/user/addUser", user, {"headers": {}});
+        expect(axios.post).toHaveBeenCalledWith(AUTHMICROSERVICE_IP + "/api/user/addUser", user, {"headers": {}});
         expect(history.location.pathname).toBe('/admin');
     });
     it("should return error when admin types incorrect email", async () => {

@@ -26,7 +26,8 @@ jobs:
             - target/*.jar
 
       # TEST REACT
-      # TODO: Add testing commands - branch not yet merged with testing branch
+      - run: cd./FrontEnd/bookeroo/ && RUN npm ci --only=production
+      - run: cd ./FrontEnd/bookeroo/ && npm test -- --watchAll=false
 
 workflows:
   package_build_and_push_images:

@@ -7,6 +7,7 @@ import axios from "axios";
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import UploadBook from "../UploadBook";
+import {AUTHMICROSERVICE_IP} from "../../../constants";
 
 jest.mock("axios");
 
@@ -52,7 +53,7 @@ describe('When publisher uploads a book for sale', () => {
         userEvent.click(screen.getByTestId('submit'));
 
         expect(axios.post).toHaveBeenCalledTimes(1);
-        expect(axios.post).toHaveBeenCalledWith("http://localhost:8080/api/book/new/", book, {"headers": {}});
+        expect(axios.post).toHaveBeenCalledWith(AUTHMICROSERVICE_IP + "/api/book/new/", book, {"headers": {}});
     });
     it ("should redirect to its corresponding book page after upload", async () => {
         const history = createMemoryHistory();
@@ -79,7 +80,7 @@ describe('When publisher uploads a book for sale', () => {
         userEvent.click(screen.getByLabelText('Upload Book Cover'));
         userEvent.click(screen.getByTestId('submit'));
 
-        expect(axios.post).toHaveBeenCalledWith("http://localhost:8080/api/book/new/", book, {"headers": {}});
+        expect(axios.post).toHaveBeenCalledWith(AUTHMICROSERVICE_IP + "/api/book/new/", book, {"headers": {}});
 
         // result.data is undefined --> temporary solution
         const { id } = 1;

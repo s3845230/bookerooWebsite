@@ -7,6 +7,7 @@ import axios from "axios";
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from "../Login";
+import {AUTHMICROSERVICE_IP} from "../../../constants";
 
 jest.mock("axios");
 
@@ -40,6 +41,6 @@ describe('When user has created an account', () => {
         userEvent.type(screen.getByLabelText('Password'), user.password);
         userEvent.click(screen.getByTestId('login'));
         
-        expect(axios.post).toHaveBeenCalledWith("http://localhost:8080/api/auth/login", {password: "test123", username: "test@test.com"});
+        expect(axios.post).toHaveBeenCalledWith(AUTHMICROSERVICE_IP + "/api/auth/login", {password: "test123", username: "test@test.com"});
     });
 });

@@ -7,6 +7,7 @@ import axios from "axios";
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Register from '../Register';
+import {AUTHMICROSERVICE_IP} from "../../../constants";
 
 jest.mock("axios");
 
@@ -61,7 +62,7 @@ describe('When customer registers for an account', () => {
         userEvent.click(screen.getByTestId('submit'));
         history.push("/login");
 
-        expect(axios.post).toHaveBeenCalledWith("http://localhost:8080/api/auth/register", user);
+        expect(axios.post).toHaveBeenCalledWith(AUTHMICROSERVICE_IP + "/api/auth/register", user);
         expect(history.location.pathname).toBe('/login');
     });
     it("should return error when user types incorrect email", () => {

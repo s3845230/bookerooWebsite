@@ -5,6 +5,7 @@ import axios from "axios";
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SearchBar from "../SearchBar";
+import {AUTHMICROSERVICE_IP} from "../../../constants";
 
 jest.mock('axios', () => {
     return {
@@ -52,9 +53,9 @@ describe("SearchBar", () => {
             // mock axios post
             axios.get.mockResolvedValueOnce(books);
 
-            const result = await axios.get(`http://localhost:8080/api/book/search`);
+            const result = await axios.get(AUTHMICROSERVICE_IP + `/api/book/search`);
             
-            expect(axios.get).toHaveBeenCalledWith(`http://localhost:8080/api/book/search`);
+            expect(axios.get).toHaveBeenCalledWith(AUTHMICROSERVICE_IP + `/api/book/search`);
             expect(result).toEqual(books);
         });
         it("should return created book when searched by title", async () => {
@@ -62,9 +63,9 @@ describe("SearchBar", () => {
             axios.get.mockResolvedValueOnce(books[0]);
 
             const search = "book1"
-            const result = await axios.get(`http://localhost:8080/api/book/search/${search}`);
+            const result = await axios.get(AUTHMICROSERVICE_IP + `/api/book/search/${search}`);
 
-            expect(axios.get).toHaveBeenCalledWith(`http://localhost:8080/api/book/search/${search}`);
+            expect(axios.get).toHaveBeenCalledWith(AUTHMICROSERVICE_IP + `/api/book/search/${search}`);
             expect(result).toEqual(books[0]);
         });
         it("should return the created book when searched by author", async () => {
@@ -72,9 +73,9 @@ describe("SearchBar", () => {
             axios.get.mockResolvedValueOnce(books[0]);
 
             const search = "john"
-            const result = await axios.get(`http://localhost:8080/api/book/search/${search}`);
+            const result = await axios.get(AUTHMICROSERVICE_IP + `/api/book/search/${search}`);
 
-            expect(axios.get).toHaveBeenCalledWith(`http://localhost:8080/api/book/search/${search}`);
+            expect(axios.get).toHaveBeenCalledWith(AUTHMICROSERVICE_IP + `/api/book/search/${search}`);
             expect(result).toEqual(books[0]);
         });
         it("should return the created book when searched by ISBN", async () => {
@@ -82,9 +83,9 @@ describe("SearchBar", () => {
             axios.get.mockResolvedValueOnce(books[0]);
 
             const search = "103429852"
-            const result = await axios.get(`http://localhost:8080/api/book/search/${search}`);
+            const result = await axios.get(AUTHMICROSERVICE_IP + `/api/book/search/${search}`);
 
-            expect(axios.get).toHaveBeenCalledWith(`http://localhost:8080/api/book/search/${search}`);
+            expect(axios.get).toHaveBeenCalledWith(AUTHMICROSERVICE_IP + `/api/book/search/${search}`);
             expect(result).toEqual(books[0]);
         });
         it("should return the created book when searched by category", async () => {
@@ -92,9 +93,9 @@ describe("SearchBar", () => {
             axios.get.mockResolvedValueOnce(books[0]);
 
             const search = "action"
-            const result = await axios.get(`http://localhost:8080/api/book/search/${search}`);
+            const result = await axios.get(AUTHMICROSERVICE_IP + `/api/book/search/${search}`);
 
-            expect(axios.get).toHaveBeenCalledWith(`http://localhost:8080/api/book/search/${search}`);
+            expect(axios.get).toHaveBeenCalledWith(AUTHMICROSERVICE_IP + `/api/book/search/${search}`);
 
             expect(result).toEqual(books[0]);
         });
@@ -128,9 +129,9 @@ describe("BookInfo", () => {
             axios.get.mockResolvedValueOnce(books[0]);
 
             const bookid = 1;
-            const result = await axios.get(`http://localhost:8080/api/book/searchbyid/${bookid}`);
+            const result = await axios.get(AUTHMICROSERVICE_IP + `/api/book/searchbyid/${bookid}`);
 
-            expect(axios.get).toHaveBeenCalledWith(`http://localhost:8080/api/book/searchbyid/${bookid}`);
+            expect(axios.get).toHaveBeenCalledWith(AUTHMICROSERVICE_IP + `/api/book/searchbyid/${bookid}`);
             expect(result).toEqual(books[0]);
         });
     });
