@@ -263,7 +263,7 @@ class Register extends Component {
                 {/*ABN*/}
                 {/* Displays only if Publisher Role is selected */}
                 <div className="form-group">
-                  <label htmlFor="ABN">ABN</label>
+                  <label htmlFor="ABN" hidden={!this.state.showABN}>ABN</label>
                   <input
                     type="tel"
                     id="ABN"
