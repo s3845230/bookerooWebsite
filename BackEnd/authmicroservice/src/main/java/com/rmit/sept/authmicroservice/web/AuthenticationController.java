@@ -38,7 +38,7 @@ This class receives the API Requests for User Authentication:
  */
 
 @RestController
-@CrossOrigin(origins = SecurityConstant.FRONT_END_URL)
+//@CrossOrigin(origins = SecurityConstant.FRONT_END_URL)
 @RequestMapping("/api/auth/")
 public class AuthenticationController {
 
@@ -49,6 +49,7 @@ public class AuthenticationController {
     @Autowired
     private UserValidator userValidator;
 
+    @CrossOrigin
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody String data, BindingResult result) throws JsonProcessingException {
 
