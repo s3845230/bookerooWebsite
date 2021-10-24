@@ -21,6 +21,9 @@
 * authmicroservice: http://authmicroservice-lb-1717063688.ap-southeast-2.elb.amazonaws.com/
 * bookmicroservice:
 
+## Outstanding Limitations
+CORS is not configured correctly for when the application is deployed in AWS, and so any functionality that requires access to the back-end is not operational.
+
 ## Running Project
 ### Running Back-End Microservices
 Please note that your IDE must have the maven dependencies loaded before it's able to package the ```.jar``` file.
