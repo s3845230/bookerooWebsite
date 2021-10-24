@@ -17,7 +17,7 @@ import java.util.Optional;
 
 
 @RestController
-@CrossOrigin("http://localhost:8080") // authmicroservice
+@CrossOrigin("http://authmicroservice-lb-1717063688.ap-southeast-2.elb.amazonaws.com") // authmicroservice
 @RequestMapping("/api/book/")
 public class BookController {
 

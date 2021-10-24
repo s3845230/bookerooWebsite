@@ -13,7 +13,7 @@ This class acts as a REST request relay between the FrontEnd and bookmicroservic
 @RequestMapping("/api/book/")
 public class BookController {
     
-    String bookmicroserviceUrl = "http://localhost:8081/api/book"; // BOOKMICROSERVICE API URL
+    String bookmicroserviceUrl = "http://internal-bookmicroservice-balancer-1567130268.ap-southeast-2.elb.amazonaws.com/api/book"; // BOOKMICROSERVICE API URL
     RestTemplate restTemplate = new RestTemplate();
 
     @PostMapping("/new")
