@@ -22,7 +22,7 @@
 * bookmicroservice:
 
 ## Outstanding Limitations
-CORS is not configured correctly for when the application is deployed in AWS, and so any functionality that requires access to the back-end is not operational.
+There's an issue with the deployment in AWS, and the back-end microservices go offline intermittently. 
 
 ## Running Project
 ### Running Back-End Microservices
